@@ -1,0 +1,13 @@
+https://moodle.utfpr.edu.br/mod/assign/view.php?id=1227768
+
+Aberto: segunda, 27 jun 2022, 08:00
+Vencimento: domingo, 10 jul 2022, 23:59
+
+Sobre a entrega da atividade:
+
+ATENÇÃO PARA NÃO DEIXAR A ENTREGA DA ATIVIDADE EM MODO RASCUNHO!
+
+Coloque aqui o arquivo com o código SQL referente às 7 consultas pedidas no enunciado.
+Os scripts devem rodar no banco de dados MariaDB (MySQL).
+ATENÇÃO: scripts que não rodarem serão considerados INVÁLIDOS e não serão avaliados.
+Entregar os comandos utilizados em um arquivo TXT com o seguinte nome: <NOMEDOALUNO>_Atividade01.txt
