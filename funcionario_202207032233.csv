@@ -1,0 +1,7 @@
+"cod_funcionario","nome_funcionario","qtde_dependente","salario","cargo","cod_departamento"
+1,nome funcionario 01,0,1000,cargo 01,1
+2,nome funcionario 02,0,2000,cargo 02,1
+3,nome funcionario 03,0,3000,Gerente,3
+4,nome funcionario 04,4,8000,cargo 04,4
+5,nome funcionario 05,0,5000,cargo 05,7
+6,nome funcionario 06,6,6000,cargo 06,7
