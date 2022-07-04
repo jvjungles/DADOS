@@ -1,0 +1,226 @@
+-- 
+-- 
+-- -- SELECT can.nome_cantor, AVG(mus.duracao) media
+-- -- 	FROM dml.gravacao grav
+-- -- 	INNER JOIN dml.musica mus ON grav.cod_musica = mus.cod_musica
+-- -- 	INNER JOIN dml.cantor can ON grav.cod_cantor = can.cod_cantor
+-- -- 	GROUP BY can.nome_cantor
+-- -- 	ORDER BY media desc;
+-- 
+-- SELECT sub.nome_cantor, MAX(sub.media)
+-- FROM (
+-- 	SELECT can.nome_cantor, 
+-- 	AVG(mus.duracao) media
+-- 	FROM dml.gravacao grav
+-- 	INNER JOIN dml.musica mus ON grav.cod_musica = mus.cod_musica
+-- 	INNER JOIN dml.cantor can ON grav.cod_cantor = can.cod_cantor
+-- 	GROUP BY can.nome_cantor 
+-- 	ORDER BY media desc
+-- ) sub
+-- 
+-- 
+-- 
+-- Selecione o nome de cada cantor e a data da sua última gravação em ordem decrescente de data. Caso não tenha gravado nada, a data deve aparecer em branco.
+-- 
+-- SELECT -- *
+-- 	 can.nome_cantor AS cantor,
+-- 	 max(gcao.data_gravacao) AS data_ultima_gravacao
+-- FROM
+-- 	dml.cantor can 
+-- left JOIN dml.gravacao gcao ON
+-- 	gcao.cod_cantor = can.cod_cantor
+-- GROUP BY can.nome_cantor
+-- ORDER BY data_ultima_gravacao desc;
+-- 
+-- 
+-- 
+-- SELECT 
+-- gcao.*, can.nome_cantor
+-- DISTINCT(can.nome_cantor)
+-- FROM dml.cantor can  
+-- left JOIN  dml.gravacao gcao ON can.cod_cantor = gcao.cod_cantor
+-- WHERE gcao.cod_gravadora != 1 OR gcao.cod_gravadora IS null
+-- ORDER BY nome_cantor
+-- ;
+-- 
+-- 
+-- -- INNER JOIN (SELECT 
+-- -- 				grav2.cod_cantor as codCantor,
+-- -- 				COUNT(*) AS qtde
+-- -- 				FROM dml.gravacao grav2
+-- -- 				GROUP BY grav2.cod_cantor				
+-- -- 				) qtd ON grav.cod_cantor = qtd.cod_cantor
+-- ;
+-- 
+-- 
+-- -- SELECT 
+-- -- grav.cod_cantor as codCantor,
+-- -- COUNT(*) AS qtde
+-- -- FROM dml.gravacao grav
+-- -- GROUP BY cod_cantor;
+-- 
+-- 
+-- 
+-- SELECT 
+-- p.nome_pessoa, 
+-- fr.numero fr,
+-- fc.numero fc,
+-- fl.numero fl
+-- FROM dml.pessoa p
+-- inner JOIN dml.fone fr ON p.cod_pessoa = fr.cod_pessoa AND fr.tipo = 'R'
+-- inner JOIN dml.fone fc ON p.cod_pessoa = fc.cod_pessoa AND fc.tipo = 'C'
+-- inner JOIN dml.fone fl ON p.cod_pessoa = fl.cod_pessoa AND fl.tipo = 'L';
+-- GROUP BY p.nome_pessoa;
+-- 
+-- 
+-- select
+--     p.nome_pessoa,
+--     (select
+--         f.numero
+--     from
+--         dml.fone f
+--     where f.cod_pessoa = p.cod_pessoa and f.tipo = 'R') as fone_residencial,
+--     (select
+--         f.numero
+--     from
+--         dml.fone f
+--     where f.cod_pessoa = p.cod_pessoa and f.tipo = 'C') as fone_comercial,
+--     (select
+--         f.numero
+--     from
+--         dml.fone f
+--     where f.cod_pessoa = p.cod_pessoa and f.tipo = 'L') as celular
+-- from
+--     dml.pessoa p;
+-- 
+-- 
+-- 
+-- 
+-- 
+-- SELECT can.nome_cantor, COUNT(grav.cod_cantor) AS numGravacoes
+-- from dml.gravacao grav
+-- INNER JOIN dml.cantor can ON grav.cod_cantor = can.cod_cantor
+-- GROUP BY grav.cod_cantor
+-- HAVING numGravacoes = (
+-- 		SELECT MIN(minGravacoes.countGravacoes) FROM 
+-- 		(
+-- 			SELECT cod_cantor, COUNT(cod_cantor) AS countGravacoes
+-- 			from dml.gravacao 
+-- 			GROUP BY cod_cantor
+-- 		) minGravacoes
+-- );
+-- 
+-- 
+-- SELECT MIN(minFera.fera2) FROM (
+-- 		SELECT cod_cantor, COUNT(cod_cantor) AS fera2
+-- 		from dml.gravacao 
+-- 		GROUP BY cod_cantor
+-- ) minFera;
+-- 
+-- 
+-- SELECT cod_cantor, COUNT(cod_cantor) AS fera
+-- from dml.gravacao 
+-- GROUP BY cod_cantor;
+-- 
+-- 
+-- 
+-- SELECT (*) AS t FROM dml.gravacao GROUP BY cod_cantor ORDER BY t desc;
+-- SELECT * from dml.gravacao WHERE ;
+-- 
+-- 
+-- 
+-- SELECT *
+-- FROM
+-- (
+-- 	SELECT			
+-- 		can.nome_cantor, 
+-- 		COUNT(DISTINCT(grav.cod_gravadora)) AS gravCount
+-- 	FROM
+-- 		dml.gravacao grav
+-- 	INNER JOIN 
+-- 		dml.cantor can ON grav.cod_cantor = can.cod_cantor
+-- 	GROUP BY
+-- 		grav.cod_cantor
+-- ) tmax
+-- WHERE
+-- tmax.gravCount =
+-- 	(
+-- 		SELECT MAX(sub1.grav)
+-- 		FROM
+-- 			dml.cantor can
+-- 		INNER JOIN 
+-- 		(
+-- 			SELECT
+-- 				cod_cantor, COUNT(DISTINCT(cod_gravadora)) AS grav
+-- 			FROM
+-- 				dml.gravacao
+-- 			GROUP BY
+-- 					cod_cantor
+-- 		) sub1 ON can.cod_cantor = sub1.cod_cantor
+-- 	)
+-- ORDER BY
+-- 	nome_cantor;
+-- 
+-- 
+-- SELECT			
+-- 		can.nome_cantor, 
+-- 		COUNT(DISTINCT(grav.cod_gravadora)) AS gravCount
+-- 	FROM
+-- 		dml.gravacao grav
+-- 	INNER JOIN 
+-- 		dml.cantor can ON grav.cod_cantor = can.cod_cantor
+-- 	GROUP BY
+-- 		grav.cod_cantor
+-- 	HAVING gravCount = (
+-- 			SELECT MAX(sub1.grav)
+-- 			FROM
+-- 				dml.cantor can
+-- 			INNER JOIN 
+-- 			(
+-- 				SELECT
+-- 					cod_cantor, COUNT(DISTINCT(cod_gravadora)) AS grav
+-- 				FROM
+-- 					dml.gravacao
+-- 				GROUP BY
+-- 						cod_cantor
+-- 			) sub1 ON can.cod_cantor = sub1.cod_cantor
+-- 		);
+
+
+
+
+
+-- SELECT 
+-- gcao.*, can.nome_cantor, gora.nome_gravadora 
+-- #DISTINCT(can.nome_cantor)
+-- FROM dml.gravacao gcao  
+-- left JOIN  dml.cantor can ON can.cod_cantor = gcao.cod_cantor
+-- left JOIN dml.gravadora gora ON gcao.cod_gravadora = gora.cod_gravadora
+-- #WHERE gora.nome_gravadora != 'Sony'
+-- #ORDER BY nome_cantor
+-- ;
+
+-- SELECT 
+-- -- gcao.*, can.nome_cantor
+-- DISTINCT(can.nome_cantor)
+-- FROM dml.cantor can  
+-- left JOIN  dml.gravacao gcao ON can.cod_cantor = gcao.cod_cantor
+-- WHERE gcao.cod_gravadora != 1 OR gcao.cod_gravadora IS null
+-- #ORDER BY nome_cantor
+-- ;
+
+SELECT 
+can.nome_cantor
+FROM dml.cantor can  
+WHERE NOT EXISTS (
+	SELECT * FROM dml.gravacao grav 
+	INNER JOIN dml.gravadora grad ON grav.cod_gravadora = grad.cod_gravadora
+	WHERE grav.cod_cantor = can.cod_cantor 
+	AND grad.nome_gravadora = 'Sony'
+);
+
+
+-- SELECT * FROM dml.gravacao;
+
+
+-- SELECT col1 FROM t1 WHERE EXISTS (SELECT col2 FROM t2); 
