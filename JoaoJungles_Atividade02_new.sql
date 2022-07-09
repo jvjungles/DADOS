@@ -1,9 +1,9 @@
-CREATE SCHEMA atividade02_new;
-USE atividade02_new;
+CREATE SCHEMA atividade02_new3;
+USE atividade02_new3;
 
 -- create users
-CREATE USER 'funcionario'@localhost IDENTIFIED BY 'password1'; -- falta acesso limitado
-CREATE USER 'gerente'@localhost IDENTIFIED BY 'password1';
+grant all privileges on atividade02_new3.funcionario 	TO 'funcionario10' 	identified by 'password1';
+grant all privileges on atividade02_new3.* 				TO 'gerente10' 		identified by 'password1';
 
 -- create tables
 CREATE TABLE departamento (
@@ -24,13 +24,6 @@ CREATE TABLE funcionario (
 );
 
 -- insert dados
--- INSERT INTO departamento (cod_departamento, nome_departamento) VALUES (1, 'Tecnologia');
--- INSERT INTO departamento (cod_departamento, nome_departamento) VALUES (2, 'Administrativo');
--- INSERT INTO departamento (cod_departamento, nome_departamento) VALUES (3, 'Financeiro');
--- INSERT INTO departamento (cod_departamento, nome_departamento) VALUES (4, 'Recursos Humanos');
--- INSERT INTO departamento (cod_departamento, nome_departamento) VALUES (5, 'Setor comercial');
--- INSERT INTO departamento (cod_departamento, nome_departamento) VALUES (6, 'Setor operacional');
-
 INSERT INTO departamento (cod_departamento, nome_departamento) VALUES(1, 'Tecnologia');
 INSERT INTO departamento (cod_departamento, nome_departamento) VALUES(2, 'Administrativo');
 INSERT INTO departamento (cod_departamento, nome_departamento) VALUES(3, 'Financeiro');
@@ -38,13 +31,6 @@ INSERT INTO departamento (cod_departamento, nome_departamento) VALUES(4, 'Recurs
 INSERT INTO departamento (cod_departamento, nome_departamento) VALUES(5, 'Setor comercial');
 INSERT INTO departamento (cod_departamento, nome_departamento) VALUES(6, 'Setor operacional');
 INSERT INTO departamento (cod_departamento, nome_departamento) VALUES(7, 'Diretoria');
-
--- INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES (1, 'nome funcionario 01', 1, 1000, 'cargo 01', 1);
--- INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES (2, 'nome funcionario 02', 2, 2000, 'cargo 02', 2);
--- INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES (3, 'nome funcionario 03', 3, 3000, 'cargo 03', 3);
--- INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES (4, 'nome funcionario 04', 4, 4000, 'cargo 04', 4);
--- INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES (5, 'nome funcionario 05', 5, 5000, 'cargo 05', 5);
--- INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES (6, 'nome funcionario 06', 6, 6000, 'cargo 06', 6);
 
 INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES(1, 'nome funcionario 01', 0, 1000, 'cargo 01', 1);
 INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, salario, cargo, cod_departamento) VALUES(2, 'nome funcionario 02', 0, 2000, 'cargo 02', 1);
@@ -57,7 +43,7 @@ INSERT INTO funcionario (cod_funcionario, nome_funcionario, qtde_dependente, sal
 -- create views
 
 -- a. Mostre o nome do departamento que tem o maior número de funcionários, mostrando também a quantidade de funcionários desse departamento.
-CREATE VIEW view_dep_maior_num_func AS 
+CREATE VIEW view_a_dep_maior_num_func AS 
 select
 	d.nome_departamento,
 	COUNT(f.cod_departamento) as qtde_funcionario
@@ -85,7 +71,7 @@ having
 		depart.cod_departamento = SUB.cod_departamento );
 
 -- b. Mostre o nome do departamento que tem a menor quantidade de funcionários sem dependentes, com a quantidade de funcionários.
-CREATE VIEW view_dep_menor_num_func_sem_dep AS 
+CREATE VIEW view_b_dep_menor_num_func_sem_d AS 
 select
 	d.nome_departamento,
 	COUNT(f.cod_departamento) as qtde_funcionario
@@ -115,7 +101,7 @@ having
 		depart.cod_departamento = SUB.cod_departamento );
 
 -- c. Mostre o nome do departamento com os nomes dos seus respectivos funcionários de todos os departamentos cujo nome começa com “DIR”.
-CREATE VIEW view_dep_func_dir AS
+CREATE VIEW view_c_dep_func_dir AS
 select
 	d.nome_departamento,
 	f.nome_funcionario
@@ -126,7 +112,7 @@ inner join departamento d on
 where upper(d.nome_departamento) like 'DIR%';
 
 -- d. Mostre o nome do funcionário e do departamento ao qual pertence o funcionário com o maior salário.
-CREATE VIEW view_dep_func_maior_sal AS
+CREATE VIEW view_d_dep_func_maior_sal AS
 select 
 	f.nome_funcionario,
 	d.nome_departamento 
@@ -140,7 +126,7 @@ where f.salario = (
 );
 
 -- e. Mostre o nome do departamento e do funcionário de cada departamento que tem o cargo de “Gerente”.
-CREATE VIEW view_dep_func_ger AS
+CREATE VIEW view_e_dep_func_ger AS
 select
 	d.nome_departamento,
 	f.nome_funcionario
