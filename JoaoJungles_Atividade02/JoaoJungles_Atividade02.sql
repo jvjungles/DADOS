@@ -134,4 +134,4 @@ from
 	funcionario f
 inner join departamento d on
 	f.cod_departamento = d.cod_departamento
-where upper(f.cargo) like UPPER('Gerente');
+where upper(f.cargo) like UPPER('%Gerente%');
