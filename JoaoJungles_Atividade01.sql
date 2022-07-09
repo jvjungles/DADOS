@@ -2,7 +2,6 @@
 #Respostas
 
 #Questão 01
-#Obter o nome do cantor que possui o menor número de gravações (deve exibir todos os nomes de cantores que tenham o valor mínimo).
 
 SELECT
 	CAN.NOME_CANTOR AS NOME_CANTOR,
@@ -30,7 +29,6 @@ HAVING
 
 
 #Questão 02
-# Obter o nome do cantor que gravou com o maior número de gravadoras diferentes.
 
 SELECT
 	CAN.NOME_CANTOR AS NOME_CANTOR,
@@ -62,7 +60,6 @@ ORDER BY NOME_CANTOR;
 
 
 #Questão 03
-#Obter o nome do cantor que possui a maior média de duração de gravações
 
 SELECT
 	SUB.NOME_CANTOR AS NOME_CANTOR,
@@ -86,7 +83,6 @@ FROM
 
 
 #Questão 04
-#Selecionar os cantores que nunca gravaram música com a gravadora Sony.
 
 SELECT
 	CAN.NOME_CANTOR AS NOME_CANTOR
@@ -107,7 +103,6 @@ WHERE
 
 
 #Questão 05
-#Selecione o nome das músicas, nome dos cantores e as datas de gravação, para as gravações do ano de 2004.
 
 SELECT
 	CAN.NOME_CANTOR AS CANTOR,
@@ -124,7 +119,6 @@ WHERE
 
 
 #Questão 06
-#Selecione o nome de cada cantor e a data da sua última gravação em ordem decrescente de data. Caso não tenha gravado nada, a data deve aparecer em branco.
 
 SELECT
 	CAN.NOME_CANTOR AS CANTOR,
@@ -141,7 +135,6 @@ ORDER BY
 
 
 #Questão 07
-# Dadas as tabelas pessoa e fone, retorne os números de telefone residencial, comercial e Celular de cadapessoa. O retorno deve conter uma linha para cada pessoa, com a coluna ‘nome’, seguida dos números.
 
 SELECT
 	P.NOME_PESSOA AS NOME,
