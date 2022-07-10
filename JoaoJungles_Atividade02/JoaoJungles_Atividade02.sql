@@ -16,7 +16,7 @@ CREATE TABLE funcionario (
     cod_funcionario integer NOT NULL AUTO_INCREMENT,
     nome_funcionario character varying(80),
     qtde_dependente integer,
-    salario integer,
+    salario double,
     cargo character varying(70),
     cod_departamento integer,
     CONSTRAINT funcionario_pkey PRIMARY KEY (cod_funcionario),
