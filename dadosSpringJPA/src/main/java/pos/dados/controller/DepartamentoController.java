@@ -24,7 +24,7 @@ public class DepartamentoController {
 	@Autowired
 	private DepartamentoRepository departamentoDao;
 
-	@RequestMapping(value = "/create")
+	@RequestMapping(value = "/departamento/create")
 	public String create(String name, Model model) {
 
 		Departamento departamento = departamentoService.create(name);
@@ -32,9 +32,9 @@ public class DepartamentoController {
 		return "/test";
 	}
 
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/departamento/delete")
 	@ResponseBody
-	public String delete(long id) {		
+	public String delete(Integer id) {		
 		try {
 			Departamento departamento = new Departamento(id);
 			departamentoDao.delete(departamento);
@@ -44,7 +44,7 @@ public class DepartamentoController {
 		return "Departamento succesfully deleted!";
 	}
 	
-	@RequestMapping(value = "/get-by-id")
+	@RequestMapping(value = "/departamento/get-by-id")
 	@ResponseBody
 	public String getById() {
 		String nome;
@@ -57,7 +57,7 @@ public class DepartamentoController {
 		return "The departamento id is: " + nome;
 	}
 
-	@RequestMapping(value = "/get-by-nome")
+	@RequestMapping(value = "/departamento/get-by-nome")
 	@ResponseBody
 	public String getByNome(String nome) {
 		String deptoId;
@@ -70,7 +70,7 @@ public class DepartamentoController {
 		return "The departamento nome is: " + deptoId;
 	}
 	
-	@RequestMapping(value = "/get-all")
+	@RequestMapping(value = "/departamento/get-all")
 	@ResponseBody
 	public List<Departamento> getByAll(String nome) {
 		try {
@@ -81,7 +81,7 @@ public class DepartamentoController {
 		}		
 	}
 
-	@RequestMapping(value = "/update")
+	@RequestMapping(value = "/departamento/update")
 	@ResponseBody
 	public String updateName(long id, String nome) {
 		try {
