@@ -1,3 +1,4 @@
+package com.atividade05.config;
 //package pos.dados.configs;
 //
 //import com.zaxxer.hikari.HikariDataSource;
