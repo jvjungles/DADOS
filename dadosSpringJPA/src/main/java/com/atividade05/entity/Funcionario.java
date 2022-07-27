@@ -8,8 +8,6 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "funcionario")
 public class Funcionario extends AbstractPersistable<Long>{
