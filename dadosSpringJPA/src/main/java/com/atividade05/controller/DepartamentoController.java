@@ -1,7 +1,6 @@
 package com.atividade05.controller;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class DepartamentoController {
 	@ApiOperation(value = "Create Departamento", notes = "Method responsible for create Departamento")
 	@PostMapping(value = "/create")
 	@ResponseBody
-	public String create(String name) {		
+	public String create(String name) {
 
 		departamentoService.save(name);
 
@@ -38,10 +37,10 @@ public class DepartamentoController {
 	@ApiOperation(value = "Delete Departamento by ID", notes = "Method responsible for delete Departamento by ID")
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
-	public String delete(Integer id) {	
-		
+	public String delete(Integer id) {
+
 		try {
-			departamentoService.delete(id);			
+			departamentoService.delete(id);
 		} catch (OperationException e) {
 			return e.getMessage();
 		}
@@ -57,9 +56,9 @@ public class DepartamentoController {
 		try {
 			departamento = departamentoService.getById(id);
 			return "Departamento is: " + departamento.get().getNome_departamento();
-		} catch (NoSuchElementException e) {
-			return "Departamento not found";
-		}		
+		} catch (Exception e) {
+			return "Departamento not found!";
+		}
 	}
 
 	@ApiOperation(value = "Find All Departamentos", notes = "Method responsible for searching all Departamento.")
@@ -67,6 +66,10 @@ public class DepartamentoController {
 	@ResponseBody
 	public List<Departamento> getByAll() {
 
-		return departamentoService.getAll();
+		try {
+			return departamentoService.getAll();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

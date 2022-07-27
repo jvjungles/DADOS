@@ -15,39 +15,44 @@ import com.atividade05.repository.DepartamentoRepository;
 @Service
 public class DepartamentoService {
 
-    @Autowired
-    private DepartamentoRepository repository;
-    
-    public void save(String name) {
-    	
-    	Departamento departamento = new Departamento();
+	@Autowired
+	private DepartamentoRepository repository;
+
+	public void save(String name) {
+
+		Departamento departamento = new Departamento();
 		departamento.setNome_departamento(name);
-		
-    	repository.save(departamento);		
-	}
-    
-    public void delete(Integer id) throws OperationException{
-    	
-    	try {
-    		repository.delete(repository.findById(id.longValue()).get());
-		} catch (NoSuchElementException e) {
-			throw new OperationException("Departamento not found!");	
-		} catch (DataIntegrityViolationException s) {
-			throw new OperationException("There is an Funcionario in this Departamento!");
-		}		 		
-	}
-    
-    public Optional<Departamento> getById(Integer id) throws NoSuchElementException {
-    	
-    	try {
-    		return repository.findById(id.longValue());
-		} catch (NoSuchElementException e) {
-			return null; 	
-		}				
-	}
-    
-    public List<Departamento> getAll() {
-		return (List<Departamento>) repository.findAll();
+
+		repository.save(departamento);
 	}
 
+	public void delete(Integer id) throws OperationException {
+
+		try {
+			repository.delete(repository.findById(id.longValue()).get());
+		} catch (NoSuchElementException e) {
+			throw new OperationException("Departamento not found!");
+		} catch (DataIntegrityViolationException s) {
+			throw new OperationException("There is an Funcionario in this Departamento!");
+		}
+	}
+
+	public Optional<Departamento> getById(Integer id) throws OperationException {
+
+		try {
+			return repository.findById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Departamento not found!");
+		}
+	}
+
+	public List<Departamento> getAll() {
+
+		try {
+			return (List<Departamento>) repository.findAll();
+		} catch (Exception e) {
+
+		}
+		return null;
+	}
 }
