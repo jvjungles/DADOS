@@ -15,7 +15,7 @@ public class Departamento extends AbstractPersistable<Long>{
 
 	@Override
 	public void setId(Long id) {
-		super.setId(id);;
+		super.setId(id);
 	}
     
 	public String getNome_departamento() {

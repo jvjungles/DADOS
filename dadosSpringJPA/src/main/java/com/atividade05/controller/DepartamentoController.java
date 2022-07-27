@@ -1,6 +1,7 @@
 package com.atividade05.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade05.entity.Departamento;
+import com.atividade05.exception.OperationException;
 import com.atividade05.service.DepartamentoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -26,26 +28,23 @@ public class DepartamentoController {
 	@ApiOperation(value = "Create Departamento", notes = "Method responsible for create Departamento")
 	@PostMapping(value = "/create")
 	@ResponseBody
-	public String create(String name) {
+	public String create(String name) {		
 
-		Departamento departamento = new Departamento();
-		departamento.setNome_departamento(name);
+		departamentoService.save(name);
 
-		departamentoService.save(departamento);
-
-		return "Departamento succesfully created!!! \n\n " + departamento.toString();
+		return "Departamento succesfully created!!! \n\n" + name;
 	}
 
 	@ApiOperation(value = "Delete Departamento by ID", notes = "Method responsible for delete Departamento by ID")
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
-	public String delete(Integer id) {
-
-		Departamento departamento = new Departamento();
-		departamento.setId(id.longValue());
-
-		departamentoService.delete(departamento);
-
+	public String delete(Integer id) {	
+		
+		try {
+			departamentoService.delete(id);			
+		} catch (OperationException e) {
+			return e.getMessage();
+		}
 		return "Departamento succesfully deleted!";
 	}
 
@@ -54,9 +53,13 @@ public class DepartamentoController {
 	@ResponseBody
 	public String getById(Integer id) {
 
-		Optional<Departamento> departamento = departamentoService.getById(id);
-
-		return "The departamento is: " + departamento.get().getNome_departamento();
+		Optional<Departamento> departamento;
+		try {
+			departamento = departamentoService.getById(id);
+			return "Departamento is: " + departamento.get().getNome_departamento();
+		} catch (NoSuchElementException e) {
+			return "Departamento not found";
+		}		
 	}
 
 	@ApiOperation(value = "Find All Departamentos", notes = "Method responsible for searching all Departamento.")

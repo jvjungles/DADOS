@@ -26,16 +26,16 @@ public class FuncionarioController {
 
 	@ApiOperation(value = "Create Funcionario", notes = "Method responsible for create Funcionario")
 	@PostMapping(value = "/create")
-	public String create() {
+	public String create(String cargo, String nome, Integer qtde_dependente, Float salario, Long codDepartamento) {
 		
 		Funcionario funcionario = new Funcionario();
-		funcionario.setCargo("Cargo");
-		funcionario.setNome_funcionario("Nome_funcionario");
-		funcionario.setQtde_dependente(10);
-		funcionario.setSalario((double) 1000);
-		
 		Departamento departamento = new Departamento();
-		departamento.setId((long) 1);
+		
+		funcionario.setCargo(cargo);
+		funcionario.setNome_funcionario(nome);
+		funcionario.setQtde_dependente(qtde_dependente);
+		funcionario.setSalario(salario.doubleValue());		
+		departamento.setId(codDepartamento);
 		funcionario.setDepartamento(departamento);
 
 		funcionarioService.save(funcionario);		
