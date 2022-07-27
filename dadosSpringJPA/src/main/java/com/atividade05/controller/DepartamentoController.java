@@ -4,23 +4,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade05.entity.Departamento;
 import com.atividade05.service.DepartamentoService;
 
-/**
- * Class UserController
- */
-@Controller
+@RestController
+@RequestMapping(path = "/departamento")
 public class DepartamentoController {
 
 	@Autowired
 	private DepartamentoService departamentoService;
 	
-	@RequestMapping(value = "/departamento/create")
+	@RequestMapping(value = "/create")
+	@ResponseBody
 	public String create(String name) {
 		
 		Departamento departamento = new Departamento();
@@ -31,7 +30,7 @@ public class DepartamentoController {
 		return "Departamento succesfully created!!! \n\n " + departamento.toString();
 	}
 
-	@RequestMapping(value = "/departamento/delete")
+	@RequestMapping(value = "/delete")
 	@ResponseBody
 	public String delete() {		
 		
@@ -44,7 +43,7 @@ public class DepartamentoController {
 		return "Departamento succesfully deleted!";
 	}
 	
-	@RequestMapping(value = "/departamento/get-by-id")
+	@RequestMapping(value = "/get-by-id")
 	@ResponseBody
 	public String getById() {
 		

@@ -11,9 +11,6 @@ import com.atividade05.entity.Departamento;
 import com.atividade05.entity.Funcionario;
 import com.atividade05.service.FuncionarioService;
 
-/**
- * Class UserController
- */
 @Controller
 public class FuncionarioController {
 

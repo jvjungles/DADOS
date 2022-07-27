@@ -1,106 +1,64 @@
 package com.atividade05.config;
-//package pos.dados.configs;
-//
-//import com.zaxxer.hikari.HikariDataSource;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.core.env.Environment;
-//import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-//import org.springframework.orm.jpa.JpaTransactionManager;
-//import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-//import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-//import org.springframework.transaction.annotation.EnableTransactionManagement;
-//
-//import javax.sql.DataSource;
-//import java.util.Properties;
-//
-///**
-// * Contains database configurations.
-// */
-//@Configuration
-//@EnableTransactionManagement
-//public class DatabaseConfig {
-//
-//    // ------------------------
-//    // PUBLIC METHODS
-//    // ------------------------
-//
-//    @Autowired
-//    private Environment env;
-//    @Autowired
-//    private DataSource dataSource;
-//    @Autowired
-//    private LocalContainerEntityManagerFactoryBean entityManagerFactory;
-//
-//    /**
-//     * DataSource definition for database connection. Settings are read from
-//     * the application.properties file (using the env object).
-//     */
-//    @Bean
-//    public DataSource dataSource() {
-//        final HikariDataSource ds = new HikariDataSource();
-//        ds.setMaximumPoolSize(100);
-//        ds.setDataSourceClassName(env.getProperty("db.datasource"));
-//        ds.addDataSourceProperty("url", env.getProperty("db.url"));
-//        ds.addDataSourceProperty("user", env.getProperty("db.username"));
-//        ds.addDataSourceProperty("password", env.getProperty("db.password"));
-//        return ds;
-//    }
-//
-//
-//    // ------------------------
-//    // PRIVATE FIELDS
-//    // ------------------------
-//
-//    /**
-//     * Declare the JPA entity manager factory.
-//     */
-//    @Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-//        LocalContainerEntityManagerFactoryBean entityManagerFactory =
-//                new LocalContainerEntityManagerFactoryBean();
-//
-//        entityManagerFactory.setDataSource(dataSource);
-//
-//        // Classpath scanning of @Component, @Service, etc annotated class
-//        entityManagerFactory.setPackagesToScan(env.getProperty("entitymanager.packagesToScan"));
-//
-//        // Vendor adapter
-//        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//        entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
-//
-//        // Hibernate properties
-//        Properties additionalProperties = new Properties();
-//        additionalProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-//        additionalProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-//        additionalProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-//        entityManagerFactory.setJpaProperties(additionalProperties);
-//
-//        return entityManagerFactory;
-//    }
-//
-//    /**
-//     * Declare the transaction manager.
-//     */
-//    @Bean
-//    public JpaTransactionManager transactionManager() {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(entityManagerFactory.getObject());
-//        return transactionManager;
-//    }
-//
-//    /**
-//     * PersistenceExceptionTranslationPostProcessor is a bean post processor
-//     * which adds an advisor to any bean annotated with Repository so that any
-//     * platform-specific exceptions are caught and then rethrown as one
-//     * Spring's unchecked data access exceptions (i.e. a subclass of
-//     * DataAccessException).
-//     */
-//    @Bean
-//    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-//        return new PersistenceExceptionTranslationPostProcessor();
-//    }
-//
-//
-//} // class DatabaseConfig
+
+import javax.sql.DataSource;
+
+import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.jolbox.bonecp.BoneCPDataSource;
+
+@Configuration
+@EnableJpaRepositories("com.atividade05.*")
+@EnableTransactionManagement
+public class SpringDataConfig {
+
+	@Autowired
+	private Environment env;
+	
+    @Bean
+    public DataSource dataSource() {
+    	
+        final BoneCPDataSource ds = new BoneCPDataSource();
+        
+        ds.setUsername(env.getProperty("db.username"));
+        ds.setPassword(env.getProperty("db.password"));
+        ds.setJdbcUrl(env.getProperty("db.url"));
+        ds.setDriverClass(env.getProperty("db.datasource"));
+        
+        return ds;
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+
+        vendorAdapter.setGenerateDdl(true);
+        vendorAdapter.setShowSql(true);        
+
+        factory.setDataSource(dataSource());
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan("com.atividade05.*");
+        factory.afterPropertiesSet();
+
+        return factory;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        JpaTransactionManager manager = new JpaTransactionManager();
+        manager.setEntityManagerFactory(entityManagerFactory().getObject());
+        manager.setJpaDialect(new HibernateJpaDialect());
+        return manager;
+    }
+}
