@@ -18,12 +18,18 @@ public class DepartamentoService {
 	@Autowired
 	private DepartamentoRepository repository;
 
-	public void save(String name) {
+	public void save(String name) throws OperationException {
+		
+		try {
+			Departamento departamento = new Departamento();
+			departamento.setNome_departamento(name);
 
-		Departamento departamento = new Departamento();
-		departamento.setNome_departamento(name);
+			repository.save(departamento);
+		} catch (Exception e) {
+			throw new OperationException("Departamento not save!");
+		}
 
-		repository.save(departamento);
+		
 	}
 
 	public void delete(Integer id) throws OperationException {

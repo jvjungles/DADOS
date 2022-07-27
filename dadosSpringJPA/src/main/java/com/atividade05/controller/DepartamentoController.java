@@ -28,9 +28,12 @@ public class DepartamentoController {
 	@PostMapping(value = "/create")
 	@ResponseBody
 	public String create(String name) {
-
-		departamentoService.save(name);
-
+		
+		try {
+			departamentoService.save(name);
+		} catch (OperationException e) {
+			return e.getMessage();
+		}
 		return "Departamento succesfully created!!! \n\n" + name;
 	}
 
