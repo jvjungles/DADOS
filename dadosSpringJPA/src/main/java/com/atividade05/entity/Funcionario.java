@@ -29,8 +29,8 @@ public class Funcionario extends AbstractPersistable<Long>{
 	private Departamento departamento;
 	
 	@Override
-	public void setId(Long id) {
-		super.setId(id);;
+	public void setId(Long id_funcionario) {
+		super.setId(id_funcionario);
 	}
 
 	public String getNome_funcionario() {
@@ -75,7 +75,12 @@ public class Funcionario extends AbstractPersistable<Long>{
 
 	@Override
 	public String toString() {
-		return "Funcionario [nome_funcionario=" + nome_funcionario + ", qtde_dependente=" + qtde_dependente
-				+ ", salario=" + salario + ", cargo=" + cargo + ", departamento=" + departamento + "]";
+		return "Funcionario ["
+				+ "\nnome_funcionario= " + nome_funcionario 
+				+ "\nqtde_dependente= "  + qtde_dependente
+				+ "\nsalario= " 		 + salario 
+				+ "\ncargo= " 			 + cargo 
+				+ "\ndepartamento= " 	 + departamento 
+				+ "\n]";
 	}	
 }

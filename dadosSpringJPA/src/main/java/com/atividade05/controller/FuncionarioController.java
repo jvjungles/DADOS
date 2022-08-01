@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade05.entity.Departamento;
 import com.atividade05.entity.Funcionario;
+import com.atividade05.exception.OperationException;
 import com.atividade05.service.FuncionarioService;
 
 import io.swagger.annotations.ApiOperation;
@@ -37,10 +38,14 @@ public class FuncionarioController {
 		funcionario.setSalario(salario.doubleValue());		
 		departamento.setId(codDepartamento);
 		funcionario.setDepartamento(departamento);
-
-		funcionarioService.save(funcionario);		
 		
-		return "Funcionario succesfully created!!! \n\n " + funcionario.toString();
+		try {
+			funcionarioService.save(funcionario);
+		} catch (OperationException e) {
+			return e.getMessage();
+		}			
+		
+		return "Funcionario succesfully created!!! \n\n";
 	}
 
 	@ApiOperation(value = "Delete Funcionario by ID", notes = "Method responsible for delete Funcionario")
@@ -48,29 +53,37 @@ public class FuncionarioController {
 	@ResponseBody
 	public String delete(Integer id) {
 		
-		Funcionario funcionario = new Funcionario();
-		funcionario.setId(id.longValue());	
-		
-		funcionarioService.delete(funcionario);
-		
+		try {
+			funcionarioService.delete(id);
+		} catch (OperationException e) {
+			return e.getMessage();
+		}
 		return "Funcionario succesfully deleted!";
 	}
 	
 	@ApiOperation(value = "Find Funcionario by ID", notes = "Method responsible for searching Funcionario by ID")
 	@PostMapping(value = "/get-by-id")
 	@ResponseBody
-	public Funcionario getById(Integer id) {
+	public String getById(Integer id) {
 		
-		Optional<Funcionario> funcionario =  funcionarioService.getById(id);
-		
-		return funcionario.get();
+		Optional<Funcionario> funcionario;
+		try {
+			funcionario =  funcionarioService.getById(id);
+			return "Funcionario is: " + funcionario.get().getNome_funcionario();
+		} catch (Exception e) {
+			return "Funcionario not found!";
+		}
 	}	
 	
 	@ApiOperation(value = "Find All Funcionarios", notes = "Method responsible for searching all Funcionarios.")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Funcionario> getByAll() {
-
-		return funcionarioService.getAll();
+		
+		try {
+			return funcionarioService.getAll();
+		} catch (Exception e) {
+			return null;
+		}		
 	}
 }

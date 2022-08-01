@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade05.entity.Departamento;
+import com.atividade05.entity.Empresa;
 import com.atividade05.exception.OperationException;
 import com.atividade05.service.DepartamentoService;
 
@@ -27,14 +28,20 @@ public class DepartamentoController {
 	@ApiOperation(value = "Create Departamento", notes = "Method responsible for create Departamento")
 	@PostMapping(value = "/create")
 	@ResponseBody
-	public String create(String name) {
+	public String create(String name, Long codEmpresa) {
+		
+		Empresa empresa = new Empresa();
+		empresa.setId(codEmpresa);
+		Departamento departamento = new Departamento();
+		departamento.setNome_departamento(name);
+		departamento.setEmpresa(empresa);		
 		
 		try {
-			departamentoService.save(name);
+			departamentoService.save(departamento);
 		} catch (OperationException e) {
 			return e.getMessage();
 		}
-		return "Departamento succesfully created!!! \n\n" + name;
+		return "Departamento succesfully created!!! \n\n";
 	}
 
 	@ApiOperation(value = "Delete Departamento by ID", notes = "Method responsible for delete Departamento by ID")
