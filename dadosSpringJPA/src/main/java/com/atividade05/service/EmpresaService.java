@@ -57,4 +57,13 @@ public class EmpresaService {
 		}
 		return null;
 	}
+    
+    public boolean exists(Integer id) throws OperationException {	
+		
+		try {
+			return repository.existsById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Empresa not found!");
+		}
+	}
 }

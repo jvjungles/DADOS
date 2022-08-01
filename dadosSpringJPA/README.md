@@ -2,10 +2,10 @@
 
 Spring Boot
 
-Jpa
+Spring Data JPA
 
-bonecp
+Connection pool bonecp
 
-mariadb
+Data base mariadb
 
 Swagger - http://localhost:8080/swagger-ui.html#/

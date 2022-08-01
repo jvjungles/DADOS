@@ -32,10 +32,7 @@ public class FuncionarioService {
 			repository.delete(repository.findById(id.longValue()).get());
 		} catch (NoSuchElementException e) {
 			throw new OperationException("Funcionario not found!");
-		} 
-//    	catch (DataIntegrityViolationException s) {
-//			throw new OperationException("There is an Funcionario in this Departamento!");
-//		}
+		}
 	}
     
     public Optional<Funcionario> getById(Integer id) throws OperationException {
@@ -56,5 +53,13 @@ public class FuncionarioService {
 		}
 		return null;
 	}
-
+    
+    public boolean exists(Integer id) throws OperationException {	
+		
+		try {
+			return repository.existsById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
 }
