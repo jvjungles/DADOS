@@ -1,9 +1,17 @@
 package com.atividade05.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.atividade05.entity.Funcionario;
 
-public interface FuncionarioRepository extends CrudRepository<Funcionario, Long>{	
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{	
+	
+	List<Funcionario> findFuncionarioBySalario(Double salario);
+	
+	@Query("select f from Funcionario f")
+	List<Funcionario> findAllByQuery();
 
 }

@@ -75,13 +75,49 @@ public class FuncionarioController {
 		}
 	}	
 	
-	@ApiOperation(value = "Find All Funcionarios", notes = "Method responsible for searching all Funcionarios.")
+	@ApiOperation(value = "Find All Funcionarios", notes = "Method responsible for searching all Funcionarios")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Funcionario> getByAll() {
 		
 		try {
 			return funcionarioService.getAll();
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionarios by Name", notes = "Method responsible for searching Funcionario by Name")
+	@PostMapping(value = "/get-by-name")
+	@ResponseBody
+	public List<Funcionario> getByName(String nome) {
+		
+		try {
+			return funcionarioService.findByName(nome);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionarios by Salary", notes = "Method responsible for searching Funcionario by Salary")
+	@PostMapping(value = "/get-by-salary")
+	@ResponseBody
+	public List<Funcionario> getBySalario(Double salario) {
+		
+		try {
+			return funcionarioService.findBySalario(salario);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find All Funcionarios by query", notes = "Method responsible for searching all Funcionarios by query")
+	@GetMapping(value = "/get-all-query")
+	@ResponseBody
+	public List<Funcionario> getAllByQuery() {
+		
+		try {
+			return funcionarioService.findAllByQuery();
 		} catch (Exception e) {
 			return null;
 		}		

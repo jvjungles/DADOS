@@ -53,9 +53,8 @@ public class EmpresaService {
 		try {
 			return (List<Empresa>) repository.findAll();
 		} catch (Exception e) {
-			
+			throw new OperationException("Empresa not found!");
 		}
-		return null;
 	}
     
     public boolean exists(Integer id) throws OperationException {	

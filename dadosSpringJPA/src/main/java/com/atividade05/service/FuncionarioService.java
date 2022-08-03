@@ -5,11 +5,13 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.atividade05.entity.Funcionario;
 import com.atividade05.exception.OperationException;
 import com.atividade05.repository.FuncionarioRepository;
+
 
 @Service
 public class FuncionarioService {
@@ -49,15 +51,50 @@ public class FuncionarioService {
 		try {
 			return (List<Funcionario>) repository.findAll();
 		} catch (Exception e) {
-			
+			throw new OperationException("Funcionario not found!");
 		}
-		return null;
 	}
     
     public boolean exists(Integer id) throws OperationException {	
 		
 		try {
 			return repository.existsById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    public List<Funcionario> findByName(String name) throws OperationException {
+    	
+    	if (name.equals("")) {
+    		throw new OperationException("Funcionario not found!");
+		}
+		
+    	Funcionario funcionario = new Funcionario();
+    	funcionario.setNome_funcionario(name);
+    	
+    	Example<Funcionario> example = Example.of(funcionario);
+    	    	
+		try {
+			return repository.findAll(example);
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    public List<Funcionario> findBySalario(Double salario) throws OperationException {		
+    	   	    	
+		try {
+			return repository.findFuncionarioBySalario(salario);
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    public List<Funcionario> findAllByQuery() throws OperationException {		
+	    	
+		try {
+			return repository.findAllByQuery();
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}

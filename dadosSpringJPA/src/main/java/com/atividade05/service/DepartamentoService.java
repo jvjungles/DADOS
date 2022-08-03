@@ -47,13 +47,21 @@ public class DepartamentoService {
 		}
 	}
 
-	public List<Departamento> getAll() {
+	public List<Departamento> getAll() throws OperationException{
 
 		try {
 			return (List<Departamento>) repository.findAll();
 		} catch (Exception e) {
-
+			throw new OperationException("Departamento not found!");
 		}
-		return null;
+	}
+	
+	public boolean exists(Integer id) throws OperationException {	
+		
+		try {
+			return repository.existsById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Departamento not found!");
+		}
 	}
 }
