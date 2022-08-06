@@ -35,6 +35,8 @@ public class DepartamentoService {
 			throw new OperationException("Departamento not found!");
 		} catch (DataIntegrityViolationException s) {
 			throw new OperationException("There is an Funcionario in this Departamento!");
+		} catch (NullPointerException e) {
+			throw new OperationException("Departamento not found!");
 		}
 	}
 

@@ -35,6 +35,8 @@ public class EmpresaService {
 			throw new OperationException("Empresa not found!");
 		} catch (DataIntegrityViolationException s) {
 			throw new OperationException("There is an Departamento in this Empresa!");
+		} catch (NullPointerException e) {
+			throw new OperationException("Empresa not found!");
 		}
 	}
     

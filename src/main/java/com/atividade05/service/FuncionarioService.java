@@ -34,6 +34,8 @@ public class FuncionarioService {
 			repository.delete(repository.findById(id.longValue()).get());
 		} catch (NoSuchElementException e) {
 			throw new OperationException("Funcionario not found!");
+		} catch (NullPointerException e) {
+			throw new OperationException("Funcionario not found!");
 		}
 	}
     
