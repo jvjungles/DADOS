@@ -36,8 +36,8 @@ public static final String BASE_PATH = "com.atividade05.controller";
 	}
 
 	private ApiInfo metaData() {
-		return new ApiInfoBuilder().title("Dados Spring JPA")
-				.description("Dados Spring JPA")
+		return new ApiInfoBuilder().title("Sistemas de Banco de Dados - Atividade 05")
+				.description("Sistemas de Banco de Dados - Atividade 05")
 				.version("v1")
 				.license("Joao Jungles - Todos os Direitos Reservados")
 				.licenseUrl("").build();
