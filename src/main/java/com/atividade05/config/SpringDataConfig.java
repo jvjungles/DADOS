@@ -1,6 +1,5 @@
 package com.atividade05.config;
 
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;

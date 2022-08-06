@@ -71,7 +71,7 @@ public class DepartamentoController {
 		}
 	}
 
-	@ApiOperation(value = "Find All Departamentos", notes = "Method responsible for searching all Departamento.")
+	@ApiOperation(value = "Find All Departamentos", notes = "Method responsible for searching all Departamentos")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Departamento> getByAll() {

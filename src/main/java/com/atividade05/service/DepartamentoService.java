@@ -18,8 +18,7 @@ public class DepartamentoService {
 	@Autowired
 	private DepartamentoRepository repository;
 
-	public void save(Departamento departamento) throws OperationException {
-		
+	public void save(Departamento departamento) throws OperationException {		
 		try {
 			repository.save(departamento);
 		} catch (Exception e) {
@@ -28,9 +27,10 @@ public class DepartamentoService {
 	}
 
 	public void delete(Integer id) throws OperationException {
-
 		try {
-			repository.delete(repository.findById(id.longValue()).get());
+			repository.delete(
+					repository.findById(id.longValue()).get()
+			);
 		} catch (NoSuchElementException e) {
 			throw new OperationException("Departamento not found!");
 		} catch (DataIntegrityViolationException s) {
@@ -41,7 +41,6 @@ public class DepartamentoService {
 	}
 
 	public Optional<Departamento> getById(Integer id) throws OperationException {
-
 		try {
 			return repository.findById(id.longValue());
 		} catch (Exception e) {
@@ -50,7 +49,6 @@ public class DepartamentoService {
 	}
 
 	public List<Departamento> getAll() throws OperationException{
-
 		try {
 			return (List<Departamento>) repository.findAll();
 		} catch (Exception e) {
@@ -58,8 +56,7 @@ public class DepartamentoService {
 		}
 	}
 	
-	public boolean exists(Integer id) throws OperationException {	
-		
+	public boolean exists(Integer id) throws OperationException {		
 		try {
 			return repository.existsById(id.longValue());
 		} catch (Exception e) {

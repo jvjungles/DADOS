@@ -66,7 +66,7 @@ public class EmpresaController {
 		}
 	}	
 	
-	@ApiOperation(value = "Find All Empresas", notes = "Method responsible for searching all Empresas.")
+	@ApiOperation(value = "Find All Empresas", notes = "Method responsible for searching all Empresas")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Empresa> getByAll() {

@@ -18,8 +18,7 @@ public class EmpresaService {
 	 @Autowired
     private EmpresaRepository repository;
     
-    public void save(Empresa empresa) throws OperationException {
-    	    	
+    public void save(Empresa empresa) throws OperationException {    	    	
     	try {
     		repository.save(empresa);
 		} catch (Exception e) {
@@ -27,10 +26,11 @@ public class EmpresaService {
 		}
 	}
     
-    public void delete(Integer id) throws OperationException {    	
-    	
+    public void delete(Integer id) throws OperationException {
     	try {
-			repository.delete(repository.findById(id.longValue()).get());
+			repository.delete(
+					repository.findById(id.longValue()).get()
+			);
 		} catch (NoSuchElementException e) {
 			throw new OperationException("Empresa not found!");
 		} catch (DataIntegrityViolationException s) {
@@ -41,8 +41,6 @@ public class EmpresaService {
 	}
     
     public Optional<Empresa> getById(Integer id) throws OperationException {
-    		
-    	
     	try {
     		return repository.findById(id.longValue());
 		} catch (Exception e) {
@@ -50,8 +48,7 @@ public class EmpresaService {
 		}
 	}
     
-    public List<Empresa> getAll() throws OperationException {	
-		
+    public List<Empresa> getAll() throws OperationException {
 		try {
 			return (List<Empresa>) repository.findAll();
 		} catch (Exception e) {
@@ -59,8 +56,7 @@ public class EmpresaService {
 		}
 	}
     
-    public boolean exists(Integer id) throws OperationException {	
-		
+    public boolean exists(Integer id) throws OperationException {
 		try {
 			return repository.existsById(id.longValue());
 		} catch (Exception e) {

@@ -12,15 +12,13 @@ import com.atividade05.entity.Funcionario;
 import com.atividade05.exception.OperationException;
 import com.atividade05.repository.FuncionarioRepository;
 
-
 @Service
 public class FuncionarioService {
 
 	 @Autowired
     private FuncionarioRepository repository;
     
-    public void save(Funcionario funcionario) throws OperationException {
-    	
+    public void save(Funcionario funcionario) throws OperationException {    	
     	try {
     		repository.save(funcionario);
 		} catch (Exception e) {
@@ -28,10 +26,11 @@ public class FuncionarioService {
 		}
 	}
     
-    public void delete(Integer id) throws OperationException {
-    	
+    public void delete(Integer id) throws OperationException {    	
     	try {
-			repository.delete(repository.findById(id.longValue()).get());
+			repository.delete(
+					repository.findById(id.longValue()).get()
+			);
 		} catch (NoSuchElementException e) {
 			throw new OperationException("Funcionario not found!");
 		} catch (NullPointerException e) {
@@ -39,8 +38,7 @@ public class FuncionarioService {
 		}
 	}
     
-    public Optional<Funcionario> getById(Integer id) throws OperationException {
-    	
+    public Optional<Funcionario> getById(Integer id) throws OperationException {    	
     	try {
     		return repository.findById(id.longValue());
 		} catch (Exception e) {
@@ -49,7 +47,6 @@ public class FuncionarioService {
 	}
     
     public List<Funcionario> getAll() throws OperationException {		
-		
 		try {
 			return (List<Funcionario>) repository.findAll();
 		} catch (Exception e) {
@@ -57,8 +54,7 @@ public class FuncionarioService {
 		}
 	}
     
-    public boolean exists(Integer id) throws OperationException {	
-		
+    public boolean exists(Integer id) throws OperationException {		
 		try {
 			return repository.existsById(id.longValue());
 		} catch (Exception e) {
@@ -66,8 +62,7 @@ public class FuncionarioService {
 		}
 	}
     
-    public List<Funcionario> findByName(String name) throws OperationException {
-    	
+    public List<Funcionario> findByName(String name) throws OperationException {    	
     	if (name.equals("")) {
     		throw new OperationException("Funcionario not found!");
 		}
@@ -84,8 +79,7 @@ public class FuncionarioService {
 		}
 	}
     
-    public List<Funcionario> findBySalario(Double salario) throws OperationException {		
-    	   	    	
+    public List<Funcionario> findBySalario(Double salario) throws OperationException {    	   	    	
 		try {
 			return repository.findFuncionarioBySalario(salario);
 		} catch (Exception e) {
@@ -93,8 +87,7 @@ public class FuncionarioService {
 		}
 	}
     
-    public List<Funcionario> findAllByQuery() throws OperationException {		
-	    	
+    public List<Funcionario> findAllByQuery() throws OperationException {	    	
 		try {
 			return repository.findAllByQuery();
 		} catch (Exception e) {
