@@ -87,7 +87,7 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Name", notes = "Method responsible for searching Funcionario by Name")
+	@ApiOperation(value = "Find Funcionarios by Name", notes = "Method responsible for searching Funcionarios by Name")
 	@PostMapping(value = "/get-by-name")
 	@ResponseBody
 	public List<Funcionario> getByName(String nome) {
@@ -99,7 +99,7 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Salary", notes = "Method responsible for searching Funcionario by Salary")
+	@ApiOperation(value = "Find Funcionarios by Salary", notes = "Method responsible for searching Funcionarios by Salary")
 	@PostMapping(value = "/get-by-salary")
 	@ResponseBody
 	public List<Funcionario> getBySalario(Double salario) {

@@ -30,9 +30,10 @@ public class DepartamentoController {
 	@ResponseBody
 	public String create(String name, Long codEmpresa) {
 		
-		Empresa empresa = new Empresa();
-		empresa.setId(codEmpresa);
 		Departamento departamento = new Departamento();
+		Empresa empresa = new Empresa();		
+		
+		empresa.setId(codEmpresa);		
 		departamento.setNome_departamento(name);
 		departamento.setEmpresa(empresa);		
 		
