@@ -69,7 +69,7 @@ public class FuncionarioController {
 		Optional<Funcionario> funcionario;
 		try {
 			funcionario =  funcionarioService.getById(id);
-			return "Funcionario is: " + funcionario.get().getNome_funcionario();
+			return funcionario.get().toString();
 		} catch (Exception e) {
 			return "Funcionario not found!";
 		}

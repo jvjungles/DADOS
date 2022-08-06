@@ -60,7 +60,7 @@ public class EmpresaController {
 		Optional<Empresa> empresa;
 		try {
 			empresa =  empresaService.getById(id);
-			return "Empresa is: " + empresa.get().getNome_empresa();
+			return empresa.get().toString();
 		} catch (Exception e) {
 			return "Empresa not found!";
 		}

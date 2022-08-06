@@ -65,7 +65,7 @@ public class DepartamentoController {
 		Optional<Departamento> departamento;
 		try {
 			departamento = departamentoService.getById(id);
-			return "Departamento is: " + departamento.get().getNome_departamento();
+			return departamento.get().toString();
 		} catch (Exception e) {
 			return "Departamento not found!";
 		}
