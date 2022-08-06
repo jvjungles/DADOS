@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pos</groupId>
-	<artifactId>dadosSpringJPA</artifactId>
+	<artifactId>JoaoJungles_Atividade05</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dadosSpringJPA</name>
-	<description>dadosSpringJPA</description>
+	<name>JoaoJungles_Atividade05</name>
+	<description>JoaoJungles_Atividade05</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
