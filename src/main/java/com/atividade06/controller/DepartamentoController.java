@@ -83,4 +83,16 @@ public class DepartamentoController {
 			return null;
 		}
 	}
+	
+	@ApiOperation(value = "Find first Departamento", notes = "Method responsible for searching first Departamento")
+	@GetMapping(value = "/get-first")
+	@ResponseBody
+	public Departamento getFirst() {
+
+		try {
+			return departamentoService.findFirstBy();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

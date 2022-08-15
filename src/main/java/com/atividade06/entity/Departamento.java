@@ -12,7 +12,17 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "departamento")
 public class Departamento extends AbstractPersistable<Long>{
 	
-    @Column(name = "nome_departamento")
+    public Departamento() {
+		super();
+	}
+
+	public Departamento(String nome_departamento, Empresa empresa) {
+		super();
+		this.nome_departamento = nome_departamento;
+		this.empresa = empresa;
+	}
+
+	@Column(name = "nome_departamento")
 	private String nome_departamento;
     
     @ManyToOne

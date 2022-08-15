@@ -25,22 +25,17 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 
-	@ApiOperation(value = "Create Funcionario", notes = "Method responsible for create Funcionario")
+	@ApiOperation(value = "Create Funcionario", 
+			notes = "Method responsible for create Funcionario")
 	@PostMapping(value = "/create")
 	public String create(String nome, String cpf, String cargo, Integer qtde_dependente, Float salario, Long codDepartamento) {
 		
 		Departamento departamento = new Departamento();
-		
-//		funcionario.setCargo(cargo);
-//		funcionario.setNome_funcionario(nome);
-//		funcionario.setQtde_dependente(qtde_dependente);
-//		funcionario.setSalario(salario.doubleValue());		
 		departamento.setId(codDepartamento);
-//		funcionario.setDepartamento(departamento);
-		
-		Funcionario funcionario = new Funcionario(nome, qtde_dependente, salario.doubleValue(), 
+
+		Funcionario funcionario = new Funcionario(nome, qtde_dependente, 
+												  salario.doubleValue(), 
 												  cargo, cpf, departamento);
-		
 		
 		try {
 			funcionarioService.save(funcionario);
@@ -51,7 +46,8 @@ public class FuncionarioController {
 		return "Funcionario succesfully created!!! \n\n";
 	}
 
-	@ApiOperation(value = "Delete Funcionario by ID", notes = "Method responsible for delete Funcionario")
+	@ApiOperation(value = "Delete Funcionario by ID", 
+			notes = "Method responsible for delete Funcionario")
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
 	public String delete(Integer id) {
@@ -64,7 +60,8 @@ public class FuncionarioController {
 		return "Funcionario succesfully deleted!";
 	}
 	
-	@ApiOperation(value = "Find Funcionario by ID", notes = "Method responsible for searching Funcionario by ID")
+	@ApiOperation(value = "Find Funcionario by ID", 
+			notes = "Method responsible for searching Funcionario by ID")
 	@PostMapping(value = "/get-by-id")
 	@ResponseBody
 	public String getById(Integer id) {
@@ -78,7 +75,8 @@ public class FuncionarioController {
 		}
 	}	
 	
-	@ApiOperation(value = "Find All Funcionarios", notes = "Method responsible for searching all Funcionarios")
+	@ApiOperation(value = "Find All Funcionarios", 
+			notes = "Method responsible for searching all Funcionarios")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Funcionario> getByAll() {
@@ -90,7 +88,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Name", notes = "Method responsible for searching Funcionarios by Name")
+	@ApiOperation(value = "Find Funcionarios by Name", 
+			notes = "Method responsible for searching Funcionarios by Name")
 	@PostMapping(value = "/get-by-name")
 	@ResponseBody
 	public List<Funcionario> getByName(String nome) {
@@ -102,7 +101,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Salary", notes = "Method responsible for searching Funcionarios by Salary")
+	@ApiOperation(value = "Find Funcionarios by Salary", 
+			notes = "Method responsible for searching Funcionarios by Salary")
 	@PostMapping(value = "/get-by-salary")
 	@ResponseBody
 	public List<Funcionario> getBySalario(Double salario) {
@@ -114,13 +114,66 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find All Funcionarios by query", notes = "Method responsible for searching all Funcionarios by query")
+	@ApiOperation(value = "Find All Funcionarios by query", 
+			notes = "Method responsible for searching all Funcionarios by query")
 	@GetMapping(value = "/get-all-query")
 	@ResponseBody
 	public List<Funcionario> getAllByQuery() {
 		
 		try {
 			return funcionarioService.findAllByQuery();
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionarios by Nome e Qtde dependentes", 
+			notes = "Method responsible for searching Funcionarios by Nome e Qtde dependentes")
+	@PostMapping(value = "/get-by-nomeQtdeDependentes")
+	@ResponseBody
+	public List<Funcionario> getFuncionarioByNomeFuncionarioAndQtdeDependente(String name, Integer qtde_dependente) {
+		
+		try {
+			return funcionarioService.findFuncionarioByNomeFuncionarioAndQtdeDependente(name, qtde_dependente);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionarios by Departamento", 
+			notes = "Method responsible for searching Funcionarios by Departamento")
+	@PostMapping(value = "/get-by-departamento")
+	@ResponseBody
+	public List<Funcionario> getFuncionariosbyDepartamento(Integer id_departamento) {
+		
+		try {
+			return funcionarioService.findFuncionariosbyDepartamento(id_departamento);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find first Funcionario by maior salary", 
+			notes = "Method responsible for searching first Funcionario by maior salary")
+	@GetMapping(value = "/get-by-maiorSalario")
+	@ResponseBody
+	public Funcionario getFirstByOrderBySalarioDesc() {
+		
+		try {
+			return funcionarioService.findFirstByOrderBySalarioDesc();
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find first 3 Funcionario by maior salary", 
+			notes = "Method responsible for searching first 3 Funcionario by maior salary")
+	@GetMapping(value = "/get-by-tresMaiorSalario")
+	@ResponseBody
+	public List<Funcionario> getFirst3ByOrderBySalarioDesc() {
+		
+		try {
+			return funcionarioService.findFirst3ByOrderBySalarioDesc();
 		} catch (Exception e) {
 			return null;
 		}		

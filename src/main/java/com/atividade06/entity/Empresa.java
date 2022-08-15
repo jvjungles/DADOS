@@ -10,7 +10,16 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "empresa")
 public class Empresa extends AbstractPersistable<Long>{
 	
-    @Column(name = "nome_empresa")
+    public Empresa() {
+		super();
+	}
+
+	public Empresa(String nome_empresa) {
+		super();
+		this.nome_empresa = nome_empresa;
+	}
+
+	@Column(name = "nome_empresa")
 	private String nome_empresa;
     
     @Override

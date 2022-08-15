@@ -15,5 +15,14 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 	
 	@Query("select f from Funcionario f")
 	List<Funcionario> findAllByQuery();
-
+	
+	List<Funcionario> findFuncionarioByNomeFuncionarioAndQtdeDependente(String nomeFuncionario, Integer qtdeDependente);
+	
+	@Query("select f from Funcionario f where id_departamento = ?1")
+	List<Funcionario> findFuncionariosbyDepartamento(Integer departamento);
+		
+	Funcionario findFirstByOrderBySalarioDesc();
+	
+	List<Funcionario> findFirst3ByOrderBySalarioDesc();
+	
 }

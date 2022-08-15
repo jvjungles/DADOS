@@ -63,4 +63,12 @@ public class DepartamentoService {
 			throw new OperationException("Departamento not found!");
 		}
 	}
+	
+	public Departamento findFirstBy() throws OperationException {	    	
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Departamento not found!");
+		}
+	}
 }

@@ -15,28 +15,28 @@ public class Funcionario extends AbstractPersistable<Long>{
 	public Funcionario() {
 		super();
 	}
+	
+	public Funcionario(String nomeFuncionario) {
+		super();
+		this.nomeFuncionario = nomeFuncionario;		
+	}
 
-	public Funcionario(String nome_funcionario, Integer qtde_dependente, Double salario, String cargo, String cpf,
+	public Funcionario(String nomeFuncionario, Integer qtdeDependente, Double salario, String cargo, String cpf,
 			Departamento departamento) {
 		super();
-		this.nome_funcionario = nome_funcionario;
-		this.qtde_dependente = qtde_dependente;
+		this.nomeFuncionario = nomeFuncionario;
+		this.qtdeDependente = qtdeDependente;
 		this.salario = salario;
 		this.cargo = cargo;
 		this.cpf = cpf;
 		this.departamento = departamento;
-	}
-	
-	public Funcionario(String nome_funcionario) {
-		super();
-		this.nome_funcionario = nome_funcionario;		
 	}	
 
 	@Column(name="nome_funcionario")	
-	private String nome_funcionario;
+	private String nomeFuncionario;
 	
 	@Column(name="qtde_dependente")	
-	private Integer qtde_dependente;
+	private Integer qtdeDependente;
 	
 	@Column(name="salario")	
 	private Double salario;
@@ -54,22 +54,22 @@ public class Funcionario extends AbstractPersistable<Long>{
 	@Override
 	public void setId(Long id_funcionario) {
 		super.setId(id_funcionario);
+	}	
+
+	public String getNomeFuncionario() {
+		return nomeFuncionario;
 	}
 
-	public String getNome_funcionario() {
-		return nome_funcionario;
+	public void setNomeFuncionario(String nomeFuncionario) {
+		this.nomeFuncionario = nomeFuncionario;
+	}	
+
+	public Integer getQtdeDependente() {
+		return qtdeDependente;
 	}
 
-	public void setNome_funcionario(String nome_funcionario) {
-		this.nome_funcionario = nome_funcionario;
-	}
-
-	public Integer getQtde_dependente() {
-		return qtde_dependente;
-	}
-
-	public void setQtde_dependente(Integer qtde_dependente) {
-		this.qtde_dependente = qtde_dependente;
+	public void setQtdeDependente(Integer qtdeDependente) {
+		this.qtdeDependente = qtdeDependente;
 	}
 
 	public Double getSalario() {
@@ -107,8 +107,8 @@ public class Funcionario extends AbstractPersistable<Long>{
 	@Override
 	public String toString() {
 		return "Funcionario ["
-				+ "\nnome_funcionario= " + nome_funcionario 
-				+ "\nqtde_dependente= "  + qtde_dependente
+				+ "\nomeFuncionario= " 	 + nomeFuncionario 
+				+ "\nqtdeDependente= "   + qtdeDependente
 				+ "\nsalario= " 		 + salario 
 				+ "\ncargo= " 			 + cargo
 				+ "\ncpf= " 			 + cpf
