@@ -1,16 +1,17 @@
-package com.atividade05.service;
+package com.atividade06.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import com.atividade05.entity.Funcionario;
-import com.atividade05.exception.OperationException;
-import com.atividade05.repository.FuncionarioRepository;
+import com.atividade06.entity.Funcionario;
+import com.atividade06.exception.OperationException;
+import com.atividade06.repository.FuncionarioRepository;
 
 @Service
 public class FuncionarioService {
@@ -20,9 +21,23 @@ public class FuncionarioService {
     
     public void save(Funcionario funcionario) throws OperationException {    	
     	try {
+    		
+    		if (repository.findFuncionarioByCpf(funcionario.getCpf()) != null) {
+    			throw new OperationException("Funcionario exists!");
+			}   		
+    		
     		repository.save(funcionario);
+    		
+		} catch (DataIntegrityViolationException e) {
+			
+			if (e.getMessage().contains("cpf")) {
+				throw new OperationException("Funcionario - CPF nao informado!");
+			}else {
+				throw new OperationException("Departamento not found!");
+			}
+			
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not save!");
+			throw new OperationException("Funcionario - CPF exists!");
 		}
 	}
     
@@ -41,6 +56,14 @@ public class FuncionarioService {
     public Optional<Funcionario> getById(Integer id) throws OperationException {    	
     	try {
     		return repository.findById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    public Funcionario findByCpf(String cpf) throws OperationException {    	   	    	
+		try {
+			return repository.findFuncionarioByCpf(cpf);
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}
@@ -67,9 +90,7 @@ public class FuncionarioService {
     		throw new OperationException("Funcionario not found!");
 		}
 		
-    	Funcionario funcionario = new Funcionario();
-    	funcionario.setNome_funcionario(name);
-    	
+    	Funcionario funcionario = new Funcionario(name);    	
     	Example<Funcionario> example = Example.of(funcionario);
     	    	
 		try {

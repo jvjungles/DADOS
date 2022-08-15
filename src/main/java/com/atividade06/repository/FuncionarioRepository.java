@@ -1,13 +1,15 @@
-package com.atividade05.repository;
+package com.atividade06.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.atividade05.entity.Funcionario;
+import com.atividade06.entity.Funcionario;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{	
+	
+	Funcionario findFuncionarioByCpf(String cpf);
 	
 	List<Funcionario> findFuncionarioBySalario(Double salario);
 	

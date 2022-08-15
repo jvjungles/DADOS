@@ -1,4 +1,4 @@
-package com.atividade05.controller;
+package com.atividade06.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atividade05.entity.Departamento;
-import com.atividade05.entity.Funcionario;
-import com.atividade05.exception.OperationException;
-import com.atividade05.service.FuncionarioService;
+import com.atividade06.entity.Departamento;
+import com.atividade06.entity.Funcionario;
+import com.atividade06.exception.OperationException;
+import com.atividade06.service.FuncionarioService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -27,17 +27,20 @@ public class FuncionarioController {
 
 	@ApiOperation(value = "Create Funcionario", notes = "Method responsible for create Funcionario")
 	@PostMapping(value = "/create")
-	public String create(String cargo, String nome, Integer qtde_dependente, Float salario, Long codDepartamento) {
+	public String create(String nome, String cpf, String cargo, Integer qtde_dependente, Float salario, Long codDepartamento) {
 		
-		Funcionario funcionario = new Funcionario();
 		Departamento departamento = new Departamento();
 		
-		funcionario.setCargo(cargo);
-		funcionario.setNome_funcionario(nome);
-		funcionario.setQtde_dependente(qtde_dependente);
-		funcionario.setSalario(salario.doubleValue());		
+//		funcionario.setCargo(cargo);
+//		funcionario.setNome_funcionario(nome);
+//		funcionario.setQtde_dependente(qtde_dependente);
+//		funcionario.setSalario(salario.doubleValue());		
 		departamento.setId(codDepartamento);
-		funcionario.setDepartamento(departamento);
+//		funcionario.setDepartamento(departamento);
+		
+		Funcionario funcionario = new Funcionario(nome, qtde_dependente, salario.doubleValue(), 
+												  cargo, cpf, departamento);
+		
 		
 		try {
 			funcionarioService.save(funcionario);

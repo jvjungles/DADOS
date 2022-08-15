@@ -1,4 +1,4 @@
-package com.atividade05.entity;
+package com.atividade06.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
