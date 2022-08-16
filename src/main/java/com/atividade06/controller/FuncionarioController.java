@@ -3,6 +3,9 @@ package com.atividade06.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +49,7 @@ public class FuncionarioController {
 		return "Funcionario succesfully created!!! \n\n";
 	}
 
-	@ApiOperation(value = "Delete Funcionario by ID", 
+	@ApiOperation(value = "Delete Funcionario by id", 
 			notes = "Method responsible for delete Funcionario")
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
@@ -60,8 +63,8 @@ public class FuncionarioController {
 		return "Funcionario succesfully deleted!";
 	}
 	
-	@ApiOperation(value = "Find Funcionario by ID", 
-			notes = "Method responsible for searching Funcionario by ID")
+	@ApiOperation(value = "Find Funcionario by id", 
+			notes = "Method responsible for searching Funcionario by id")
 	@PostMapping(value = "/get-by-id")
 	@ResponseBody
 	public String getById(Integer id) {
@@ -88,8 +91,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Name", 
-			notes = "Method responsible for searching Funcionarios by Name")
+	@ApiOperation(value = "Find Funcionarios by nome", 
+			notes = "Method responsible for searching Funcionarios by nome")
 	@PostMapping(value = "/get-by-name")
 	@ResponseBody
 	public List<Funcionario> getByName(String nome) {
@@ -101,8 +104,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Salary", 
-			notes = "Method responsible for searching Funcionarios by Salary")
+	@ApiOperation(value = "Find Funcionarios by salario", 
+			notes = "Method responsible for searching Funcionarios by salario")
 	@PostMapping(value = "/get-by-salary")
 	@ResponseBody
 	public List<Funcionario> getBySalario(Double salario) {
@@ -127,8 +130,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Nome e Qtde dependentes", 
-			notes = "Method responsible for searching Funcionarios by Nome e Qtde dependentes")
+	@ApiOperation(value = "Find Funcionarios by nome e qtde de dependentes", 
+			notes = "Method responsible for searching Funcionarios by nome e qtde de dependentes")
 	@PostMapping(value = "/get-by-nomeQtdeDependentes")
 	@ResponseBody
 	public List<Funcionario> getFuncionarioByNomeFuncionarioAndQtdeDependente(String name, Integer qtde_dependente) {
@@ -140,8 +143,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionarios by Departamento", 
-			notes = "Method responsible for searching Funcionarios by Departamento")
+	@ApiOperation(value = "Find Funcionarios by departamento", 
+			notes = "Method responsible for searching Funcionarios by departamento")
 	@PostMapping(value = "/get-by-departamento")
 	@ResponseBody
 	public List<Funcionario> getFuncionariosbyDepartamento(Integer id_departamento) {
@@ -153,8 +156,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find first Funcionario by maior salary", 
-			notes = "Method responsible for searching first Funcionario by maior salary")
+	@ApiOperation(value = "Find first Funcionario by maior salario", 
+			notes = "Method responsible for searching first Funcionario by maior salario")
 	@GetMapping(value = "/get-by-maiorSalario")
 	@ResponseBody
 	public Funcionario getFirstByOrderBySalarioDesc() {
@@ -166,9 +169,9 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find first 3 Funcionario by maior salary", 
-			notes = "Method responsible for searching first 3 Funcionario by maior salary")
-	@GetMapping(value = "/get-by-tresMaiorSalario")
+	@ApiOperation(value = "Find top 3 Funcionarios by maiores salarios", 
+			notes = "Method responsible for searching the top 3 Funcionarios by maiores salarios")
+	@GetMapping(value = "/get-by-tresMaioresSalario")
 	@ResponseBody
 	public List<Funcionario> getFirst3ByOrderBySalarioDesc() {
 		
@@ -179,11 +182,11 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionario by no dependentes", 
-			notes = "Method responsible for searching Funcionario no dependentes")
-	@GetMapping(value = "/get-by-noDependentes")
+	@ApiOperation(value = "Find Funcionario by sem dependentes", 
+			notes = "Method responsible for searching Funcionario sem dependentes")
+	@GetMapping(value = "/get-by-semDependentes")
 	@ResponseBody
-	public List<Funcionario> getFuncionarioByNoDependentes() {
+	public List<Funcionario> getFuncionarioByNDependents() {
 		
 		try {
 			return funcionarioService.findFuncionarioByNoDependentes();
@@ -192,9 +195,9 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionario by salario maior q", 
-			notes = "Method responsible for searching Funcionario salario maior q")
-	@PostMapping(value = "/get-by-salarioMaiorq")
+	@ApiOperation(value = "Find Funcionario by salario maior", 
+			notes = "Method responsible for searching Funcionario by salario maior")
+	@PostMapping(value = "/get-by-salarioMaior")
 	@ResponseBody
 	public List<Funcionario> getFuncionarioBySalarioValue(Double salario) {
 		
@@ -205,9 +208,9 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionario by salario maior q nq", 
-			notes = "Method responsible for searching Funcionario salario maior q nq")
-	@PostMapping(value = "/get-by-salarioMaiorqNq")
+	@ApiOperation(value = "Find Funcionario by salario maior nativeQuery", 
+			notes = "Method responsible for searching Funcionario by salario maior nativeQuery")
+	@PostMapping(value = "/get-by-salarioMaiorNq")
 	@ResponseBody
 	public List<Funcionario> getFuncionarioBySalarioValueNq(Double salario) {
 		
@@ -218,8 +221,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionario by dependentes", 
-			notes = "Method responsible for searching Funcionario dependentes")
+	@ApiOperation(value = "Find Funcionario by dependentes namedQuery", 
+			notes = "Method responsible for searching Funcionario by dependentes namedQuery")
 	@PostMapping(value = "/get-by-dependentes")
 	@ResponseBody
 	public List<Funcionario> getByDependentes(Integer qtdeDependente) {
@@ -231,8 +234,8 @@ public class FuncionarioController {
 		}		
 	}
 	
-	@ApiOperation(value = "Find Funcionario by NomeLike", 
-			notes = "Method responsible for searching Funcionario NomeLike")
+	@ApiOperation(value = "Find Funcionario by name like namedNativeQuery", 
+			notes = "Method responsible for searching Funcionario by name like namedNativeQuery")
 	@PostMapping(value = "/get-by-nomeLike")
 	@ResponseBody
 	public List<Funcionario> findByNomeLike(String nome) {

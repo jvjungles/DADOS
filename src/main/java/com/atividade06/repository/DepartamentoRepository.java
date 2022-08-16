@@ -7,6 +7,5 @@ import com.atividade06.entity.Funcionario;
 
 public interface DepartamentoRepository extends JpaRepository<Departamento, Long>{
 
-	Departamento findFirstBy();
-	
+	Departamento findFirstBy();	
 }

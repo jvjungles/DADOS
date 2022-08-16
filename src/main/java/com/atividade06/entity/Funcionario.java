@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 		   query = "from Funcionario f where f.qtdeDependente = ?1")
 @NamedNativeQuery(
 		   name = "Funcionario.byNomeLike",
-		   query = "SELECT f.* from funcionario f WHERE f.nome_funcionario LIKE :nomeFuncionario", 
+		   query = "select f.* from funcionario f where f.nome_funcionario like :nomeFuncionario", 
 		   resultClass = Funcionario.class)
 public class Funcionario extends AbstractPersistable<Long>{
 	

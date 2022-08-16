@@ -25,7 +25,8 @@ public class DepartamentoController {
 	@Autowired
 	private DepartamentoService departamentoService;
 
-	@ApiOperation(value = "Create Departamento", notes = "Method responsible for create Departamento")
+	@ApiOperation(value = "Create Departamento", 
+			notes = "Method responsible for create Departamento")
 	@PostMapping(value = "/create")
 	@ResponseBody
 	public String create(String name, Long codEmpresa) {
@@ -45,7 +46,8 @@ public class DepartamentoController {
 		return "Departamento succesfully created!!! \n\n";
 	}
 
-	@ApiOperation(value = "Delete Departamento by ID", notes = "Method responsible for delete Departamento by ID")
+	@ApiOperation(value = "Delete Departamento by id", 
+			notes = "Method responsible for delete Departamento by id")
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
 	public String delete(Integer id) {
@@ -58,7 +60,8 @@ public class DepartamentoController {
 		return "Departamento succesfully deleted!";
 	}
 
-	@ApiOperation(value = "Find Departamento by ID", notes = "Method responsible for searching Departamento by ID")
+	@ApiOperation(value = "Find Departamento by id", 
+			notes = "Method responsible for searching Departamento by id")
 	@PostMapping(value = "/get-by-id")
 	@ResponseBody
 	public String getById(Integer id) {
@@ -72,7 +75,8 @@ public class DepartamentoController {
 		}
 	}
 
-	@ApiOperation(value = "Find All Departamentos", notes = "Method responsible for searching all Departamentos")
+	@ApiOperation(value = "Find All Departamentos", 
+			notes = "Method responsible for searching all Departamentos")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Departamento> getByAll() {
@@ -84,7 +88,8 @@ public class DepartamentoController {
 		}
 	}
 	
-	@ApiOperation(value = "Find first Departamento", notes = "Method responsible for searching first Departamento")
+	@ApiOperation(value = "Find first Departamento", 
+			notes = "Method responsible for searching first Departamento")
 	@GetMapping(value = "/get-first")
 	@ResponseBody
 	public Departamento getFirst() {
