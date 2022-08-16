@@ -37,7 +37,7 @@ public static final String BASE_PATH = "com.atividade06.controller";
 
 	private ApiInfo metaData() {
 		return new ApiInfoBuilder().title("Sistemas de Banco de Dados - Atividade 06")
-				.description("Sistemas de Banco de Dados - Atividade 05")
+				.description("Sistemas de Banco de Dados - Atividade 06")
 				.version("v1")
 				.license("Joao Jungles - Todos os Direitos Reservados")
 				.licenseUrl("").build();

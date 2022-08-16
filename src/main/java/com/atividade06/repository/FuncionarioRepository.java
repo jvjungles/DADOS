@@ -25,4 +25,12 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 	
 	List<Funcionario> findFirst3ByOrderBySalarioDesc();
 	
+	@Query("select f from Funcionario f where qtdeDependente = 0 order by nomeFuncionario")
+	List<Funcionario> findFuncionarioByNoDependentes();
+	
+	@Query("select f from Funcionario f where salario >= ?1 order by salario desc")
+	List<Funcionario> findFuncionarioBySalarioValue(Double salario);
+	
+	@Query(value = "select * from Funcionario where salario >= ?1 order by salario desc", nativeQuery = true)
+	List<Funcionario> findFuncionarioBySalarioValueNq(Double salario);	
 }

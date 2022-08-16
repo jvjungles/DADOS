@@ -178,4 +178,43 @@ public class FuncionarioController {
 			return null;
 		}		
 	}
+	
+	@ApiOperation(value = "Find Funcionario by no dependentes", 
+			notes = "Method responsible for searching Funcionario no dependentes")
+	@GetMapping(value = "/get-by-noDependentes")
+	@ResponseBody
+	public List<Funcionario> getFuncionarioByNoDependentes() {
+		
+		try {
+			return funcionarioService.findFuncionarioByNoDependentes();
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionario by salario maior q", 
+			notes = "Method responsible for searching Funcionario salario maior q")
+	@GetMapping(value = "/get-by-salarioMaiorq")
+	@ResponseBody
+	public List<Funcionario> getFuncionarioBySalarioValue(Double salario) {
+		
+		try {
+			return funcionarioService.findFuncionarioBySalarioValue(salario);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionario by salario maior q nq", 
+			notes = "Method responsible for searching Funcionario salario maior q nq")
+	@GetMapping(value = "/get-by-salarioMaiorqNq")
+	@ResponseBody
+	public List<Funcionario> getFuncionarioBySalarioValueNq(Double salario) {
+		
+		try {
+			return funcionarioService.findFuncionarioBySalarioValueNq(salario);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
 }

@@ -148,4 +148,28 @@ public class FuncionarioService {
 			throw new OperationException("Funcionario not found!");
 		}
 	}
+    
+    public List<Funcionario> findFuncionarioByNoDependentes() throws OperationException {	    	
+		try {
+			return repository.findFuncionarioByNoDependentes();
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    public List<Funcionario> findFuncionarioBySalarioValue(Double salario) throws OperationException {	    	
+		try {
+			return repository.findFuncionarioBySalarioValue(salario);
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    public List<Funcionario> findFuncionarioBySalarioValueNq(Double salario) throws OperationException {	    	
+		try {
+			return repository.findFuncionarioBySalarioValueNq(salario);
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
 }
