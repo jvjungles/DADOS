@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.atividade06.entity.Funcionario;
 
@@ -33,4 +34,10 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 	
 	@Query(value = "select * from Funcionario where salario >= ?1 order by salario desc", nativeQuery = true)
 	List<Funcionario> findFuncionarioBySalarioValueNq(Double salario);	
+	
+	@Query(name = "Funcionario.byDependentes")
+	List<Funcionario> findByDependentes(Integer qtdeDependente);
+	
+	@Query(name = "Funcionario.byNomeLike")
+	List<Funcionario> findByNomeLike(@Param("nomeFuncionario") String nomeFuncionario);
 }

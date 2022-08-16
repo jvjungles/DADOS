@@ -194,7 +194,7 @@ public class FuncionarioController {
 	
 	@ApiOperation(value = "Find Funcionario by salario maior q", 
 			notes = "Method responsible for searching Funcionario salario maior q")
-	@GetMapping(value = "/get-by-salarioMaiorq")
+	@PostMapping(value = "/get-by-salarioMaiorq")
 	@ResponseBody
 	public List<Funcionario> getFuncionarioBySalarioValue(Double salario) {
 		
@@ -207,12 +207,38 @@ public class FuncionarioController {
 	
 	@ApiOperation(value = "Find Funcionario by salario maior q nq", 
 			notes = "Method responsible for searching Funcionario salario maior q nq")
-	@GetMapping(value = "/get-by-salarioMaiorqNq")
+	@PostMapping(value = "/get-by-salarioMaiorqNq")
 	@ResponseBody
 	public List<Funcionario> getFuncionarioBySalarioValueNq(Double salario) {
 		
 		try {
 			return funcionarioService.findFuncionarioBySalarioValueNq(salario);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionario by dependentes", 
+			notes = "Method responsible for searching Funcionario dependentes")
+	@PostMapping(value = "/get-by-dependentes")
+	@ResponseBody
+	public List<Funcionario> getByDependentes(Integer qtdeDependente) {
+		
+		try {
+			return funcionarioService.findByDependentes(qtdeDependente);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionario by NomeLike", 
+			notes = "Method responsible for searching Funcionario NomeLike")
+	@PostMapping(value = "/get-by-nomeLike")
+	@ResponseBody
+	public List<Funcionario> findByNomeLike(String nome) {
+		
+		try {
+			return funcionarioService.findByNomeLike(nome);
 		} catch (Exception e) {
 			return null;
 		}		

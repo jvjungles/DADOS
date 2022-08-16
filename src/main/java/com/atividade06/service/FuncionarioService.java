@@ -172,4 +172,20 @@ public class FuncionarioService {
 			throw new OperationException("Funcionario not found!");
 		}
 	}
+    
+    public List<Funcionario> findByDependentes(Integer qtdeDependente) throws OperationException {	    	
+		try {
+			return repository.findByDependentes(qtdeDependente);
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    public List<Funcionario> findByNomeLike(String name) throws OperationException {	    	
+		try {
+			return repository.findByNomeLike("%"+name+"%");
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
 }

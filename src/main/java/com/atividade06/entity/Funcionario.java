@@ -4,12 +4,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "funcionario")
+@NamedQuery(
+		   name = "Funcionario.byDependentes",
+		   query = "from Funcionario f where f.qtdeDependente = ?1")
+@NamedNativeQuery(
+		   name = "Funcionario.byNomeLike",
+		   query = "SELECT f.* from funcionario f WHERE f.nome_funcionario LIKE :nomeFuncionario", 
+		   resultClass = Funcionario.class)
 public class Funcionario extends AbstractPersistable<Long>{
 	
 	public Funcionario() {
