@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
@@ -18,6 +20,15 @@ public class FuncionarioService {
 
 	@Autowired
     private FuncionarioRepository repository;
+	
+	@Transactional
+	public List<Funcionario> getFuncionarioAumetaSalario(Integer arg) throws OperationException {    	
+    	try {
+    		return repository.proc_aumentaSalario(arg);
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
     
     public void save(Funcionario funcionario) throws OperationException {    	
     	try {

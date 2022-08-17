@@ -24,6 +24,19 @@ public class FuncionarioController {
 
 	@Autowired
 	private FuncionarioService funcionarioService;
+	
+	@ApiOperation(value = "Prod Funcionarios Aumenta Salario", 
+			notes = "Prod Funcionarios Aumenta Salario")
+	@GetMapping(value = "/proc-aumentaSalario")
+	@ResponseBody
+	public List<Funcionario> getFuncionarioAumetaSalario(Integer arg) {
+		
+		try {
+			return funcionarioService.getFuncionarioAumetaSalario(arg);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
 
 	@ApiOperation(value = "Create Funcionario", 
 			notes = "Method responsible for create Funcionario")

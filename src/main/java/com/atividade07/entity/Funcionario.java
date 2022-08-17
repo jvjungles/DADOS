@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -19,6 +22,19 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 		   name = "Funcionario.byNomeLike",
 		   query = "select f.* from funcionario f where f.nome_funcionario like :nomeFuncionario", 
 		   resultClass = Funcionario.class)
+@NamedStoredProcedureQuery( 
+		   name = "Funcionario.aumentaSalario",
+		   procedureName = "proc_aumentaSalario",
+		   parameters = { 
+		      @StoredProcedureParameter( 
+		         mode = ParameterMode.IN, 
+		         name = "arg",
+		         type = Integer.class),
+		      @StoredProcedureParameter(
+		         mode = ParameterMode.OUT, 
+		         name = "res",
+		         type = Funcionario.class)
+		   })
 public class Funcionario extends AbstractPersistable<Long>{
 	
 	public Funcionario() {
