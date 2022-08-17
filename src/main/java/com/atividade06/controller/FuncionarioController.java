@@ -3,9 +3,6 @@ package com.atividade06.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQuery;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +28,8 @@ public class FuncionarioController {
 	@ApiOperation(value = "Create Funcionario", 
 			notes = "Method responsible for create Funcionario")
 	@PostMapping(value = "/create")
-	public String create(String nome, String cpf, String cargo, Integer qtde_dependente, Float salario, Long codDepartamento) {
+	public String create(String nome, String cpf, String cargo, 
+			Integer qtde_dependente, Float salario, Long codDepartamento) {
 		
 		Departamento departamento = new Departamento();
 		departamento.setId(codDepartamento);
@@ -39,7 +37,6 @@ public class FuncionarioController {
 		Funcionario funcionario = new Funcionario(nome, qtde_dependente, 
 												  salario.doubleValue(), 
 												  cargo, cpf, departamento);
-		
 		try {
 			funcionarioService.save(funcionario);
 		} catch (OperationException e) {

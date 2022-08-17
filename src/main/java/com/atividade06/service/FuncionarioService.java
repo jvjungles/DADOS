@@ -16,7 +16,7 @@ import com.atividade06.repository.FuncionarioRepository;
 @Service
 public class FuncionarioService {
 
-	 @Autowired
+	@Autowired
     private FuncionarioRepository repository;
     
     public void save(Funcionario funcionario) throws OperationException {    	

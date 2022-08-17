@@ -15,7 +15,7 @@ import com.atividade06.repository.EmpresaRepository;
 @Service
 public class EmpresaService {
 
-	 @Autowired
+	@Autowired
     private EmpresaRepository repository;
     
     public void save(Empresa empresa) throws OperationException {    	    	
