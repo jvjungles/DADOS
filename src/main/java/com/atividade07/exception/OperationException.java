@@ -1,4 +1,4 @@
-package com.atividade06.exception;
+package com.atividade07.exception;
 
 public class OperationException extends Exception {
     

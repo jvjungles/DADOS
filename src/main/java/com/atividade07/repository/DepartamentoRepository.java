@@ -1,8 +1,8 @@
-package com.atividade06.repository;
+package com.atividade07.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.atividade06.entity.Departamento;
+import com.atividade07.entity.Departamento;
 
 public interface DepartamentoRepository extends JpaRepository<Departamento, Long>{
 

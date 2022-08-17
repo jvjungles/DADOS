@@ -1,4 +1,4 @@
-package com.atividade06.service;
+package com.atividade07.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,9 +9,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import com.atividade06.entity.Funcionario;
-import com.atividade06.exception.OperationException;
-import com.atividade06.repository.FuncionarioRepository;
+import com.atividade07.entity.Funcionario;
+import com.atividade07.exception.OperationException;
+import com.atividade07.repository.FuncionarioRepository;
 
 @Service
 public class FuncionarioService {
