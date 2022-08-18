@@ -25,8 +25,8 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
-	@ApiOperation(value = "Prod Funcionarios Aumenta Salario", 
-			notes = "Prod Funcionarios Aumenta Salario")
+	@ApiOperation(value = "Proc Funcionarios Aumenta Salario", 
+			notes = "Proc Funcionarios Aumenta Salario")
 	@GetMapping(value = "/proc-aumentaSalario")
 	@ResponseBody
 	public List<Funcionario> getFuncionarioAumetaSalario(Integer arg) {
@@ -252,6 +252,19 @@ public class FuncionarioController {
 		
 		try {
 			return funcionarioService.findByNomeLike(nome);
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+	
+	@ApiOperation(value = "Find Funcionario by departamento e sem dependentes", 
+			notes = "Method responsible for searching Funcionario by departamento e sem dependentes")
+	@PostMapping(value = "/get-by-departamentoSemDependentes")
+	@ResponseBody
+	public List<Funcionario> getByDepartamentoSemDependentes(Integer departamento) {
+		
+		try {
+			return funcionarioService.findByDepartamentoSemDependentes(departamento.longValue());
 		} catch (Exception e) {
 			return null;
 		}		

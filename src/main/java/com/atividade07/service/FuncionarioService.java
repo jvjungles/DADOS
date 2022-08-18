@@ -199,4 +199,12 @@ public class FuncionarioService {
 			throw new OperationException("Funcionario not found!");
 		}
 	}
+    
+    public List<Funcionario> findByDepartamentoSemDependentes(Long departamento) throws OperationException {	    	
+		try {
+			return repository.findByDepartamentoSemDependentes(departamento);
+		} catch (Exception e) {
+			throw new OperationException("Funcionario not found!");
+		}
+	}
 }

@@ -46,8 +46,8 @@ public class Funcionario extends AbstractPersistable<Long>{
 		this.nomeFuncionario = nomeFuncionario;		
 	}
 
-	public Funcionario(String nomeFuncionario, Integer qtdeDependente, Double salario, String cargo, String cpf,
-			Departamento departamento) {
+	public Funcionario(String nomeFuncionario, Integer qtdeDependente, 
+			Double salario, String cargo, String cpf, Departamento departamento) {
 		super();
 		this.nomeFuncionario = nomeFuncionario;
 		this.qtdeDependente = qtdeDependente;

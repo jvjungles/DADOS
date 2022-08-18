@@ -44,4 +44,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 	
 	@Query(name = "Funcionario.byNomeLike")
 	List<Funcionario> findByNomeLike(@Param("nomeFuncionario") String nomeFuncionario);
+	
+	@Query("select f from Funcionario f"
+    	+ " where f.departamento.id = :departamento and f.qtdeDependente = 0") 
+    List<Funcionario> findByDepartamentoSemDependentes(@Param("departamento") Long departamento);
 }
