@@ -277,7 +277,7 @@ public class FuncionarioController {
 	public String updateAllFuncionariobyDepartamento(Integer departamentoDe, Integer departamentoPara) {
 		
 		try {
-			return funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe.longValue(), departamentoPara.longValue()).toString();
+			return "Users affecteds: \n" + funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe.longValue(), departamentoPara.longValue()).toString();
 		} catch (Exception e) {
 			return e.getMessage();
 		}		
