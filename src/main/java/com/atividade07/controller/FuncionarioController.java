@@ -274,12 +274,25 @@ public class FuncionarioController {
 			notes = "Method responsible for Updating Funcionario by departamento")
 	@PostMapping(value = "/update-by-funcionariosDepartamento")
 	@ResponseBody
-	public List<Funcionario> updateAllFuncionariobyDepartamento(Integer departamentoDe, Integer departamentoPara) {
+	public String updateAllFuncionariobyDepartamento(Integer departamentoDe, Integer departamentoPara) {
 		
 		try {
-			return funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe.longValue(), departamentoPara.longValue());
+			return funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe.longValue(), departamentoPara.longValue()).toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
+		}		
+	}
+	
+	@ApiOperation(value = "delete Funcionario by departamento", 
+			notes = "Method responsible for deleting Funcionario by departamento")
+	@PostMapping(value = "/delete-by-funcionariosDepartamento")
+	@ResponseBody
+	public String deleteAllFuncionariobyDepartamento(Integer departamento) {
+		
+		try {
+			return "Users affecteds: \n" + funcionarioService.deleteAllFuncionariobyDepartamento(departamento.longValue()).toString();
+		} catch (Exception e) {
+			return e.getMessage();
 		}		
 	}
 }

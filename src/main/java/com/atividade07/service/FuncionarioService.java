@@ -217,7 +217,7 @@ public class FuncionarioService {
 				
 		try {
     		
-    		if (departamentoRepository.findById(departamentoDe) == null) {
+    		if (departamentoRepository.findById(departamentoDe).get() == null) {
     			throw new OperationException("Departamento not exists!");
 			}   		
     		
@@ -228,8 +228,34 @@ public class FuncionarioService {
     		return repository.findFuncionariosbyDepartamento(departamentoPara.intValue());
     		
     		
-		} catch (Exception e) {
-			throw new OperationException("Update not execute!");
+		} catch (NoSuchElementException e) {
+			throw new OperationException("Departamento not exists!");
+		}catch (Exception e) {
+			throw new OperationException(e.getMessage());
+		}
+	}
+    
+    @Transactional
+    public List<Funcionario> deleteAllFuncionariobyDepartamento(Long departamento) throws OperationException {	    	
+				
+		try {
+    		
+    		if (departamentoRepository.findById(departamento).get() == null) {
+    			throw new OperationException("Departamento not exists!");
+			}
+    		
+    		List<Funcionario> deletes = repository.findFuncionariosbyDepartamento(departamento.intValue());
+    		
+    		if (repository.deleteAllFuncionariobyDepartamento(departamento) == 0) {
+    			throw new OperationException("No Funcionario affected!");
+			}
+    		
+    		return deletes;    		
+    		
+		} catch (NoSuchElementException e) {
+			throw new OperationException("Departamento not exists!");
+		}catch (Exception e) {
+			throw new OperationException(e.getMessage());
 		}
 	}
 }

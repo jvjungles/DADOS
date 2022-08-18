@@ -50,8 +50,11 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
     	+ " where f.departamento.id = :departamento and f.qtdeDependente = 0") 
     List<Funcionario> findByDepartamentoSemDependentes(@Param("departamento") Long departamento);
 	
-	// código anterior omitido nesta listagem 
 	@Modifying
 	@Query("update Funcionario f set f.departamento.id = ?2 where f.departamento.id = ?1")
 	int updateAllFuncionariobyDepartamento(Long departamentoDe, Long departamentoPara);
+	
+	@Modifying
+	@Query("delete from Funcionario f where f.departamento.id = ?1")
+	int deleteAllFuncionariobyDepartamento(Long departamento);
 }
