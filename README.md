@@ -1,4 +1,4 @@
-# CETEJ34 - Sistemas De Banco De Dados - JAVA_XXIV (2022_01)
+# CETEJ34 - Sistemas de Banco de Dados - JAVA_XXIV (2022_01)
 
 Joao Valter Jungles Junior
 
