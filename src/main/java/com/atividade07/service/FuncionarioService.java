@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.atividade07.entity.Funcionario;
 import com.atividade07.exception.OperationException;
+import com.atividade07.repository.DepartamentoRepository;
 import com.atividade07.repository.FuncionarioRepository;
 
 @Service
@@ -20,6 +21,9 @@ public class FuncionarioService {
 
 	@Autowired
     private FuncionarioRepository repository;
+	
+	@Autowired
+    private DepartamentoRepository departamentoRepository;
 	
 	@Transactional
 	public List<Funcionario> getFuncionarioAumetaSalario(Integer arg) throws OperationException {    	
@@ -205,6 +209,27 @@ public class FuncionarioService {
 			return repository.findByDepartamentoSemDependentes(departamento);
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
+		}
+	}
+    
+    @Transactional
+    public List<Funcionario> updateAllFuncionariobyDepartamento(Long departamentoDe, Long departamentoPara) throws OperationException {	    	
+				
+		try {
+    		
+    		if (departamentoRepository.findById(departamentoDe) == null) {
+    			throw new OperationException("Departamento not exists!");
+			}   		
+    		
+    		if (repository.updateAllFuncionariobyDepartamento(departamentoDe, departamentoPara) == 0) {
+    			throw new OperationException("No Funcionario affected!");
+			}
+    		
+    		return repository.findFuncionariosbyDepartamento(departamentoPara.intValue());
+    		
+    		
+		} catch (Exception e) {
+			throw new OperationException("Update not execute!");
 		}
 	}
 }

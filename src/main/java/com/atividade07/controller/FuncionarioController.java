@@ -269,4 +269,17 @@ public class FuncionarioController {
 			return null;
 		}		
 	}
+	
+	@ApiOperation(value = "Update Funcionario by departamento", 
+			notes = "Method responsible for Updating Funcionario by departamento")
+	@PostMapping(value = "/update-by-funcionariosDepartamento")
+	@ResponseBody
+	public List<Funcionario> updateAllFuncionariobyDepartamento(Integer departamentoDe, Integer departamentoPara) {
+		
+		try {
+			return funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe.longValue(), departamentoPara.longValue());
+		} catch (Exception e) {
+			return null;
+		}		
+	}
 }

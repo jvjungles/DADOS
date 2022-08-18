@@ -3,6 +3,7 @@ package com.atividade07.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
@@ -48,4 +49,9 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 	@Query("select f from Funcionario f"
     	+ " where f.departamento.id = :departamento and f.qtdeDependente = 0") 
     List<Funcionario> findByDepartamentoSemDependentes(@Param("departamento") Long departamento);
+	
+	// código anterior omitido nesta listagem 
+	@Modifying
+	@Query("update Funcionario f set f.departamento.id = ?2 where f.departamento.id = ?1")
+	int updateAllFuncionariobyDepartamento(Long departamentoDe, Long departamentoPara);
 }
