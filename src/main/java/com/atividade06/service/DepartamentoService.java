@@ -11,18 +11,37 @@ import org.springframework.stereotype.Service;
 import com.atividade06.entity.Departamento;
 import com.atividade06.exception.OperationException;
 import com.atividade06.repository.DepartamentoRepository;
+import com.atividade06.repository.EmpresaRepository;
 
 @Service
 public class DepartamentoService {
 
 	@Autowired
 	private DepartamentoRepository repository;
+	
+	@Autowired
+	private EmpresaRepository empresaRepository;
 
 	public void save(Departamento departamento) throws OperationException {		
-		try {
+		try {			
+		
+			isValid(departamento);
 			repository.save(departamento);
-		} catch (Exception e) {
-			throw new OperationException("Departamento not save!");
+		
+		} catch (Exception e) {			
+			throw new OperationException(e.getMessage());			
+		}		
+	}
+
+	private void isValid(Departamento departamento) throws OperationException {
+		if (departamento == null ||departamento.getNome_departamento() == null) {
+    		throw new OperationException("Nome not informed!");
+		}
+		if (departamento.getEmpresa() == null ||departamento.getEmpresa().getId() == null) {
+    		throw new OperationException("codEmpresa not informed!");
+		}
+		if (!empresaRepository.findById(departamento.getEmpresa().getId()).isPresent()) {
+			throw new OperationException("Empresa not exists!");
 		}
 	}
 

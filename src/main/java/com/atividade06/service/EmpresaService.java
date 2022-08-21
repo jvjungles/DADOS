@@ -18,11 +18,21 @@ public class EmpresaService {
 	@Autowired
     private EmpresaRepository repository;
     
-    public void save(Empresa empresa) throws OperationException {    	    	
-    	try {
-    		repository.save(empresa);
-		} catch (Exception e) {
-			throw new OperationException("Empresa not save!");
+    public void save(Empresa empresa) throws OperationException {   
+    	
+    	try {			
+		
+	    	isvalid(empresa);    	
+	    	repository.save(empresa);	
+	    	
+    	} catch (Exception e) {
+			throw new OperationException(e.getMessage());
+		}
+	}
+
+	private void isvalid(Empresa empresa) throws OperationException {
+		if (empresa == null ||empresa.getNome_empresa() == null) {
+    		throw new OperationException("Empresa not infomed!");
 		}
 	}
     

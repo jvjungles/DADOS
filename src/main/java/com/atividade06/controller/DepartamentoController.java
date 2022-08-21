@@ -31,15 +31,11 @@ public class DepartamentoController {
 	@ResponseBody
 	public String create(String name, Long codEmpresa) {
 		
-		Departamento departamento = new Departamento();
 		Empresa empresa = new Empresa();		
-		
-		empresa.setId(codEmpresa);		
-		departamento.setNome_departamento(name);
-		departamento.setEmpresa(empresa);		
+		empresa.setId(codEmpresa);
 		
 		try {
-			departamentoService.save(departamento);
+			departamentoService.save(new Departamento(name, empresa));
 		} catch (OperationException e) {
 			return e.getMessage();
 		}

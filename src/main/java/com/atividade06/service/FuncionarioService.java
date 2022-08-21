@@ -5,12 +5,12 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.atividade06.entity.Funcionario;
 import com.atividade06.exception.OperationException;
+import com.atividade06.repository.DepartamentoRepository;
 import com.atividade06.repository.FuncionarioRepository;
 
 @Service
@@ -18,26 +18,36 @@ public class FuncionarioService {
 
 	@Autowired
     private FuncionarioRepository repository;
+	
+	@Autowired
+    private DepartamentoRepository departamentoRepository;
     
     public void save(Funcionario funcionario) throws OperationException {    	
     	try {
     		
-    		if (repository.findFuncionarioByCpf(funcionario.getCpf()) != null) {
-    			throw new OperationException("Funcionario exists!");
-			}   		
+    		isValid(funcionario);    		
+    		repository.save(funcionario);		
     		
-    		repository.save(funcionario);
-    		
-		} catch (DataIntegrityViolationException e) {
-			
-			if (e.getMessage().contains("cpf")) {
-				throw new OperationException("Funcionario - CPF nao informado!");
-			}else {
-				throw new OperationException("Departamento not found!");
-			}
-			
 		} catch (Exception e) {
-			throw new OperationException("Funcionario - CPF exists!");
+			throw new OperationException(e.getMessage());
+		}
+	}
+
+	private void isValid(Funcionario funcionario) throws OperationException {
+		if (funcionario == null || funcionario.getNomeFuncionario() == null) {    			
+			throw new OperationException("Nome not informed!");
+		}
+		if (funcionario == null || funcionario.getCpf() == null){
+			throw new OperationException("CPF not informed!");				
+		}  
+		if (funcionario == null || funcionario.getDepartamento() == null || funcionario.getDepartamento().getId() == null){
+			throw new OperationException("codDepartamento not informed!");				
+		}		
+		if (!departamentoRepository.findById(funcionario.getDepartamento().getId()).isPresent()) {
+			throw new OperationException("Departamento not exists!");
+		}
+		if (repository.findFuncionarioByCpf(funcionario.getCpf()) != null) {
+			throw new OperationException("Funcionario exists!");
 		}
 	}
     

@@ -33,9 +33,10 @@ public class FuncionarioController {
 		
 		Departamento departamento = new Departamento();
 		departamento.setId(codDepartamento);
+		
+		Double sal = salario == null ? 0 : salario.doubleValue();
 
-		Funcionario funcionario = new Funcionario(nome, qtde_dependente, 
-												  salario.doubleValue(), 
+		Funcionario funcionario = new Funcionario(nome, qtde_dependente, sal, 
 												  cargo, cpf, departamento);
 		try {
 			funcionarioService.save(funcionario);
