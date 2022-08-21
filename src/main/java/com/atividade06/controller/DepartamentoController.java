@@ -26,7 +26,7 @@ public class DepartamentoController {
 	private DepartamentoService departamentoService;
 
 	@ApiOperation(value = "Create Departamento", 
-			notes = "Method responsible for create Departamento")
+				  notes = "Method responsible for create Departamento")
 	@PostMapping(value = "/create")
 	@ResponseBody
 	public String create(String name, Long codEmpresa) {
@@ -47,7 +47,7 @@ public class DepartamentoController {
 	}
 
 	@ApiOperation(value = "Delete Departamento by id", 
-			notes = "Method responsible for delete Departamento by id")
+				  notes = "Method responsible for delete Departamento by id")
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
 	public String delete(Integer id) {
@@ -61,7 +61,7 @@ public class DepartamentoController {
 	}
 
 	@ApiOperation(value = "Find Departamento by id", 
-			notes = "Method responsible for searching Departamento by id")
+				  notes = "Method responsible for searching Departamento by id")
 	@PostMapping(value = "/get-by-id")
 	@ResponseBody
 	public String getById(Integer id) {
@@ -76,7 +76,7 @@ public class DepartamentoController {
 	}
 
 	@ApiOperation(value = "Find All Departamentos", 
-			notes = "Method responsible for searching all Departamentos")
+				  notes = "Method responsible for searching all Departamentos")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Departamento> getByAll() {
@@ -89,15 +89,15 @@ public class DepartamentoController {
 	}
 	
 	@ApiOperation(value = "Find first Departamento", 
-			notes = "Method responsible for searching first Departamento")
+				  notes = "Method responsible for searching first Departamento")
 	@GetMapping(value = "/get-first")
 	@ResponseBody
-	public Departamento getFirst() {
+	public String getFirst() {
 
 		try {
-			return departamentoService.findFirstBy();
+			return departamentoService.findFirstBy().toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
 		}
 	}
 }

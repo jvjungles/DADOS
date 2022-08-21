@@ -85,16 +85,24 @@ public class FuncionarioService {
 		}
 	}
     
-    public List<Funcionario> findByName(String name) throws OperationException {    	
-    	if (name.equals("")) {
+    public List<Funcionario> findByName(String name) throws OperationException {
+    	
+    	if (name == null || name.equals("")) {
     		throw new OperationException("Funcionario not found!");
 		}
-		
+    	
     	Funcionario funcionario = new Funcionario(name);    	
     	Example<Funcionario> example = Example.of(funcionario);
-    	    	
-		try {
-			return repository.findAll(example);
+    	
+    	try {
+    		
+    		List<Funcionario> ret = repository.findAll(example);    	
+    	
+	    	if (ret.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}   	    	
+		
+			return ret;
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}
@@ -117,9 +125,22 @@ public class FuncionarioService {
 	}
     
     public List<Funcionario> findFuncionarioByNomeFuncionarioAndQtdeDependente(
-    		String nomeFuncionario, Integer qtdeDependente) throws OperationException {	    	
-		try {
-			return repository.findFuncionarioByNomeFuncionarioAndQtdeDependente(nomeFuncionario, qtdeDependente);
+    		String nomeFuncionario, Integer qtdeDependente) throws OperationException {	
+    	
+    	if (nomeFuncionario == null || nomeFuncionario.equals("")) {
+    		throw new OperationException("Funcionario not found!");
+		}
+    	
+    	try {
+    		
+			List<Funcionario> ret = repository.findFuncionarioByNomeFuncionarioAndQtdeDependente(nomeFuncionario,
+					qtdeDependente);  	
+    	
+	    	if (ret.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}   	    	
+		
+			return ret;
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}
@@ -133,9 +154,16 @@ public class FuncionarioService {
 		}
 	}
     
-    public Funcionario findFirstByOrderBySalarioDesc() throws OperationException {	    	
+    public Funcionario findFirstByOrderBySalarioDesc() throws OperationException {	 
 		try {
-			return repository.findFirstByOrderBySalarioDesc();
+			
+			Funcionario funcionario = repository.findFirstByOrderBySalarioDesc();
+			
+			if (funcionario.getId() == null) {
+				throw new OperationException("Funcionario not found!");
+			}			
+			
+			return funcionario;
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}
@@ -182,10 +210,22 @@ public class FuncionarioService {
 	}
     
     public List<Funcionario> findByNomeLike(String name) throws OperationException {	    	
-		try {
-			return repository.findByNomeLike("%"+name+"%");
+			
+		if (name == null || name.equals("")) {
+    		throw new OperationException("Funcionario not found!");
+		}
+    	
+    	try {
+    		
+    		List<Funcionario> ret = repository.findByNomeLike("%"+name+"%");    	
+    	
+	    	if (ret.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}   	    	
+		
+			return ret;
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
-		}
+		}			
 	}
 }
