@@ -32,7 +32,7 @@ public class EmpresaService {
 
 	private void isvalid(Empresa empresa) throws OperationException {
 		if (empresa == null ||empresa.getNome_empresa() == null) {
-    		throw new OperationException("Empresa not infomed!");
+    		throw new OperationException("Nome not infomed!");
 		}
 	}
     
