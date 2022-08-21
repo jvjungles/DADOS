@@ -88,7 +88,7 @@ public class DepartamentoService {
 			
 			Departamento depertamento = repository.findFirstBy();
 			
-			if (depertamento.getId() == null) {
+			if (depertamento == null || depertamento.getId() == null) {
 				throw new OperationException("Departamento not found!");
 			}
 			

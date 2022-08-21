@@ -158,7 +158,13 @@ public class FuncionarioService {
     
     public List<Funcionario> findFuncionariosbyDepartamento(Integer departamento) throws OperationException {	    	
 		try {
-			return repository.findFuncionariosbyDepartamento(departamento);
+			List<Funcionario> funcionario = repository.findFuncionariosbyDepartamento(departamento);
+			
+			if (funcionario.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}			
+			
+			return funcionario;
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}
@@ -169,7 +175,7 @@ public class FuncionarioService {
 			
 			Funcionario funcionario = repository.findFirstByOrderBySalarioDesc();
 			
-			if (funcionario.getId() == null) {
+			if (funcionario == null || funcionario.getId() == null) {
 				throw new OperationException("Funcionario not found!");
 			}			
 			
