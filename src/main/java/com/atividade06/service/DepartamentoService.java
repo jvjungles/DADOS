@@ -94,7 +94,7 @@ public class DepartamentoService {
 			
 			return depertamento;
 		} catch (Exception e) {
-			throw new OperationException("Departamento not found!");
+			throw new OperationException(e.getMessage());
 		}
 	}
 }

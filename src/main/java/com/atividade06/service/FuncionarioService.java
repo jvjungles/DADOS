@@ -114,7 +114,7 @@ public class FuncionarioService {
 		
 			return ret;
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException(e.getMessage());
 		}
 	}
     
@@ -152,7 +152,7 @@ public class FuncionarioService {
 		
 			return ret;
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException(e.getMessage());
 		}
 	}
     
@@ -175,7 +175,7 @@ public class FuncionarioService {
 			
 			return funcionario;
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException(e.getMessage());
 		}
 	}
     
@@ -235,7 +235,7 @@ public class FuncionarioService {
 		
 			return ret;
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException(e.getMessage());
 		}			
 	}
 }
