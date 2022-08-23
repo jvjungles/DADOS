@@ -25,12 +25,13 @@ public class FuncionarioService {
     private DepartamentoRepository departamentoRepository;
 	
 	@Transactional
-	public void getFuncionarioAumetaSalario(Integer arg) throws OperationException { 
+	public boolean getFuncionarioAumetaSalario(Integer arg) throws OperationException { 
 		
-		isValidProc(arg);  
+		isValidProc(arg); 
 		
     	try {
     		repository.proc_aumentaSalario(arg);
+    		return true;
 		} catch (Exception e) {
 			throw new OperationException("proc_aumentaSalario does not exist!");
 		}

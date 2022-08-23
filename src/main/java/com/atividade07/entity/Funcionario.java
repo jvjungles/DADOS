@@ -23,8 +23,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 		   query = "select f.* from funcionario f where f.nome_funcionario like :nomeFuncionario", 
 		   resultClass = Funcionario.class)
 @NamedStoredProcedureQuery( 
-		   name = "Funcionario.aumentaSalario",
-		   procedureName = "proc_aumentaSalario",
+		   name = "Funcionario.aumentaSalario2",
+		   procedureName = "proc_aumentaSalario2",
 		   parameters = { 
 		      @StoredProcedureParameter( 
 		         mode = ParameterMode.IN, 
@@ -32,7 +32,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 		         type = Integer.class),
 		      @StoredProcedureParameter(
 		         mode = ParameterMode.OUT, 
-		         name = "res",
+		         name = "ret",
 		         type = Funcionario.class)
 		   })
 public class Funcionario extends AbstractPersistable<Long>{
