@@ -29,13 +29,17 @@ public class FuncionarioController {
 			notes = "Proc Funcionarios Aumenta Salario")
 	@GetMapping(value = "/proc-aumentaSalario")
 	@ResponseBody
-	public List<Funcionario> getFuncionarioAumetaSalario(Integer arg) {
+	public String getFuncionarioAumetaSalario(Integer arg) {
 		
 		try {
-			return funcionarioService.getFuncionarioAumetaSalario(arg);
+			funcionarioService.getFuncionarioAumetaSalario(arg);
+		} catch (OperationException e) {
+			return e.getMessage();
 		} catch (Exception e) {
-			return null;
-		}		
+			return "proc_aumentaSalario does not exist!";
+		}	
+		
+		return "Salarios succesfully updated!!! \n\n";
 	}
 
 	@ApiOperation(value = "Create Funcionario", 
@@ -275,10 +279,10 @@ public class FuncionarioController {
 			notes = "Method responsible for Updating Funcionario by departamento")
 	@PostMapping(value = "/update-by-funcionariosDepartamento")
 	@ResponseBody
-	public String updateAllFuncionariobyDepartamento(Integer departamentoDe, Integer departamentoPara) {
+	public String updateAllFuncionariobyDepartamento(Long departamentoDe, Long departamentoPara) {
 		
 		try {
-			return "Users affecteds: \n" + funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe.longValue(), departamentoPara.longValue()).toString();
+			return "Users affecteds: \n" + funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe, departamentoPara).toString();
 		} catch (Exception e) {
 			return e.getMessage();
 		}		
@@ -288,10 +292,10 @@ public class FuncionarioController {
 			notes = "Method responsible for deleting Funcionario by departamento")
 	@DeleteMapping(value = "/delete-by-funcionariosDepartamento")
 	@ResponseBody
-	public String deleteAllFuncionariobyDepartamento(Integer departamento) {
+	public String deleteAllFuncionariobyDepartamento(Long departamento) {
 		
 		try {
-			return "Users affecteds: \n" + funcionarioService.deleteAllFuncionariobyDepartamento(departamento.longValue()).toString();
+			return "Users affecteds: \n" + funcionarioService.deleteAllFuncionariobyDepartamento(departamento).toString();
 		} catch (Exception e) {
 			return e.getMessage();
 		}		

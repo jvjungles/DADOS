@@ -1,6 +1,5 @@
 package com.atividade07.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -26,11 +25,23 @@ public class FuncionarioService {
     private DepartamentoRepository departamentoRepository;
 	
 	@Transactional
-	public List<Funcionario> getFuncionarioAumetaSalario(Integer arg) throws OperationException {    	
+	public void getFuncionarioAumetaSalario(Integer arg) throws OperationException { 
+		
+		isValidProc(arg);  
+		
     	try {
-    		return repository.proc_aumentaSalario(arg);
+    		repository.proc_aumentaSalario(arg);
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException("proc_aumentaSalario does not exist!");
+		}
+	}
+	
+	private void isValidProc(Integer arg) throws OperationException {		
+		if (arg == null) {    			
+			throw new OperationException("value not informed!");
+		}		
+		if (repository.findAll().isEmpty()) {
+			throw new OperationException("Funcionario is empty!");
 		}
 	}
     
@@ -260,29 +271,37 @@ public class FuncionarioService {
     public List<Funcionario> findByDepartamentoSemDependentes(Long departamento) throws OperationException {	
     	
     	try {
-    		if (departamento == null || departamentoRepository.findById(departamento).get() == null) {
+    		
+    		if (departamento == null) {    			
+    			throw new OperationException("value not informed!");
+    		}				
+    		if (!departamentoRepository.findById(departamento).isPresent()) {
     			throw new OperationException("Departamento not exists!");
     		}
     		
-    		List<Funcionario> ret  =  repository.findByDepartamentoSemDependentes(departamento);
+    		List<Funcionario> ret  =  repository.findByDepartamentoSemDependentes(departamento);  
     		
     		if (ret.isEmpty()) {
     			throw new OperationException("Funcionario not found!");
-			}
+			}  
     		
     		return ret;
     		
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
 		}    	
-	}
+	}   
     
     @Transactional
     public List<Funcionario> updateAllFuncionariobyDepartamento(Long departamentoDe, Long departamentoPara) throws OperationException {	    	
 				
 		try {
+			
+			if (departamentoDe == null || departamentoPara == null) {    			
+				throw new OperationException("value not informed!");
+			}
     		
-    		if (departamentoRepository.findById(departamentoDe).get() == null) {
+    		if (departamentoDe == null || departamentoRepository.findById(departamentoDe).get() == null) {
     			throw new OperationException("Departamento not exists!");
 			}   		
     		
@@ -304,8 +323,12 @@ public class FuncionarioService {
     public List<Funcionario> deleteAllFuncionariobyDepartamento(Long departamento) throws OperationException {	    	
 				
 		try {
+			
+			if (departamento == null) {    			
+				throw new OperationException("value not informed!");
+			}
     		
-    		if (departamentoRepository.findById(departamento).get() == null) {
+    		if (!departamentoRepository.findById(departamento).isPresent()) {
     			throw new OperationException("Departamento not exists!");
 			}
     		
