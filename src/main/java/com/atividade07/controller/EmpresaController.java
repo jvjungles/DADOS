@@ -24,22 +24,21 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaService empresaService;
 
-	@ApiOperation(value = "Create Empresa", notes = "Method responsible for create Empresa")
+	@ApiOperation(value = "Create Empresa", 
+				  notes = "Method responsible for create Empresa")
 	@PostMapping(value = "/create")
 	public String create(String name) {
 		
-		Empresa empresa = new Empresa();		
-		empresa.setNome_empresa(name);
-		
 		try {
-			empresaService.save(empresa);
+			empresaService.save(new Empresa(name));
 		} catch (OperationException e) {
 			return e.getMessage();
 		}
 		return "Empresa succesfully created!!! \n\n";
 	}
 
-	@ApiOperation(value = "Delete Empresa by ID", notes = "Method responsible for delete Empresa")
+	@ApiOperation(value = "Delete Empresa by ID", 
+				  notes = "Method responsible for delete Empresa")
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
 	public String delete(Integer id) {
@@ -52,7 +51,8 @@ public class EmpresaController {
 		return "Empresa succesfully deleted!";
 	}
 	
-	@ApiOperation(value = "Find Empresa by ID", notes = "Method responsible for searching Empresa by ID")
+	@ApiOperation(value = "Find Empresa by ID", 
+				  notes = "Method responsible for searching Empresa by ID")
 	@PostMapping(value = "/get-by-id")
 	@ResponseBody
 	public String getById(Integer id) {
@@ -66,7 +66,8 @@ public class EmpresaController {
 		}
 	}	
 	
-	@ApiOperation(value = "Find All Empresas", notes = "Method responsible for searching all Empresas")
+	@ApiOperation(value = "Find All Empresas", 
+				  notes = "Method responsible for searching all Empresas")
 	@GetMapping(value = "/get-all")
 	@ResponseBody
 	public List<Empresa> getByAll() {

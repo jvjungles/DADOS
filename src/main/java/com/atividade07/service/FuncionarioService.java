@@ -1,5 +1,6 @@
 package com.atividade07.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -7,7 +8,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
@@ -37,22 +37,29 @@ public class FuncionarioService {
     public void save(Funcionario funcionario) throws OperationException {    	
     	try {
     		
-    		if (repository.findFuncionarioByCpf(funcionario.getCpf()) != null) {
-    			throw new OperationException("Funcionario exists!");
-			}   		
+    		isValid(funcionario);    		
+    		repository.save(funcionario);		
     		
-    		repository.save(funcionario);
-    		
-		} catch (DataIntegrityViolationException e) {
-			
-			if (e.getMessage().contains("cpf")) {
-				throw new OperationException("Funcionario - CPF nao informado!");
-			}else {
-				throw new OperationException("Departamento not found!");
-			}
-			
 		} catch (Exception e) {
-			throw new OperationException("Funcionario - CPF exists!");
+			throw new OperationException(e.getMessage());
+		}
+	}
+
+	private void isValid(Funcionario funcionario) throws OperationException {
+		if (funcionario == null || funcionario.getNomeFuncionario() == null) {    			
+			throw new OperationException("Nome not informed!");
+		}
+		if (funcionario == null || funcionario.getCpf() == null){
+			throw new OperationException("CPF not informed!");				
+		}  
+		if (funcionario == null || funcionario.getDepartamento() == null || funcionario.getDepartamento().getId() == null){
+			throw new OperationException("codDepartamento not informed!");				
+		}		
+		if (!departamentoRepository.findById(funcionario.getDepartamento().getId()).isPresent()) {
+			throw new OperationException("Departamento not exists!");
+		}
+		if (repository.findFuncionarioByCpf(funcionario.getCpf()) != null) {
+			throw new OperationException("Funcionario exists!");
 		}
 	}
     
@@ -100,18 +107,26 @@ public class FuncionarioService {
 		}
 	}
     
-    public List<Funcionario> findByName(String name) throws OperationException {    	
-    	if (name.equals("")) {
+    public List<Funcionario> findByName(String name) throws OperationException {
+    	
+    	if (name == null || name.equals("")) {
     		throw new OperationException("Funcionario not found!");
 		}
-		
+    	
     	Funcionario funcionario = new Funcionario(name);    	
     	Example<Funcionario> example = Example.of(funcionario);
-    	    	
-		try {
-			return repository.findAll(example);
+    	
+    	try {
+    		
+    		List<Funcionario> ret = repository.findAll(example);    	
+    	
+	    	if (ret.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}   	    	
+		
+			return ret;
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException(e.getMessage());
 		}
 	}
     
@@ -132,27 +147,53 @@ public class FuncionarioService {
 	}
     
     public List<Funcionario> findFuncionarioByNomeFuncionarioAndQtdeDependente(
-    		String nomeFuncionario, Integer qtdeDependente) throws OperationException {	    	
-		try {
-			return repository.findFuncionarioByNomeFuncionarioAndQtdeDependente(nomeFuncionario, qtdeDependente);
+    		String nomeFuncionario, Integer qtdeDependente) throws OperationException {	
+    	
+    	if (nomeFuncionario == null || nomeFuncionario.equals("")) {
+    		throw new OperationException("Funcionario not found!");
+		}
+    	
+    	try {
+    		
+			List<Funcionario> ret = repository.findFuncionarioByNomeFuncionarioAndQtdeDependente(nomeFuncionario,
+					qtdeDependente);  	
+    	
+	    	if (ret.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}   	    	
+		
+			return ret;
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException(e.getMessage());
 		}
 	}
     
     public List<Funcionario> findFuncionariosbyDepartamento(Integer departamento) throws OperationException {	    	
 		try {
-			return repository.findFuncionariosbyDepartamento(departamento);
+			List<Funcionario> funcionario = repository.findFuncionariosbyDepartamento(departamento);
+			
+			if (funcionario.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}			
+			
+			return funcionario;
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}
 	}
     
-    public Funcionario findFirstByOrderBySalarioDesc() throws OperationException {	    	
+    public Funcionario findFirstByOrderBySalarioDesc() throws OperationException {	 
 		try {
-			return repository.findFirstByOrderBySalarioDesc();
+			
+			Funcionario funcionario = repository.findFirstByOrderBySalarioDesc();
+			
+			if (funcionario == null || funcionario.getId() == null) {
+				throw new OperationException("Funcionario not found!");
+			}			
+			
+			return funcionario;
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			throw new OperationException(e.getMessage());
 		}
 	}
     
@@ -197,19 +238,43 @@ public class FuncionarioService {
 	}
     
     public List<Funcionario> findByNomeLike(String name) throws OperationException {	    	
-		try {
-			return repository.findByNomeLike("%"+name+"%");
-		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
+			
+		if (name == null || name.equals("")) {
+    		throw new OperationException("Funcionario not found!");
 		}
+    	
+    	try {
+    		
+    		List<Funcionario> ret = repository.findByNomeLike("%"+name+"%");    	
+    	
+	    	if (ret.isEmpty()) {
+				throw new OperationException("Funcionario not found!");
+			}   	    	
+		
+			return ret;
+		} catch (Exception e) {
+			throw new OperationException(e.getMessage());
+		}			
 	}
     
-    public List<Funcionario> findByDepartamentoSemDependentes(Long departamento) throws OperationException {	    	
-		try {
-			return repository.findByDepartamentoSemDependentes(departamento);
+    public List<Funcionario> findByDepartamentoSemDependentes(Long departamento) throws OperationException {	
+    	
+    	try {
+    		if (departamento == null || departamentoRepository.findById(departamento).get() == null) {
+    			throw new OperationException("Departamento not exists!");
+    		}
+    		
+    		List<Funcionario> ret  =  repository.findByDepartamentoSemDependentes(departamento);
+    		
+    		if (ret.isEmpty()) {
+    			throw new OperationException("Funcionario not found!");
+			}
+    		
+    		return ret;
+    		
 		} catch (Exception e) {
-			throw new OperationException("Funcionario not found!");
-		}
+			throw new OperationException(e.getMessage());
+		}    	
 	}
     
     @Transactional

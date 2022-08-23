@@ -46,9 +46,10 @@ public class FuncionarioController {
 		
 		Departamento departamento = new Departamento();
 		departamento.setId(codDepartamento);
+		
+		Double sal = salario == null ? 0 : salario.doubleValue();
 
-		Funcionario funcionario = new Funcionario(nome, qtde_dependente, 
-												  salario.doubleValue(), 
+		Funcionario funcionario = new Funcionario(nome, qtde_dependente, sal, 
 												  cargo, cpf, departamento);
 		try {
 			funcionarioService.save(funcionario);
@@ -105,12 +106,12 @@ public class FuncionarioController {
 			notes = "Method responsible for searching Funcionarios by nome")
 	@PostMapping(value = "/get-by-name")
 	@ResponseBody
-	public List<Funcionario> getByName(String nome) {
+	public String getByName(String nome) {
 		
 		try {
-			return funcionarioService.findByName(nome);
+			return funcionarioService.findByName(nome).toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
 		}		
 	}
 	
@@ -144,12 +145,12 @@ public class FuncionarioController {
 			notes = "Method responsible for searching Funcionarios by nome e qtde de dependentes")
 	@PostMapping(value = "/get-by-nomeQtdeDependentes")
 	@ResponseBody
-	public List<Funcionario> getFuncionarioByNomeFuncionarioAndQtdeDependente(String name, Integer qtde_dependente) {
+	public String getFuncionarioByNomeFuncionarioAndQtdeDependente(String name, Integer qtde_dependente) {
 		
 		try {
-			return funcionarioService.findFuncionarioByNomeFuncionarioAndQtdeDependente(name, qtde_dependente);
+			return funcionarioService.findFuncionarioByNomeFuncionarioAndQtdeDependente(name, qtde_dependente).toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
 		}		
 	}
 	
@@ -157,12 +158,12 @@ public class FuncionarioController {
 			notes = "Method responsible for searching Funcionarios by departamento")
 	@PostMapping(value = "/get-by-departamento")
 	@ResponseBody
-	public List<Funcionario> getFuncionariosbyDepartamento(Integer id_departamento) {
+	public String getFuncionariosbyDepartamento(Integer id_departamento) {
 		
 		try {
-			return funcionarioService.findFuncionariosbyDepartamento(id_departamento);
+			return funcionarioService.findFuncionariosbyDepartamento(id_departamento).toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
 		}		
 	}
 	
@@ -170,12 +171,12 @@ public class FuncionarioController {
 			notes = "Method responsible for searching first Funcionario by maior salario")
 	@GetMapping(value = "/get-by-maiorSalario")
 	@ResponseBody
-	public Funcionario getFirstByOrderBySalarioDesc() {
+	public String getFirstByOrderBySalarioDesc() {
 		
 		try {
-			return funcionarioService.findFirstByOrderBySalarioDesc();
+			return funcionarioService.findFirstByOrderBySalarioDesc().toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
 		}		
 	}
 	
@@ -248,12 +249,12 @@ public class FuncionarioController {
 			notes = "Method responsible for searching Funcionario by name like namedNativeQuery")
 	@PostMapping(value = "/get-by-nomeLike")
 	@ResponseBody
-	public List<Funcionario> findByNomeLike(String nome) {
+	public String findByNomeLike(String nome) {
 		
 		try {
-			return funcionarioService.findByNomeLike(nome);
+			return funcionarioService.findByNomeLike(nome).toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
 		}		
 	}
 	
@@ -261,12 +262,12 @@ public class FuncionarioController {
 			notes = "Method responsible for searching Funcionario by departamento e sem dependentes")
 	@PostMapping(value = "/get-by-departamentoSemDependentes")
 	@ResponseBody
-	public List<Funcionario> getByDepartamentoSemDependentes(Integer departamento) {
+	public String getByDepartamentoSemDependentes(Long departamento) {
 		
 		try {
-			return funcionarioService.findByDepartamentoSemDependentes(departamento.longValue());
+			return funcionarioService.findByDepartamentoSemDependentes(departamento).toString();
 		} catch (Exception e) {
-			return null;
+			return e.getMessage();
 		}		
 	}
 	
@@ -285,7 +286,7 @@ public class FuncionarioController {
 	
 	@ApiOperation(value = "delete Funcionario by departamento", 
 			notes = "Method responsible for deleting Funcionario by departamento")
-	@PostMapping(value = "/delete-by-funcionariosDepartamento")
+	@DeleteMapping(value = "/delete-by-funcionariosDepartamento")
 	@ResponseBody
 	public String deleteAllFuncionariobyDepartamento(Integer departamento) {
 		
