@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.atividade07.entity.Funcionario;
 import com.atividade07.exception.OperationException;
@@ -22,18 +21,17 @@ public class FuncionarioService {
     private FuncionarioRepository repository;
 	
 	@Autowired
-    private DepartamentoRepository departamentoRepository;
+    private DepartamentoRepository departamentoRepository;	
 	
-	@Transactional
-	public boolean getFuncionarioAumetaSalario(Integer arg) throws OperationException { 
+	public List<Funcionario>  getFuncionarioAumetaSalario(Integer salario) throws OperationException { 
 		
-		isValidProc(arg); 
+		isValidProc(salario); 
 		
     	try {
-    		repository.proc_aumentaSalario(arg);
-    		return true;
+    		List<Funcionario> func = procAumentaSalario(salario);
+    		return func;
 		} catch (Exception e) {
-			throw new OperationException("proc_aumentaSalario does not exist!");
+			throw new OperationException(e.getMessage());
 		}
 	}
 	
@@ -45,13 +43,20 @@ public class FuncionarioService {
 			throw new OperationException("Funcionario is empty!");
 		}
 	}
+	
+	@Transactional
+	public List<Funcionario> procAumentaSalario(Integer salario) throws OperationException {
+		try {
+			return repository.proc_aumentaSalario(salario);
+		} catch (Exception e) {
+			throw new OperationException("proc_aumentaSalario does not exist!");
+		}
+	}	
     
-    public void save(Funcionario funcionario) throws OperationException {    	
-    	try {
-    		
+    public void save(Funcionario funcionario) throws OperationException {
+    	try {    		
     		isValid(funcionario);    		
-    		repository.save(funcionario);		
-    		
+    		repository.save(funcionario);
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
 		}
@@ -105,7 +110,7 @@ public class FuncionarioService {
     
     public List<Funcionario> getAll() throws OperationException {		
 		try {
-			return (List<Funcionario>) repository.findAll();
+			return repository.findAll();
 		} catch (Exception e) {
 			throw new OperationException("Funcionario not found!");
 		}
@@ -128,7 +133,7 @@ public class FuncionarioService {
     	Funcionario funcionario = new Funcionario(name);    	
     	Example<Funcionario> example = Example.of(funcionario);
     	
-    	try {
+    	try {  
     		
     		List<Funcionario> ret = repository.findAll(example);    	
     	
@@ -286,8 +291,7 @@ public class FuncionarioService {
     			throw new OperationException("Funcionario not found!");
 			}  
     		
-    		return ret;
-    		
+    		return ret;    		
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
 		}    	
@@ -311,8 +315,6 @@ public class FuncionarioService {
 			}
     		
     		return repository.findFuncionariosbyDepartamento(departamentoPara.intValue());
-    		
-    		
 		} catch (NoSuchElementException e) {
 			throw new OperationException("Departamento not exists!");
 		}catch (Exception e) {
@@ -333,14 +335,13 @@ public class FuncionarioService {
     			throw new OperationException("Departamento not exists!");
 			}
     		
-    		List<Funcionario> deletes = repository.findFuncionariosbyDepartamento(departamento.intValue());
+    		List<Funcionario> listDelet = repository.findFuncionariosbyDepartamento(departamento.intValue());
     		
     		if (repository.deleteAllFuncionariobyDepartamento(departamento) == 0) {
     			throw new OperationException("No Funcionario affected!");
 			}
     		
-    		return deletes;    		
-    		
+    		return listDelet;
 		} catch (NoSuchElementException e) {
 			throw new OperationException("Departamento not exists!");
 		}catch (Exception e) {

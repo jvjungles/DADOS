@@ -32,14 +32,13 @@ public class FuncionarioController {
 	public String getFuncionarioAumetaSalario(Integer arg) {
 		
 		try {
-			funcionarioService.getFuncionarioAumetaSalario(arg);
+			return "--- Funcionarios afetados ---\n\n"
+					+ funcionarioService.getFuncionarioAumetaSalario(arg).toString();
 		} catch (OperationException e) {
 			return e.getMessage();
 		} catch (Exception e) {
 			return "proc_aumentaSalario does not exist!";
-		}	
-		
-		return "Salarios succesfully updated!!! \n\n";
+		}
 	}
 
 	@ApiOperation(value = "Create Funcionario", 
