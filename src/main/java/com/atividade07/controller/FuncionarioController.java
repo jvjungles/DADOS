@@ -29,11 +29,11 @@ public class FuncionarioController {
 			notes = "Proc Funcionarios Aumenta Salario")
 	@GetMapping(value = "/proc-aumentaSalario")
 	@ResponseBody
-	public String getFuncionarioAumetaSalario(Integer arg) {
+	public String getFuncionarioAumetaSalario(Float arg) {
 		
 		try {
 			return "--- Funcionarios afetados ---\n\n"
-					+ funcionarioService.getFuncionarioAumetaSalario(arg).toString();
+				   + funcionarioService.getFuncionarioAumetaSalario(arg).toString();
 		} catch (OperationException e) {
 			return e.getMessage();
 		} catch (Exception e) {
@@ -281,7 +281,8 @@ public class FuncionarioController {
 	public String updateAllFuncionariobyDepartamento(Long departamentoDe, Long departamentoPara) {
 		
 		try {
-			return "Users affecteds: \n" + funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe, departamentoPara).toString();
+			return "--- Funcionarios afetados ---\n\n"
+				   + funcionarioService.updateAllFuncionariobyDepartamento(departamentoDe, departamentoPara).toString();
 		} catch (Exception e) {
 			return e.getMessage();
 		}		
@@ -294,7 +295,8 @@ public class FuncionarioController {
 	public String deleteAllFuncionariobyDepartamento(Long departamento) {
 		
 		try {
-			return "Users affecteds: \n" + funcionarioService.deleteAllFuncionariobyDepartamento(departamento).toString();
+			return "--- Funcionarios afetados ---\n\n" 
+				   + funcionarioService.deleteAllFuncionariobyDepartamento(departamento).toString();
 		} catch (Exception e) {
 			return e.getMessage();
 		}		

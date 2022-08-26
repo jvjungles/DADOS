@@ -13,10 +13,10 @@ import com.atividade07.entity.Funcionario;
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 	
 	@Procedure("proc_aumentaSalario")
-	List<Funcionario> proc_aumentaSalario2(Integer salario);
+	List<Funcionario> proc_aumentaSalario2(Float salario);
 	
-	@Query(value = "CALL proc_aumentaSalario5(:salario);", nativeQuery = true)
-	List<Funcionario> proc_aumentaSalario(@Param("salario") Integer salario);
+	@Query(value = "CALL proc_aumentaSalario(:salario);", nativeQuery = true)
+	List<Funcionario> proc_aumentaSalario(@Param("salario") Float salario);
 	
 	Funcionario findFuncionarioByCpf(String cpf);
 	

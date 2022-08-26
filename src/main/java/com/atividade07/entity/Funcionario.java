@@ -29,7 +29,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 		      @StoredProcedureParameter( 
 		         mode = ParameterMode.IN, 
 		         name = "arg",
-		         type = Integer.class),
+		         type = Float.class),
 		      @StoredProcedureParameter(
 		         mode = ParameterMode.OUT, 
 		         name = "ret",
