@@ -60,6 +60,8 @@ public class DepartamentoService {
 	public void saveDepartamentoAndFuncionario(Departamento departamento, Funcionario funcionario) throws OperationException {		
 		try {			
 		
+			saveDepartamentoAndFuncionarioIsValid(funcionario);
+						
 			repository.save(departamento);
 			funcionario.setDepartamento(departamento);
 			funcionarioRepository.save(funcionario);		
@@ -68,8 +70,17 @@ public class DepartamentoService {
 		}		
 	}
 	
-	
-
+	private void saveDepartamentoAndFuncionarioIsValid(Funcionario funcionario) throws OperationException {
+		if (funcionario == null || funcionario.getNomeFuncionario() == null) {    			
+			throw new OperationException("Nome not informed!");
+		}
+		if (funcionario == null || funcionario.getCpf() == null){
+			throw new OperationException("CPF not informed!");				
+		}  
+		if (funcionarioRepository.findFuncionarioByCpf(funcionario.getCpf()) != null) {
+			throw new OperationException("Funcionario exists!");
+		}
+	}
 
 	public void delete(Integer id) throws OperationException {
 		try {
