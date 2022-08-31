@@ -107,7 +107,7 @@ public class DepartamentoController {
 	@PostMapping(value = "/create-departamentoAndFuncionario")
 	@ResponseBody
 	public String createDepartamentoAndFuncionario(Long codEmpresa, String nomeDepartamento, 
-			String nome, String cpf, String cargo, Integer qtde_dependente, Float salario) {
+			String nomeFuncionario, String cpfFuncionario, String cargoFuncionario, Integer qtde_dependenteFuncionario, Float salarioFuncionario) {
 		
 		Empresa empresa = new Empresa();
 		empresa.setId(codEmpresa);
@@ -117,11 +117,11 @@ public class DepartamentoController {
 		departamento.setEmpresa(empresa);
 		
 		Funcionario funcionario = new Funcionario();
-		funcionario.setNomeFuncionario(nome);
-		funcionario.setCpf(cpf);
-		funcionario.setCargo(cargo);
-		funcionario.setQtdeDependente(qtde_dependente);
-		funcionario.setSalario(salario.doubleValue());		
+		funcionario.setNomeFuncionario(nomeFuncionario);
+		funcionario.setCpf(cpfFuncionario);
+		funcionario.setCargo(cargoFuncionario);
+		funcionario.setQtdeDependente(qtde_dependenteFuncionario);
+		funcionario.setSalario(salarioFuncionario.doubleValue());		
 
 		try {
 			departamentoService.saveDepartamentoAndFuncionario(departamento, funcionario);
