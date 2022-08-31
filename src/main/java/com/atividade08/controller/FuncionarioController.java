@@ -1,4 +1,4 @@
-package com.atividade07.controller;
+package com.atividade08.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atividade07.entity.Departamento;
-import com.atividade07.entity.Funcionario;
-import com.atividade07.exception.OperationException;
-import com.atividade07.service.FuncionarioService;
+import com.atividade08.entity.Departamento;
+import com.atividade08.entity.Funcionario;
+import com.atividade08.exception.OperationException;
+import com.atividade08.service.FuncionarioService;
 
 import io.swagger.annotations.ApiOperation;
 

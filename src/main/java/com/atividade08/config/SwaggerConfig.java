@@ -1,4 +1,4 @@
-package com.atividade07.config;
+package com.atividade08.config;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
 
-public static final String BASE_PATH = "com.atividade07.controller";
+public static final String BASE_PATH = "com.atividade08.controller";
 	
 	@Bean
 	public Docket api() {
@@ -36,8 +36,8 @@ public static final String BASE_PATH = "com.atividade07.controller";
 	}
 
 	private ApiInfo metaData() {
-		return new ApiInfoBuilder().title("Sistemas de Banco de Dados - Atividade 07")
-				.description("Sistemas de Banco de Dados - Atividade 07")
+		return new ApiInfoBuilder().title("Sistemas de Banco de Dados - Atividade 08")
+				.description("Sistemas de Banco de Dados - Atividade 08")
 				.version("v1")
 				.license("Joao Jungles - Todos os Direitos Reservados")
 				.licenseUrl("").build();

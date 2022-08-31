@@ -1,4 +1,4 @@
-package com.atividade07.controller;
+package com.atividade08.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atividade07.entity.Departamento;
-import com.atividade07.entity.Empresa;
-import com.atividade07.exception.OperationException;
-import com.atividade07.service.DepartamentoService;
+import com.atividade08.entity.Departamento;
+import com.atividade08.entity.Empresa;
+import com.atividade08.entity.Funcionario;
+import com.atividade08.exception.OperationException;
+import com.atividade08.service.DepartamentoService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -92,6 +93,39 @@ public class DepartamentoController {
 
 		try {
 			return departamentoService.findFirstBy().toString();
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
+	//Atividade 08
+	//Criar um método na classe de serviço de departamento para salvar um departamento, 
+	//associar esse departamento a um funcionário e salvar esse funcionário em um mesmo controle de transação.
+	
+	@ApiOperation(value = "Find first Departamento", 
+			  notes = "Method responsible for searching first Departamento")
+	@PostMapping(value = "/create-departamentoAndFuncionario")
+	@ResponseBody
+	public String createDepartamentoAndFuncionario(Long codEmpresa, String nomeDepartamento, 
+			String nome, String cpf, String cargo, Integer qtde_dependente, Float salario) {
+		
+		Empresa empresa = new Empresa();
+		empresa.setId(codEmpresa);
+		
+		Departamento departamento = new Departamento();		
+		departamento.setNome_departamento(nomeDepartamento);
+		departamento.setEmpresa(empresa);
+		
+		Funcionario funcionario = new Funcionario();
+		funcionario.setNomeFuncionario(nome);
+		funcionario.setCpf(cpf);
+		funcionario.setCargo(cargo);
+		funcionario.setQtdeDependente(qtde_dependente);
+		funcionario.setSalario(salario.doubleValue());		
+
+		try {
+			departamentoService.saveDepartamentoAndFuncionario(departamento, funcionario);
+			return "saved!!!";
 		} catch (Exception e) {
 			return e.getMessage();
 		}

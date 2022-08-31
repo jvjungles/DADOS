@@ -1,13 +1,13 @@
-package com.atividade07;
+package com.atividade08;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Atividade07Application {
+public class Atividade08Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Atividade07Application.class, args);
+		SpringApplication.run(Atividade08Application.class, args);
 	}
 
 }

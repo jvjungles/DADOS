@@ -1,4 +1,4 @@
-package com.atividade07.service;
+package com.atividade08.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.atividade07.entity.Empresa;
-import com.atividade07.exception.OperationException;
-import com.atividade07.repository.EmpresaRepository;
+import com.atividade08.entity.Empresa;
+import com.atividade08.exception.OperationException;
+import com.atividade08.repository.EmpresaRepository;
 
 @Service
 public class EmpresaService {
