@@ -94,12 +94,8 @@ public class DepartamentoController {
 		}
 	}
 	
-	//Atividade 08
-	//Criar um método na classe de serviço de departamento para salvar um departamento, 
-	//associar esse departamento a um funcionário e salvar esse funcionário em um mesmo controle de transação.
-	
-	@ApiOperation(value = "Find first Departamento", 
-			  notes = "Method responsible for searching first Departamento")
+	@ApiOperation(value = "Create Departamento and Funcionario", 
+			  notes = "Method responsible for create Departamento and Funcionario")
 	@PostMapping(value = "/create-departamentoAndFuncionario")
 	@ResponseBody
 	public String createDepartamentoAndFuncionario(String nomeDepartamento, 

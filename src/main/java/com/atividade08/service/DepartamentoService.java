@@ -42,10 +42,6 @@ public class DepartamentoService {
 		}		
 	}
 	
-	//Atividade 08
-	//Criar um método na classe de serviço de departamento para salvar um departamento, 
-	//associar esse departamento a um funcionário e salvar esse funcionário em um mesmo controle de transação.
-	
 	@Transactional
 	public void saveDepartamentoAndFuncionario(Departamento departamento, Funcionario funcionario) throws OperationException {		
 		try {			
