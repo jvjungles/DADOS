@@ -1,4 +1,4 @@
-package com.atividade08.config;
+package com.atividade09.config;
 
 import javax.sql.DataSource;
 
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.jolbox.bonecp.BoneCPDataSource;
 
 @Configuration
-@EnableJpaRepositories("com.atividade08.*")
+@EnableJpaRepositories("com.atividade09.*")
 @EnableTransactionManagement
 public class SpringDataConfig {
 
@@ -48,7 +48,7 @@ public class SpringDataConfig {
 
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.atividade08.*");
+        factory.setPackagesToScan("com.atividade09.*");
         factory.afterPropertiesSet();
 
         return factory;

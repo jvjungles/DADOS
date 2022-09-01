@@ -1,4 +1,4 @@
-package com.atividade08.service;
+package com.atividade09.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.atividade08.entity.Departamento;
-import com.atividade08.entity.Funcionario;
-import com.atividade08.exception.OperationException;
-import com.atividade08.repository.DepartamentoRepository;
-import com.atividade08.repository.FuncionarioRepository;
+import com.atividade09.entity.Departamento;
+import com.atividade09.entity.Funcionario;
+import com.atividade09.exception.OperationException;
+import com.atividade09.repository.DepartamentoRepository;
+import com.atividade09.repository.FuncionarioRepository;
 
 @Service
 public class DepartamentoService {

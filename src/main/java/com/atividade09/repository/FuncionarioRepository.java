@@ -1,4 +1,4 @@
-package com.atividade08.repository;
+package com.atividade09.repository;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
-import com.atividade08.entity.Funcionario;
+import com.atividade09.entity.Funcionario;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 	

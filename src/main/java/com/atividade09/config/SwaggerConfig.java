@@ -1,4 +1,4 @@
-package com.atividade08.config;
+package com.atividade09.config;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
 
-public static final String BASE_PATH = "com.atividade08.controller";
+public static final String BASE_PATH = "com.atividade09.controller";
 	
 	@Bean
 	public Docket api() {
