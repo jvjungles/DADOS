@@ -21,35 +21,12 @@ USE `atividade08`;
 CREATE TABLE IF NOT EXISTS `departamento` (
   `id` bigint(20) NOT NULL,
   `nome_departamento` varchar(255) DEFAULT NULL,
-  `id_empresa` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKjaqx7ovf0qq096a1ya2b7cc2x` (`id_empresa`),
-  CONSTRAINT `FKjaqx7ovf0qq096a1ya2b7cc2x` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Copiando dados para a tabela atividade08.departamento: ~4 rows (aproximadamente)
-/*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
-INSERT INTO `departamento` (`id`, `nome_departamento`, `id_empresa`) VALUES
-	(5, 'Departamento 01', 2),
-	(6, 'Departamento 02', 2),
-	(7, 'Departamento 03', 3),
-	(9, 'Departamento 05', 4);
-/*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
-
--- Copiando estrutura para tabela atividade08.empresa
-CREATE TABLE IF NOT EXISTS `empresa` (
-  `id` bigint(20) NOT NULL,
-  `nome_empresa` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela atividade08.empresa: ~4 rows (aproximadamente)
-/*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` (`id`, `nome_empresa`) VALUES
-	(2, 'Empresa 02'),
-	(3, 'Empresa 03'),
-	(4, 'Empresa 04');
-/*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
+-- Copiando dados para a tabela atividade08.departamento: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela atividade08.funcionario
 CREATE TABLE IF NOT EXISTS `funcionario` (
@@ -65,13 +42,8 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   CONSTRAINT `FK4362eulyqqf15ih924arflvmi` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela atividade08.funcionario: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela atividade08.funcionario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` (`id`, `cargo`, `cpf`, `nome_funcionario`, `qtde_dependente`, `salario`, `id_departamento`) VALUES
-	(10, 'Cargo 01', '04252308', 'Funcionario 01', 0, 27639787520, 7),
-	(12, 'Cargo 03', '042523083', 'Funcionario 03', 3, 27639787520, 9),
-	(13, 'Cargo 04', '042523084', 'Funcionario 04', 4, 27639787520, 9),
-	(14, 'Cargo 05', '042523085', 'Funcionario 05', 5, 27639787520, 7);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela atividade08.hibernate_sequence
@@ -89,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 -- Copiando dados para a tabela atividade08.hibernate_sequence: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
 INSERT INTO `hibernate_sequence` (`next_not_cached_value`, `minimum_value`, `maximum_value`, `start_value`, `increment`, `cache_size`, `cycle_option`, `cycle_count`) VALUES
-	(1001, 1, 9223372036854775806, 1, 1, 1000, 0, 0);
+	(1, 1, 9223372036854775806, 1, 1, 1000, 0, 0);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 
 -- Copiando estrutura para procedure atividade08.proc_aumentaSalario

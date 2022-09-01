@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade08.entity.Departamento;
-import com.atividade08.entity.Empresa;
 import com.atividade08.entity.Funcionario;
 import com.atividade08.exception.OperationException;
 import com.atividade08.service.DepartamentoService;
@@ -30,13 +29,10 @@ public class DepartamentoController {
 				  notes = "Method responsible for create Departamento")
 	@PostMapping(value = "/create")
 	@ResponseBody
-	public String create(String name, Long codEmpresa) {
-		
-		Empresa empresa = new Empresa();		
-		empresa.setId(codEmpresa);
+	public String create(String name) {	
 		
 		try {
-			departamentoService.save(new Departamento(name, empresa));
+			departamentoService.save(new Departamento(name));
 		} catch (OperationException e) {
 			return e.getMessage();
 		}
@@ -106,15 +102,11 @@ public class DepartamentoController {
 			  notes = "Method responsible for searching first Departamento")
 	@PostMapping(value = "/create-departamentoAndFuncionario")
 	@ResponseBody
-	public String createDepartamentoAndFuncionario(Long codEmpresa, String nomeDepartamento, 
-			String nomeFuncionario, String cpfFuncionario, String cargoFuncionario, Integer qtde_dependenteFuncionario, Float salarioFuncionario) {
-		
-		Empresa empresa = new Empresa();
-		empresa.setId(codEmpresa);
+	public String createDepartamentoAndFuncionario(String nomeDepartamento, 
+			String nomeFuncionario, String cpfFuncionario, String cargoFuncionario, Integer qtde_dependenteFuncionario, Float salarioFuncionario) {		
 		
 		Departamento departamento = new Departamento();		
 		departamento.setNome_departamento(nomeDepartamento);
-		departamento.setEmpresa(empresa);
 		
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNomeFuncionario(nomeFuncionario);

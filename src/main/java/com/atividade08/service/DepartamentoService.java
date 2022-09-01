@@ -14,7 +14,6 @@ import com.atividade08.entity.Departamento;
 import com.atividade08.entity.Funcionario;
 import com.atividade08.exception.OperationException;
 import com.atividade08.repository.DepartamentoRepository;
-import com.atividade08.repository.EmpresaRepository;
 import com.atividade08.repository.FuncionarioRepository;
 
 @Service
@@ -22,9 +21,6 @@ public class DepartamentoService {
 
 	@Autowired
 	private DepartamentoRepository repository;
-	
-	@Autowired
-	private EmpresaRepository empresaRepository;
 	
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
@@ -43,13 +39,7 @@ public class DepartamentoService {
 	private void isValid(Departamento departamento) throws OperationException {
 		if (departamento == null ||departamento.getNome_departamento() == null) {
     		throw new OperationException("Nome not informed!");
-		}
-		if (departamento.getEmpresa() == null ||departamento.getEmpresa().getId() == null) {
-    		throw new OperationException("codEmpresa not informed!");
-		}
-		if (!empresaRepository.findById(departamento.getEmpresa().getId()).isPresent()) {
-			throw new OperationException("Empresa not exists!");
-		}
+		}		
 	}
 	
 	//Atividade 08
