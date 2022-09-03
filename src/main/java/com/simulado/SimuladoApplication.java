@@ -1,13 +1,13 @@
-package com.atividade09;
+package com.simulado;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Atividade09Application {
+public class SimuladoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Atividade09Application.class, args);
+		SpringApplication.run(SimuladoApplication.class, args);
 	}
 
 }

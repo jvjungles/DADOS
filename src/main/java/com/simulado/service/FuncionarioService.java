@@ -1,4 +1,4 @@
-package com.atividade09.service;
+package com.simulado.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,10 +9,10 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.atividade09.entity.Funcionario;
-import com.atividade09.exception.OperationException;
-import com.atividade09.repository.DepartamentoRepository;
-import com.atividade09.repository.FuncionarioRepository;
+import com.simulado.entity.Funcionario;
+import com.simulado.exception.OperationException;
+import com.simulado.repository.DepartamentoRepository;
+import com.simulado.repository.FuncionarioRepository;
 
 @Service
 public class FuncionarioService {

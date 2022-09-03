@@ -1,4 +1,4 @@
-package com.atividade09.exception;
+package com.simulado.exception;
 
 public class OperationException extends Exception {
     
