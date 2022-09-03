@@ -45,5 +45,12 @@ public class Cantor extends AbstractPersistable<Long>{
 
 	public void setPais(String pais) {
 		this.pais = pais;
-	}		
+	}
+
+	@Override
+	public String toString() {
+		return "Cantor ["
+				+ "nomeCantor=" + nomeCantor 
+				+ "pais=" + pais + "]";
+	}
 }

@@ -60,5 +60,13 @@ public class Fone extends AbstractPersistable<Long>{
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}		
+	}
+
+	@Override
+	public String toString() {
+		return "Fone ["
+				+ "numero=" + numero 
+				+ "tipo=" + tipo 
+				+ "pessoa=" + pessoa + "]";
+	}
 }

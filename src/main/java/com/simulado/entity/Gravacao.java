@@ -81,4 +81,13 @@ public class Gravacao extends AbstractPersistable<Long>{
 	public void setGravadora(Gravadora gravadora) {
 		this.gravadora = gravadora;
 	}
+
+	@Override
+	public String toString() {
+		return "Gravacao ["
+				+ "dataGravacao=" + dataGravacao 
+				+ "musica=" + musica 
+				+ "cantor=" + cantor 
+				+ "gravadora=" + gravadora + "]";
+	}	
 }

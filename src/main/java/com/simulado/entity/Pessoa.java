@@ -33,5 +33,10 @@ public class Pessoa extends AbstractPersistable<Long>{
 
 	public void setNomePessoa(String nomePessoa) {
 		this.nomePessoa = nomePessoa;
-	}		
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [nomePessoa=" + nomePessoa + "]";
+	}
 }

@@ -45,5 +45,12 @@ public class Gravadora extends AbstractPersistable<Long>{
 
 	public void setPais(String pais) {
 		this.pais = pais;
-	}		
+	}
+
+	@Override
+	public String toString() {
+		return "Gravadora ["
+				+ "nomeGravadora=" + nomeGravadora 
+				+ "pais=" + pais + "]";
+	}
 }
