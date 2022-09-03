@@ -1,15 +1,62 @@
 package com.simulado.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.simulado.repository.CantorRepository;
+import com.simulado.entity.Pessoa;
+import com.simulado.exception.OperationException;
+import com.simulado.repository.PessoaRepository;
 
 @Service
 public class PessoaService {
 
 	@Autowired
-	private CantorRepository repository;
+	private PessoaRepository repository;
 	
+	public void save(Pessoa pessoa) throws OperationException {	
+		try {			
+		
+			repository.save(pessoa);
+		
+		} catch (Exception e) {			
+			throw new OperationException(e.getMessage());			
+		}		
+	}
 	
+	public void delete(Pessoa pessoa) throws OperationException {	
+		try {			
+		
+			repository.delete(pessoa);
+		
+		} catch (Exception e) {			
+			throw new OperationException(e.getMessage());			
+		}		
+	}
+	
+	public Optional<Pessoa> getById(Integer id) throws OperationException {
+		try {
+			return repository.findById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Pessoa not found!");
+		}
+	}
+
+	public List<Pessoa> getAll() throws OperationException{
+		try {
+			return (List<Pessoa>) repository.findAll();
+		} catch (Exception e) {
+			throw new OperationException("Pessoa not found!");
+		}
+	}
+	
+	public boolean exists(Integer id) throws OperationException {		
+		try {
+			return repository.existsById(id.longValue());
+		} catch (Exception e) {
+			throw new OperationException("Pessoa not found!");
+		}
+	}
 }
