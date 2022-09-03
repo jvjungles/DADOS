@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.simulado.entity.Cantor;
 import com.simulado.entity.Gravadora;
 import com.simulado.exception.OperationException;
 import com.simulado.repository.GravadoraRepository;
