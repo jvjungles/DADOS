@@ -86,8 +86,8 @@ public class Gravacao extends AbstractPersistable<Long>{
 	public String toString() {
 		return "Gravacao ["
 				+ "dataGravacao=" + dataGravacao 
-				+ "musica=" + musica 
-				+ "cantor=" + cantor 
-				+ "gravadora=" + gravadora + "]";
+				+ ", musica=" + musica 
+				+ ", cantor=" + cantor 
+				+ ", gravadora=" + gravadora + "]";
 	}	
 }

@@ -66,7 +66,7 @@ public class Fone extends AbstractPersistable<Long>{
 	public String toString() {
 		return "Fone ["
 				+ "numero=" + numero 
-				+ "tipo=" + tipo 
-				+ "pessoa=" + pessoa + "]";
+				+ ", tipo=" + tipo 
+				+ ", pessoa=" + pessoa + "]";
 	}
 }

@@ -51,6 +51,6 @@ public class Cantor extends AbstractPersistable<Long>{
 	public String toString() {
 		return "Cantor ["
 				+ "nomeCantor=" + nomeCantor 
-				+ "pais=" + pais + "]";
+				+ ", pais=" + pais + "]";
 	}
 }

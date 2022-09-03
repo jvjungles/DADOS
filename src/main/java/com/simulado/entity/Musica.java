@@ -66,7 +66,7 @@ public class Musica extends AbstractPersistable<Long>{
 	public String toString() {
 		return "Musica ["
 				+ "titulo=" + titulo 
-				+ "duracao=" + duracao 
-				+ "categoria=" + categoria + "]";
+				+ ", duracao=" + duracao 
+				+ ", categoria=" + categoria + "]";
 	}
 }

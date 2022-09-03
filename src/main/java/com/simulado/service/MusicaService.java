@@ -71,7 +71,7 @@ public class MusicaService {
     		Musica ret = repository.findMusicaByTitulo(name);	
     	
 	    	if (ret == null) {
-				throw new OperationException("Categoria not found!");
+				throw new OperationException("Musica not found!");
 			}   	    	
 		
 			return ret;

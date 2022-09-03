@@ -63,7 +63,7 @@ public class CategoriaService {
 	public Categoria findByDesc(String name) throws OperationException {
     	
     	if (name == null || name.equals("")) {
-    		throw new OperationException("Funcionario not found!");
+    		throw new OperationException("Categoria not found!");
 		}
     	
     	try {  

@@ -56,7 +56,7 @@ public class CantorService {
 		try {
 			return repository.existsById(id.longValue());
 		} catch (Exception e) {
-			throw new OperationException("Departamento not found!");
+			throw new OperationException("Cantor not found!");
 		}
 	}
 	

@@ -51,6 +51,6 @@ public class Gravadora extends AbstractPersistable<Long>{
 	public String toString() {
 		return "Gravadora ["
 				+ "nomeGravadora=" + nomeGravadora 
-				+ "pais=" + pais + "]";
+				+ ", pais=" + pais + "]";
 	}
 }
