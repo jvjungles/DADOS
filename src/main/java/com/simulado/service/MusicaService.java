@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.simulado.entity.Categoria;
 import com.simulado.entity.Musica;
 import com.simulado.exception.OperationException;
 import com.simulado.repository.MusicaRepository;
@@ -57,6 +58,26 @@ public class MusicaService {
 			return repository.existsById(id.longValue());
 		} catch (Exception e) {
 			throw new OperationException("Musica not found!");
+		}
+	}
+	
+	public Musica findByTitulo(String name) throws OperationException {
+    	
+    	if (name == null || name.equals("")) {
+    		throw new OperationException("Musica not found!");
+		}
+    	
+    	try {  
+    		
+    		Musica ret = repository.findMusicaByTitulo(name);	
+    	
+	    	if (ret == null) {
+				throw new OperationException("Categoria not found!");
+			}   	    	
+		
+			return ret;
+		} catch (Exception e) {
+			throw new OperationException(e.getMessage());
 		}
 	}
 }

@@ -7,4 +7,6 @@ import com.simulado.entity.Gravadora;
 public interface GravadoraRepository extends JpaRepository<Gravadora, Long>{
 
 	Gravadora findFirstBy();
+	
+	Gravadora findGravadoraByNome_gravadora(String gravadora);
 }

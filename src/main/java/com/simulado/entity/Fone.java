@@ -12,16 +12,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "fone")
 public class Fone extends AbstractPersistable<Long>{
 	
-	public Fone() {
-		super();
-	}
-	
-	public Fone(String numero) {
-		super();
-		this.numero = numero;
-	}
-
-	public Fone(String numero, Integer tipo, Pessoa pessoa) {
+	public Fone(String numero, String tipo, Pessoa pessoa) {
 		super();
 		this.numero = numero;
 		this.tipo = tipo;
@@ -32,7 +23,7 @@ public class Fone extends AbstractPersistable<Long>{
 	private String numero;
 	
 	@Column(name="tipo", nullable = false)	
-	private Integer tipo;	
+	private String tipo;	
 	
 	@ManyToOne
 	@JoinColumn(name="cod_pessoa", nullable = false)	
@@ -49,13 +40,13 @@ public class Fone extends AbstractPersistable<Long>{
 
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
+	}	
 
-	public Integer getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Integer tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 

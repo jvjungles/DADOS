@@ -7,4 +7,6 @@ import com.simulado.entity.Categoria;
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 
 	Categoria findFirstBy();	
+	
+	Categoria findCategoriaByDesc_categoria(String categoria);
 }

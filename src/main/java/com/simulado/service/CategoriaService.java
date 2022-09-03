@@ -59,4 +59,24 @@ public class CategoriaService {
 			throw new OperationException("Categoria not found!");
 		}
 	}
+	
+	public Categoria findByDesc(String name) throws OperationException {
+    	
+    	if (name == null || name.equals("")) {
+    		throw new OperationException("Funcionario not found!");
+		}
+    	
+    	try {  
+    		
+    		Categoria ret = repository.findCategoriaByDesc_categoria(name);    	
+    	
+	    	if (ret == null) {
+				throw new OperationException("Categoria not found!");
+			}   	    	
+		
+			return ret;
+		} catch (Exception e) {
+			throw new OperationException(e.getMessage());
+		}
+	}
 }

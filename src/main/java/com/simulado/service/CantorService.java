@@ -59,4 +59,24 @@ public class CantorService {
 			throw new OperationException("Departamento not found!");
 		}
 	}
+	
+	public Cantor findByName(String name) throws OperationException {
+    	
+    	if (name == null || name.equals("")) {
+    		throw new OperationException("Cantor not found!");
+		}
+    	
+    	try {  
+    		
+    		Cantor ret = repository.findCantorByNome_cantor(name);
+    	
+	    	if (ret == null) {
+				throw new OperationException("Cantor not found!");
+			}   	    	
+		
+			return ret;
+		} catch (Exception e) {
+			throw new OperationException(e.getMessage());
+		}
+	}
 }

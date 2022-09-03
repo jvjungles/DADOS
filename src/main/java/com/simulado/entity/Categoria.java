@@ -9,6 +9,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @Table(name = "categoria")
 public class Categoria extends AbstractPersistable<Long>{	
+	
+	public Categoria(String desc_categoria) {
+		super();
+		this.desc_categoria = desc_categoria;
+	}
 
 	@Column(name = "desc_categoria")
 	private String desc_categoria;		

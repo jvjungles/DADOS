@@ -7,4 +7,6 @@ import com.simulado.entity.Pessoa;
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
 
 	Pessoa findFirstBy();
+	
+	Pessoa findPessoaByNome_pessoa(String pessoa);
 }

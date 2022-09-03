@@ -1,23 +1,22 @@
 package com.simulado.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
 
 @Entity
 @Table(name = "gravacao")
 public class Gravacao extends AbstractPersistable<Long>{
 	
-	public Gravacao() {
-		super();
-	}
-
 	public Gravacao(Date data_gravacao, Musica musica, Cantor cantor, Gravadora gravadora) {
 		super();
 		this.data_gravacao = data_gravacao;
@@ -27,6 +26,7 @@ public class Gravacao extends AbstractPersistable<Long>{
 	}
 
 	@Column(name="data_gravacao", nullable = false)	
+	@Temporal(TemporalType.DATE)
 	private Date data_gravacao;	
 	
 	@ManyToOne

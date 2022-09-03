@@ -7,4 +7,6 @@ import com.simulado.entity.Cantor;
 public interface CantorRepository extends JpaRepository<Cantor, Long>{
 
 	Cantor findFirstBy();	
+	
+	Cantor findCantorByNome_cantor(String cantor);
 }

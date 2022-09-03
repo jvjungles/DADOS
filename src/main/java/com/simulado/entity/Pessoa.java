@@ -10,11 +10,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "pessoa")
 public class Pessoa extends AbstractPersistable<Long>{
 	
-    public Pessoa() {
-		super();
-	}
-
-	public Pessoa(String nome_pessoa) {
+    public Pessoa(String nome_pessoa) {
 		super();
 		this.nome_pessoa = nome_pessoa;
 	}

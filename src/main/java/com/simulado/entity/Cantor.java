@@ -10,6 +10,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "cantor")
 public class Cantor extends AbstractPersistable<Long>{
 	
+	public Cantor(String nome_cantor, String pais) {
+		super();
+		this.nome_cantor = nome_cantor;
+		this.pais = pais;
+	}
 
 	@Column(name = "nome_cantor")
 	private String nome_cantor;

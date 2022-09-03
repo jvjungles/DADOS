@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.simulado.entity.Categoria;
 import com.simulado.entity.Pessoa;
 import com.simulado.exception.OperationException;
 import com.simulado.repository.PessoaRepository;
@@ -57,6 +58,26 @@ public class PessoaService {
 			return repository.existsById(id.longValue());
 		} catch (Exception e) {
 			throw new OperationException("Pessoa not found!");
+		}
+	}
+	
+	public Pessoa findByName(String nome) throws OperationException {
+    	
+    	if (nome == null || nome.equals("")) {
+    		throw new OperationException("Pessoa not found!");
+		}
+    	
+    	try {  
+    		
+    		Pessoa ret = repository.findPessoaByNome_pessoa(nome); 	
+    	
+	    	if (ret == null) {
+				throw new OperationException("Pessoa not found!");
+			}   	    	
+		
+			return ret;
+		} catch (Exception e) {
+			throw new OperationException(e.getMessage());
 		}
 	}
 }
