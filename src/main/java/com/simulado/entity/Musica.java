@@ -10,8 +10,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "musica")
-public class Musica extends AbstractPersistable<Long>{
+public class Musica extends AbstractPersistable<Long>{	
 	
+	public Musica() {
+		super();
+	}
+
 	public Musica(String titulo, Integer duracao, Categoria categoria) {
 		super();
 		this.titulo = titulo;

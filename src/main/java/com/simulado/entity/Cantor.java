@@ -8,16 +8,20 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "cantor")
-public class Cantor extends AbstractPersistable<Long>{
+public class Cantor extends AbstractPersistable<Long>{	
 	
-	public Cantor(String nome_cantor, String pais) {
+	public Cantor() {
 		super();
-		this.nome_cantor = nome_cantor;
+	}
+
+	public Cantor(String nomeCantor, String pais) {
+		super();
+		this.nomeCantor = nomeCantor;
 		this.pais = pais;
 	}
 
 	@Column(name = "nome_cantor")
-	private String nome_cantor;
+	private String nomeCantor;
 	
 	@Column(name = "pais")
 	private String pais;	
@@ -25,14 +29,14 @@ public class Cantor extends AbstractPersistable<Long>{
 	@Override
 	public void setId(Long cod_cantor) {
 		super.setId(cod_cantor);
+	}	
+
+	public String getNomeCantor() {
+		return nomeCantor;
 	}
 
-	public String getNome_cantor() {
-		return nome_cantor;
-	}
-
-	public void setNome_cantor(String nome_cantor) {
-		this.nome_cantor = nome_cantor;
+	public void setNomeCantor(String nomeCantor) {
+		this.nomeCantor = nomeCantor;
 	}
 
 	public String getPais() {

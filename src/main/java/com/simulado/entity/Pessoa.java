@@ -8,27 +8,30 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "pessoa")
-public class Pessoa extends AbstractPersistable<Long>{
+public class Pessoa extends AbstractPersistable<Long>{	
 	
-    public Pessoa(String nome_pessoa) {
+    public Pessoa() {
 		super();
-		this.nome_pessoa = nome_pessoa;
+	}
+
+	public Pessoa(String nomePessoa) {
+		super();
+		this.nomePessoa = nomePessoa;
 	}
 
 	@Column(name = "nome_pessoa")
-	private String nome_pessoa;    	
+	private String nomePessoa;    	
 
 	@Override
 	public void setId(Long cod_pessoa) {
 		super.setId(cod_pessoa);
 	}
 
-	public String getNome_pessoa() {
-		return nome_pessoa;
+	public String getNomePessoa() {
+		return nomePessoa;
 	}
 
-	public void setNome_pessoa(String nome_pessoa) {
-		this.nome_pessoa = nome_pessoa;
-	}
-		
+	public void setNomePessoa(String nomePessoa) {
+		this.nomePessoa = nomePessoa;
+	}		
 }

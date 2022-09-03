@@ -68,7 +68,7 @@ public class CantorService {
     	
     	try {  
     		
-    		Cantor ret = repository.findCantorByNome_cantor(name);
+    		Cantor ret = repository.findByNomeCantor(name);
     	
 	    	if (ret == null) {
 				throw new OperationException("Cantor not found!");

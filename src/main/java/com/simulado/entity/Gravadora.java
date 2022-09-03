@@ -8,16 +8,20 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "gravadora")
-public class Gravadora extends AbstractPersistable<Long>{
+public class Gravadora extends AbstractPersistable<Long>{	
 	
-	public Gravadora(String nome_gravadora, String pais) {
+	public Gravadora() {
 		super();
-		this.nome_gravadora = nome_gravadora;
+	}
+
+	public Gravadora(String nomeGravadora, String pais) {
+		super();
+		this.nomeGravadora = nomeGravadora;
 		this.pais = pais;
 	}
 
 	@Column(name = "nome_gravadora")
-	private String nome_gravadora;
+	private String nomeGravadora;
 	
 	@Column(name = "pais")
 	private String pais;	
@@ -27,12 +31,12 @@ public class Gravadora extends AbstractPersistable<Long>{
 		super.setId(cod_cantor);
 	}	
 
-	public String getNome_gravadora() {
-		return nome_gravadora;
+	public String getNomeGravadora() {
+		return nomeGravadora;
 	}
 	
-	public void setNome_gravadora(String nome_gravadora) {
-		this.nome_gravadora = nome_gravadora;
+	public void setNomeGravadora(String nomeGravadora) {
+		this.nomeGravadora = nomeGravadora;
 	}
 
 	public String getPais() {

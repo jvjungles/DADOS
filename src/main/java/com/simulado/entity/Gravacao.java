@@ -15,11 +15,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "gravacao")
-public class Gravacao extends AbstractPersistable<Long>{
+public class Gravacao extends AbstractPersistable<Long>{	
 	
-	public Gravacao(Date data_gravacao, Musica musica, Cantor cantor, Gravadora gravadora) {
+	public Gravacao() {
 		super();
-		this.data_gravacao = data_gravacao;
+	}
+
+	public Gravacao(Date dataGravacao, Musica musica, Cantor cantor, Gravadora gravadora) {
+		super();
+		this.dataGravacao = dataGravacao;
 		this.musica = musica;
 		this.cantor = cantor;
 		this.gravadora = gravadora;
@@ -27,7 +31,7 @@ public class Gravacao extends AbstractPersistable<Long>{
 
 	@Column(name="data_gravacao", nullable = false)	
 	@Temporal(TemporalType.DATE)
-	private Date data_gravacao;	
+	private Date dataGravacao;	
 	
 	@ManyToOne
 	@JoinColumn(name="cod_musica", nullable = false)	
@@ -44,14 +48,14 @@ public class Gravacao extends AbstractPersistable<Long>{
 	@Override
 	public void setId(Long cod_gravacao) {
 		super.setId(cod_gravacao);
+	}	
+
+	public Date getDataGravacao() {
+		return dataGravacao;
 	}
 
-	public Date getData_gravacao() {
-		return data_gravacao;
-	}
-
-	public void setData_gravacao(Date data_gravacao) {
-		this.data_gravacao = data_gravacao;
+	public void setDataGravacao(Date dataGravacao) {
+		this.dataGravacao = dataGravacao;
 	}
 
 	public Musica getMusica() {

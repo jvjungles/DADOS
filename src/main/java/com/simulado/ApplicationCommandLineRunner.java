@@ -51,9 +51,9 @@ public class ApplicationCommandLineRunner {
 			pessoaService.save(new Pessoa("nome_pessoa03"));
 			
 			// salvando alguns fone
-			foneService.save(new Fone("numero01", "C", pessoaService.findByName("nome_pessoa01")));
-			foneService.save(new Fone("numero02", "R", pessoaService.findByName("nome_pessoa02")));
-			foneService.save(new Fone("numero03", "T", pessoaService.findByName("nome_pessoa03")));
+			foneService.save(new Fone("numero01", "C", pessoaService.getFirst()));
+			foneService.save(new Fone("numero02", "R", pessoaService.getFirst()));
+			foneService.save(new Fone("numero03", "T", pessoaService.getFirst()));
 			
 			// salvando alguns categoria
 			categoriaService.save(new Categoria("categoria01"));
@@ -61,9 +61,9 @@ public class ApplicationCommandLineRunner {
 			categoriaService.save(new Categoria("categoria03"));			
 			
 			// salvando alguns musica
-			musicaService.save(new Musica("titulo01", 10, categoriaService.findByDesc("categoria01")));
-			musicaService.save(new Musica("titulo02", 12, categoriaService.findByDesc("categoria02")));
-			musicaService.save(new Musica("titulo03", 16, categoriaService.findByDesc("categoria03")));
+			musicaService.save(new Musica("titulo01", 10, categoriaService.getFirst()));
+			musicaService.save(new Musica("titulo02", 12, categoriaService.getFirst()));
+			musicaService.save(new Musica("titulo03", 16, categoriaService.getFirst()));
 			
 			// salvando alguns gravadora
 			gravadoraService.save(new Gravadora("nome_gravadora01", "USA"));

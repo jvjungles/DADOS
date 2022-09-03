@@ -10,24 +10,28 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "categoria")
 public class Categoria extends AbstractPersistable<Long>{	
 	
-	public Categoria(String desc_categoria) {
+	public Categoria() {
 		super();
-		this.desc_categoria = desc_categoria;
+	}
+
+	public Categoria(String descCategoria) {
+		super();
+		this.descCategoria = descCategoria;
 	}
 
 	@Column(name = "desc_categoria")
-	private String desc_categoria;		
+	private String descCategoria;		
 
 	@Override
 	public void setId(Long cod_categoria) {
 		super.setId(cod_categoria);
 	}
 
-	public String getDesc_categoria() {
-		return desc_categoria;
+	public String getDescCategoria() {
+		return descCategoria;
 	}
 
-	public void setDesc_categoria(String desc_categoria) {
-		this.desc_categoria = desc_categoria;
+	public void setDescCategoria(String descCategoria) {
+		this.descCategoria = descCategoria;
 	}		
 }

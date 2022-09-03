@@ -8,5 +8,5 @@ public interface CantorRepository extends JpaRepository<Cantor, Long>{
 
 	Cantor findFirstBy();	
 	
-	Cantor findCantorByNome_cantor(String cantor);
+	Cantor findByNomeCantor(String cantor);
 }

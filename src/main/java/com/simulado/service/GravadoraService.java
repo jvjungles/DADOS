@@ -68,7 +68,7 @@ public class GravadoraService {
     	
     	try {  
     		
-    		Gravadora ret = repository.findGravadoraByNome_gravadora(name);
+    		Gravadora ret = repository.findGravadoraByNomeGravadora(name);
     	
 	    	if (ret == null) {
 				throw new OperationException("Gravadora not found!");

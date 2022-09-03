@@ -8,5 +8,5 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 
 	Categoria findFirstBy();	
 	
-	Categoria findCategoriaByDesc_categoria(String categoria);
+	Categoria findCategoriaByDescCategoria(String categoria);
 }

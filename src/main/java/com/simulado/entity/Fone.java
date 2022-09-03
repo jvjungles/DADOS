@@ -10,8 +10,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "fone")
-public class Fone extends AbstractPersistable<Long>{
+public class Fone extends AbstractPersistable<Long>{	
 	
+	public Fone() {
+		super();
+	}
+
 	public Fone(String numero, String tipo, Pessoa pessoa) {
 		super();
 		this.numero = numero;

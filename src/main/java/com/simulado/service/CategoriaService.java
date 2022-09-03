@@ -68,7 +68,7 @@ public class CategoriaService {
     	
     	try {  
     		
-    		Categoria ret = repository.findCategoriaByDesc_categoria(name);    	
+    		Categoria ret = repository.findCategoriaByDescCategoria(name);    	
     	
 	    	if (ret == null) {
 				throw new OperationException("Categoria not found!");
@@ -77,6 +77,14 @@ public class CategoriaService {
 			return ret;
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
+		}
+	}
+	
+	public Categoria getFirst() throws OperationException{
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Categoria not found!");
 		}
 	}
 }

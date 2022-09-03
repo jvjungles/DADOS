@@ -68,7 +68,7 @@ public class PessoaService {
     	
     	try {  
     		
-    		Pessoa ret = repository.findPessoaByNome_pessoa(nome); 	
+    		Pessoa ret = repository.findPessoaByNomePessoa(nome); 	
     	
 	    	if (ret == null) {
 				throw new OperationException("Pessoa not found!");
@@ -77,6 +77,14 @@ public class PessoaService {
 			return ret;
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
+		}
+	}
+	
+	public Pessoa getFirst() throws OperationException{
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Pessoa not found!");
 		}
 	}
 }
