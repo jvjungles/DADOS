@@ -39,12 +39,7 @@ public class Categoria extends AbstractPersistable<Long>{
 
 	public void setDescCategoria(String descCategoria) {
 		this.descCategoria = descCategoria;
-	}
-
-	@Override
-	public String toString() {
-		return "Categoria [descCategoria=" + descCategoria + "]";
-	}
+	}	
 
 	public List<Musica> getMusicas() {
 		return musicas;
@@ -53,4 +48,9 @@ public class Categoria extends AbstractPersistable<Long>{
 	public void setMusicas(List<Musica> musicas) {
 		this.musicas = musicas;
 	}	
+	
+	@Override
+	public String toString() {
+		return "Categoria [descCategoria=" + descCategoria + "]";
+	}
 }

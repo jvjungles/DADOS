@@ -47,7 +47,7 @@ public class PessoaService {
     	try {
     		return repository.findAllByQuery();
 		} catch (Exception e) {
-			throw new OperationException(e.getMessage());
+			throw new OperationException("Pessoa not found!");
 		}
 	}
 	

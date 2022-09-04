@@ -41,11 +41,6 @@ public class Pessoa extends AbstractPersistable<Long>{
 		this.nomePessoa = nomePessoa;
 	}
 
-	@Override
-	public String toString() {
-		return "Pessoa [nomePessoa=" + nomePessoa + "]";
-	}
-
 	public List<Fone> getFones() {
 		return fones;
 	}
@@ -53,4 +48,9 @@ public class Pessoa extends AbstractPersistable<Long>{
 	public void setFones(List<Fone> fones) {
 		this.fones = fones;
 	}	
+	
+	@Override
+	public String toString() {
+		return "Pessoa [nomePessoa=" + nomePessoa + "]";
+	}
 }

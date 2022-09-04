@@ -55,7 +55,7 @@ public class FoneService {
     	try {
     		return repository.findByNumero(numero);
 		} catch (Exception e) {
-			throw new OperationException(e.getMessage());
+			throw new OperationException("Fone not found!");
 		}
 	}
 }

@@ -56,7 +56,7 @@ public class GravadoraService {
     	try {
     		return repository.findByNomeGravadora(name);
 		} catch (Exception e) {
-			throw new OperationException(e.getMessage());
+			throw new OperationException("Gravadora not found!");
 		}
 	}
 	

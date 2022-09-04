@@ -47,7 +47,7 @@ public class CantorService {
     	try {
     		return repository.findByNomeCantor(name);
 		} catch (Exception e) {
-			throw new OperationException(e.getMessage());
+			throw new OperationException("Cantor not found!");
 		}
 	}
 	
