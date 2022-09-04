@@ -75,14 +75,12 @@ public class ApplicationCommandLineRunner {
 			selectsGravacao();
 			
 			//DELETEs			
-			deletes();
-			
-			
-		
+			deletes(); 
 			
 		};
 	}	
 	
+	// salvando dados
 	private void saves() throws OperationException {
 		
 		log.info("");
@@ -225,7 +223,7 @@ public class ApplicationCommandLineRunner {
 				log.info(musicas.toString());
 			}
 		log.info("");
-		log.info("Musicas encontradas com like titulo:");
+		log.info("Musicas encontradas com getByTituloLike():");
 		log.info("-------------------------------");
 			for (Musica musicas : musicaService.getByTituloLike(musicaService.getFirst().getTitulo())) {
 				log.info(musicas.toString());
@@ -249,7 +247,7 @@ public class ApplicationCommandLineRunner {
 				log.info(cantores.toString());
 			}
 		log.info("");
-		log.info("Cantor encontrado com nome cantor:");
+		log.info("Cantor encontrado com getByNomeCantor():");
 		log.info("-------------------------------");		
 			for (Cantor cantores : cantorService.getByNomeCantor(cantorService.getFirst().getNomeCantor())) {
 				log.info(cantores.toString());
@@ -273,7 +271,7 @@ public class ApplicationCommandLineRunner {
 				log.info(gravadora.toString());
 			}
 		log.info("");
-		log.info("Gravadora encontrada com nome gravadora:");
+		log.info("Gravadora encontrada com getByNomeGravadora():");
 		log.info("-------------------------------");		
 			for (Gravadora gravadora : gravadoraService.getByNomeGravadora(gravadoraService.getFirst().getNomeGravadora())) {
 				log.info(gravadora.toString());
@@ -314,10 +312,9 @@ public class ApplicationCommandLineRunner {
 		log.info("-----------------------------------------------------------------------");
 	}
 	
+	// deletando dados
 	private void deletes() throws OperationException {
 		
-		log.info("");
-		log.info("-----------------------------------------------------------------------");		
 		log.info("-----------------------------------------------------------------------");
 		log.info("deletando dados");
 		log.info("-----------------------------------------------------------------------");			
@@ -325,16 +322,22 @@ public class ApplicationCommandLineRunner {
 		
 		foneService.deleteAll();
 		log.info("fones deletados");
+		
 		gravacaoService.deleteAll();
 		log.info("gravacoes deletadas");
+		
 		pessoaService.deleteAll();		
 		log.info("pessoas deletadas");
+		
 		musicaService.deleteAll();
 		log.info("musicas deletadas");
+		
 		gravadoraService.deleteAll();	
 		log.info("gravadoras deletadas");
+		
 		cantorService.deleteAll();	
 		log.info("cantores deletados");
+		
 		categoriaService.deleteAll();
 		log.info("categorias deletadas");
 		
