@@ -109,7 +109,7 @@ public class DepartamentoController {
 		funcionario.setCpf(cpfFuncionario);
 		funcionario.setCargo(cargoFuncionario);
 		funcionario.setQtdeDependente(qtde_dependenteFuncionario);
-		funcionario.setSalario(salarioFuncionario.doubleValue());		
+		funcionario.setSalario(salarioFuncionario == null ? 0 : salarioFuncionario.doubleValue());		
 
 		try {
 			departamentoService.saveDepartamentoAndFuncionario(departamento, funcionario);
