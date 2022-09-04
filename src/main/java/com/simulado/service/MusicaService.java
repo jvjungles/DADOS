@@ -52,24 +52,6 @@ public class MusicaService {
 		}
 	}
 	
-	public boolean exists(Integer id) throws OperationException {		
-		try {
-			return repository.existsById(id.longValue());
-		} catch (Exception e) {
-			throw new OperationException("Musica not found!");
-		}
-	}
-	
-	public Musica findByTitulo(String name) throws OperationException {    	
-    	try {  
-    		
-    		return repository.findMusicaByTitulo(name);    	
-	    	
-		} catch (Exception e) {
-			throw new OperationException(e.getMessage());
-		}
-	}
-	
 	public Musica getFirst() throws OperationException{
 		try {
 			return repository.findFirstBy();
@@ -86,7 +68,7 @@ public class MusicaService {
 		}
 	}
 	
-	public List<Musica> findByNomeLike(String nome) throws OperationException {
+	public List<Musica> getByTituloLike(String nome) throws OperationException {
 		try {
     		
 			return repository.findByTituloLike("%"+nome+"%");

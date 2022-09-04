@@ -69,6 +69,7 @@ public class ApplicationCommandLineRunner {
 			selectsPessoa();
 			selectsFone();
 			selectsCategoria();
+			selectsMusica();
 			
 			
 			
@@ -83,13 +84,7 @@ public class ApplicationCommandLineRunner {
 //			}
 //			log.info("");
 //			
-//			// retornando musicas like nome
-//			log.info("Musicas encontrados com like nome:");
-//			log.info("-------------------------------");
-//			for (Musica musicas : musicaService.findByNomeLike("titulo")) {
-//				log.info(musicas.toString());
-//			}
-//			log.info("");		
+		
 			
 		};
 	}
@@ -212,6 +207,31 @@ public class ApplicationCommandLineRunner {
 		log.info("Categoria encontrado com getByDescCategoria()");
 		log.info("-------------------------------");			
 			log.info(categoriaService.getByDescCategoria(categoriaService.getFirst().getDescCategoria()).toString());
+		log.info("");
+		log.info("-----------------------------------------------------------------------");
+	}
+	
+	
+	//retornando dados - Musica
+	private void selectsMusica() throws OperationException {
+		
+		log.info("-----------------------------------------------------------------------");
+		log.info("retornando dados - Musica");
+		log.info("-----------------------------------------------------------------------");			
+		log.info("-----------------------------------------------------------------------");
+		
+		log.info("");
+		log.info("Musicas encontradas com findAll():");
+		log.info("-------------------------------");
+			for (Musica musicas : musicaService.getAll()) {
+				log.info(musicas.toString());
+			}
+		log.info("");
+		log.info("Musicas encontrados com like titulo:");
+		log.info("-------------------------------");
+		for (Musica musicas : musicaService.getByTituloLike(musicaService.getFirst().getTitulo())) {
+			log.info(musicas.toString());
+		}
 		log.info("");
 		log.info("-----------------------------------------------------------------------");
 	}

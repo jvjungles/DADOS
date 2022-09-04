@@ -16,8 +16,6 @@ public interface MusicaRepository extends JpaRepository<Musica, Long>{
 	
 	Musica findFirstByOrderByIdDesc();
 	
-	Musica findMusicaByTitulo(String musica);
-	
 	@Query(name = "Musica.byTituloLike")
 	List<Musica> findByTituloLike(@Param("titulo") String titulo);
 }
