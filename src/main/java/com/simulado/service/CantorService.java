@@ -61,20 +61,8 @@ public class CantorService {
 	}
 	
 	public Cantor findByName(String name) throws OperationException {
-    	
-    	if (name == null || name.equals("")) {
-    		throw new OperationException("Cantor not found!");
-		}
-    	
-    	try {  
-    		
-    		Cantor ret = repository.findByNomeCantor(name);
-    	
-	    	if (ret == null) {
-				throw new OperationException("Cantor not found!");
-			}   	    	
-		
-			return ret;
+    	try {
+    		return repository.findByNomeCantor(name);
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
 		}

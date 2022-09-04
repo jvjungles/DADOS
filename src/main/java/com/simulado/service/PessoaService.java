@@ -58,27 +58,7 @@ public class PessoaService {
 		} catch (Exception e) {
 			throw new OperationException("Pessoa not found!");
 		}
-	}
-	
-	public Pessoa findByName(String nome) throws OperationException {
-    	
-    	if (nome == null || nome.equals("")) {
-    		throw new OperationException("Pessoa not found!");
-		}
-    	
-    	try {  
-    		
-    		Pessoa ret = repository.findPessoaByNomePessoa(nome); 	
-    	
-	    	if (ret == null) {
-				throw new OperationException("Pessoa not found!");
-			}   	    	
-		
-			return ret;
-		} catch (Exception e) {
-			throw new OperationException(e.getMessage());
-		}
-	}
+	}	
 	
 	public Pessoa getFirst() throws OperationException{
 		try {

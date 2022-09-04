@@ -60,21 +60,11 @@ public class MusicaService {
 		}
 	}
 	
-	public Musica findByTitulo(String name) throws OperationException {
-    	
-    	if (name == null || name.equals("")) {
-    		throw new OperationException("Musica not found!");
-		}
-    	
+	public Musica findByTitulo(String name) throws OperationException {    	
     	try {  
     		
-    		Musica ret = repository.findMusicaByTitulo(name);	
-    	
-	    	if (ret == null) {
-				throw new OperationException("Musica not found!");
-			}   	    	
-		
-			return ret;
+    		return repository.findMusicaByTitulo(name);    	
+	    	
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
 		}
@@ -94,5 +84,14 @@ public class MusicaService {
 		} catch (Exception e) {
 			throw new OperationException("Musica not found!");
 		}
+	}
+	
+	public List<Musica> findByNomeLike(String nome) throws OperationException {
+		try {
+    		
+			return repository.findByTituloLike("%"+nome+"%");
+		} catch (Exception e) {
+			throw new OperationException("Musica not found!");
+		}			
 	}
 }

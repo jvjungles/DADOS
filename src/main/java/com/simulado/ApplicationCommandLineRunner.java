@@ -46,31 +46,31 @@ public class ApplicationCommandLineRunner {
 		return (args) -> {
 			
 			// salvando algumas pessoas
-			pessoaService.save(new Pessoa("nome_pessoa01"));
-			pessoaService.save(new Pessoa("nome_pessoa02"));
-			pessoaService.save(new Pessoa("nome_pessoa03"));
+			pessoaService.save(new Pessoa("nome pessoa 01"));
+			pessoaService.save(new Pessoa("nome pessoa 02"));
+			pessoaService.save(new Pessoa("nome pessoa 03"));
 			
 			// salvando alguns fones
-			foneService.save(new Fone("numero01", "C", pessoaService.getFirst()));
-			foneService.save(new Fone("numero02", "R", pessoaService.getLast()));
+			foneService.save(new Fone("41 9999-9999", "C", pessoaService.getFirst()));
+			foneService.save(new Fone("43 8888-8888", "R", pessoaService.getLast()));
 			
 			// salvando algumas categorias
-			categoriaService.save(new Categoria("categoria01"));
-			categoriaService.save(new Categoria("categoria02"));			
+			categoriaService.save(new Categoria("categoria 01"));
+			categoriaService.save(new Categoria("categoria 02"));			
 			
 			// salvando algumas musicas
-			musicaService.save(new Musica("titulo01", 10, categoriaService.getFirst()));
-			musicaService.save(new Musica("titulo02", 12, categoriaService.getLast()));
+			musicaService.save(new Musica("titulo 01", 10, categoriaService.getFirst()));
+			musicaService.save(new Musica("titulo 02", 12, categoriaService.getLast()));
 			
 			// salvando alguns cantores
-			cantorService.save(new Cantor("nome_cantor01", "USA"));
-			cantorService.save(new Cantor("nome_cantor02", "BRASIL"));
-			cantorService.save(new Cantor("nome_cantor03", "JAPAO"));
+			cantorService.save(new Cantor("nome cantor 01", "USA"));
+			cantorService.save(new Cantor("nome cantor 02", "BRASIL"));
+			cantorService.save(new Cantor("nome cantor 03", "JAPAO"));
 			
 			// salvando algumas gravadoras
-			gravadoraService.save(new Gravadora("nome_gravadora01", "USA"));
-			gravadoraService.save(new Gravadora("nome_gravadora02", "BRASIL"));
-			gravadoraService.save(new Gravadora("nome_gravadora03", "JAPAO"));
+			gravadoraService.save(new Gravadora("nome gravadora 01", "USA"));
+			gravadoraService.save(new Gravadora("nome gravadora 02", "BRASIL"));
+			gravadoraService.save(new Gravadora("nome gravadora 03", "JAPAO"));
 			
 			// salvando algumas gravacoes
 			gravacaoService.save(new Gravacao(new Date(), 
@@ -83,6 +83,14 @@ public class ApplicationCommandLineRunner {
 											  gravadoraService.getLast()));
 			
 			// retornando todos sa gravacoes
+			log.info("Fones encontrados com findAll():");
+			log.info("-------------------------------");
+			for (Fone fones : foneService.getAll()) {
+				log.info(fones.toString());
+			}
+			log.info("");
+						
+			// retornando todos sa gravacoes
 			log.info("Gravacoes encontrados com findAll():");
 			log.info("-------------------------------");
 			for (Gravacao gravacoes : gravacaoService.getAll()) {
@@ -90,8 +98,14 @@ public class ApplicationCommandLineRunner {
 			}
 			log.info("");
 			
+			// retornando musicas like nome
+			log.info("Musicas encontrados com like nome:");
+			log.info("-------------------------------");
+			for (Musica musicas : musicaService.findByNomeLike("titulo")) {
+				log.info(musicas.toString());
+			}
+			log.info("");		
 			
 		};
-	}	
-	
+	}
 }

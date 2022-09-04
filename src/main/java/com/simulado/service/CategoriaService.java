@@ -60,26 +60,6 @@ public class CategoriaService {
 		}
 	}
 	
-	public Categoria findByDesc(String name) throws OperationException {
-    	
-    	if (name == null || name.equals("")) {
-    		throw new OperationException("Categoria not found!");
-		}
-    	
-    	try {  
-    		
-    		Categoria ret = repository.findCategoriaByDescCategoria(name);    	
-    	
-	    	if (ret == null) {
-				throw new OperationException("Categoria not found!");
-			}   	    	
-		
-			return ret;
-		} catch (Exception e) {
-			throw new OperationException(e.getMessage());
-		}
-	}
-	
 	public Categoria getFirst() throws OperationException{
 		try {
 			return repository.findFirstBy();

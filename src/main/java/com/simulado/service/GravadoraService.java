@@ -60,21 +60,9 @@ public class GravadoraService {
 		}
 	}
 	
-	public Gravadora findByName(String name) throws OperationException {
-    	
-    	if (name == null || name.equals("")) {
-    		throw new OperationException("Gravadora not found!");
-		}
-    	
-    	try {  
-    		
-    		Gravadora ret = repository.findGravadoraByNomeGravadora(name);
-    	
-	    	if (ret == null) {
-				throw new OperationException("Gravadora not found!");
-			}   	    	
-		
-			return ret;
+	public Gravadora findByName(String name) throws OperationException {    	
+    	try {
+    		return repository.findGravadoraByNomeGravadora(name);
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
 		}
