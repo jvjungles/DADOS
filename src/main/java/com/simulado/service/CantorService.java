@@ -79,4 +79,20 @@ public class CantorService {
 			throw new OperationException(e.getMessage());
 		}
 	}
+	
+	public Cantor getFirst() throws OperationException{
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Cantor not found!");
+		}
+	}
+	
+	public Cantor getLast() throws OperationException{
+		try {
+			return repository.findFirstByOrderByIdDesc();
+		} catch (Exception e) {
+			throw new OperationException("Cantor not found!");
+		}
+	}
 }

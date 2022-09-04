@@ -87,4 +87,12 @@ public class CategoriaService {
 			throw new OperationException("Categoria not found!");
 		}
 	}
+	
+	public Categoria getLast() throws OperationException{
+		try {
+			return repository.findFirstByOrderByIdDesc();
+		} catch (Exception e) {
+			throw new OperationException("Categoria not found!");
+		}
+	}
 }

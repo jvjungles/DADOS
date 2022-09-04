@@ -8,5 +8,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
 
 	Pessoa findFirstBy();
 	
+	Pessoa findFirstByOrderByIdDesc();
+	
 	Pessoa findPessoaByNomePessoa(String pessoa);
 }

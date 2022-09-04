@@ -1,7 +1,10 @@
 package com.simulado.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -20,7 +23,10 @@ public class Pessoa extends AbstractPersistable<Long>{
 	}
 
 	@Column(name = "nome_pessoa")
-	private String nomePessoa;    	
+	private String nomePessoa;
+	
+	@OneToMany(mappedBy = "pessoa")
+    private List<Fone> fones;
 
 	@Override
 	public void setId(Long cod_pessoa) {
@@ -39,4 +45,12 @@ public class Pessoa extends AbstractPersistable<Long>{
 	public String toString() {
 		return "Pessoa [nomePessoa=" + nomePessoa + "]";
 	}
+
+	public List<Fone> getFones() {
+		return fones;
+	}
+
+	public void setFones(List<Fone> fones) {
+		this.fones = fones;
+	}	
 }

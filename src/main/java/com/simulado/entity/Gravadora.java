@@ -1,7 +1,10 @@
 package com.simulado.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -25,6 +28,9 @@ public class Gravadora extends AbstractPersistable<Long>{
 	
 	@Column(name = "pais")
 	private String pais;	
+	
+	@OneToMany(mappedBy = "gravadora")
+    private List<Gravacao> gravacoes;
 
 	@Override
 	public void setId(Long cod_cantor) {
@@ -45,6 +51,14 @@ public class Gravadora extends AbstractPersistable<Long>{
 
 	public void setPais(String pais) {
 		this.pais = pais;
+	}	
+
+	public List<Gravacao> getGravacoes() {
+		return gravacoes;
+	}
+
+	public void setGravacoes(List<Gravacao> gravacoes) {
+		this.gravacoes = gravacoes;
 	}
 
 	@Override

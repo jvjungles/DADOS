@@ -79,4 +79,20 @@ public class MusicaService {
 			throw new OperationException(e.getMessage());
 		}
 	}
+	
+	public Musica getFirst() throws OperationException{
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Musica not found!");
+		}
+	}
+	
+	public Musica getLast() throws OperationException{
+		try {
+			return repository.findFirstByOrderByIdDesc();
+		} catch (Exception e) {
+			throw new OperationException("Musica not found!");
+		}
+	}
 }

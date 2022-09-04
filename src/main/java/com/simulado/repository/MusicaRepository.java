@@ -8,5 +8,7 @@ public interface MusicaRepository extends JpaRepository<Musica, Long>{
 
 	Musica findFirstBy();
 	
+	Musica findFirstByOrderByIdDesc();
+	
 	Musica findMusicaByTitulo(String musica);
 }

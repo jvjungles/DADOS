@@ -1,7 +1,10 @@
 package com.simulado.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -24,7 +27,10 @@ public class Cantor extends AbstractPersistable<Long>{
 	private String nomeCantor;
 	
 	@Column(name = "pais")
-	private String pais;	
+	private String pais;
+	
+	@OneToMany(mappedBy = "cantor")
+    private List<Gravacao> gravacoes;
 
 	@Override
 	public void setId(Long cod_cantor) {
@@ -45,6 +51,14 @@ public class Cantor extends AbstractPersistable<Long>{
 
 	public void setPais(String pais) {
 		this.pais = pais;
+	}
+	
+	public List<Gravacao> getGravacoes() {
+		return gravacoes;
+	}
+
+	public void setGravacoes(List<Gravacao> gravacoes) {
+		this.gravacoes = gravacoes;
 	}
 
 	@Override

@@ -1,9 +1,12 @@
 package com.simulado.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -33,6 +36,9 @@ public class Musica extends AbstractPersistable<Long>{
 	@JoinColumn(name="cod_categoria", nullable = false)	
 	private Categoria categoria;
 	
+	@OneToMany(mappedBy = "musica")
+    private List<Gravacao> gravacoes;
+	
 	@Override
 	public void setId(Long cod_musica) {
 		super.setId(cod_musica);
@@ -60,6 +66,14 @@ public class Musica extends AbstractPersistable<Long>{
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}	
+
+	public List<Gravacao> getGravacoes() {
+		return gravacoes;
+	}
+
+	public void setGravacoes(List<Gravacao> gravacoes) {
+		this.gravacoes = gravacoes;
 	}
 
 	@Override

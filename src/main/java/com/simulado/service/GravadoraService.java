@@ -79,4 +79,20 @@ public class GravadoraService {
 			throw new OperationException(e.getMessage());
 		}
 	}
+	
+	public Gravadora getFirst() throws OperationException{
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Gravadora not found!");
+		}
+	}
+	
+	public Gravadora getLast() throws OperationException{
+		try {
+			return repository.findFirstByOrderByIdDesc();
+		} catch (Exception e) {
+			throw new OperationException("Gravadora not found!");
+		}
+	}
 }

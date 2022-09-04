@@ -87,4 +87,12 @@ public class PessoaService {
 			throw new OperationException("Pessoa not found!");
 		}
 	}
+	
+	public Pessoa getLast() throws OperationException{
+		try {
+			return repository.findFirstByOrderByIdDesc();
+		} catch (Exception e) {
+			throw new OperationException("Pessoa not found!");
+		}
+	}
 }
