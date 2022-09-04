@@ -52,7 +52,7 @@ public class GravadoraService {
 		}
 	}
 	
-	public Gravadora getByNomeGravadora(String name) throws OperationException {    	
+	public List<Gravadora> getByNomeGravadora(String name) throws OperationException {    	
     	try {
     		return repository.findByNomeGravadora(name);
 		} catch (Exception e) {

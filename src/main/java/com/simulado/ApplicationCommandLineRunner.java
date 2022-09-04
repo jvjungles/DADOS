@@ -153,7 +153,7 @@ public class ApplicationCommandLineRunner {
 		log.info("");			
 		log.info("Pessoa encontrada com getAllByQuery():");
 		log.info("-------------------------------");			
-			for (Pessoa pessoa : pessoaService.getAllByQuery()) {
+			for (Pessoa pessoa : pessoaService.getAllByQuery()) { 
 				log.info(pessoa.toString());
 			}			
 		log.info("");			
@@ -161,7 +161,7 @@ public class ApplicationCommandLineRunner {
 	}
 	
 	//retornando dados - Fone
-	private void selectsFone() throws OperationException {
+	private void selectsFone() throws OperationException { 
 		
 		log.info("-----------------------------------------------------------------------");
 		log.info("retornando dados - Fone");
@@ -174,9 +174,11 @@ public class ApplicationCommandLineRunner {
 				log.info(fones.toString());
 			}
 		log.info("");			
-		log.info("Fone encontrado com getByNumero() - 41 9999-9999:");
-		log.info("-------------------------------");			
-			log.info(foneService.getByNumero("41 9999-9999").toString());
+		log.info("Fones encontrados com getByNumero()");
+		log.info("-------------------------------");		
+			for (Fone fones : foneService.getByNumero(foneService.getFirst().getNumero())) {
+				log.info(fones.toString());
+			}
 		log.info("");			
 		log.info("-----------------------------------------------------------------------");
 	}
@@ -195,9 +197,11 @@ public class ApplicationCommandLineRunner {
 				log.info(categorias.toString());
 			}
 		log.info("");	
-		log.info("Categoria encontrada com getByDescCategoria()");
-		log.info("-------------------------------");			
-			log.info(categoriaService.getByDescCategoria(categoriaService.getFirst().getDescCategoria()).toString());
+		log.info("Categorias encontradas com getByDescCategoria()");
+		log.info("-------------------------------");		
+			for (Categoria categorias : categoriaService.getByDescCategoria(categoriaService.getFirst().getDescCategoria())) {
+				log.info(categorias.toString());
+			}
 		log.info("");
 		log.info("-----------------------------------------------------------------------");
 	}
@@ -220,9 +224,9 @@ public class ApplicationCommandLineRunner {
 		log.info("");
 		log.info("Musicas encontradas com like titulo:");
 		log.info("-------------------------------");
-		for (Musica musicas : musicaService.getByTituloLike(musicaService.getFirst().getTitulo())) {
-			log.info(musicas.toString());
-		}
+			for (Musica musicas : musicaService.getByTituloLike(musicaService.getFirst().getTitulo())) {
+				log.info(musicas.toString());
+			}
 		log.info("");
 		log.info("-----------------------------------------------------------------------");
 	}
@@ -243,10 +247,12 @@ public class ApplicationCommandLineRunner {
 			}
 		log.info("");
 		log.info("Cantor encontrado com nome cantor:");
-		log.info("-------------------------------");
-			log.info(cantorService.getByNomeCantor(cantorService.getFirst().getNomeCantor()).toString());
+		log.info("-------------------------------");		
+			for (Cantor cantores : cantorService.getByNomeCantor(cantorService.getFirst().getNomeCantor())) {
+				log.info(cantores.toString());
+			}	
 		log.info("");
-		log.info("-----------------------------------------------------------------------");
+		log.info("-----------------------------------------------------------------------"); 
 	}
 	
 	//retornando dados - Gravadora
@@ -265,8 +271,10 @@ public class ApplicationCommandLineRunner {
 			}
 		log.info("");
 		log.info("Gravadora encontrada com nome gravadora:");
-		log.info("-------------------------------");
-			log.info(gravadoraService.getByNomeGravadora(gravadoraService.getFirst().getNomeGravadora()).toString());
+		log.info("-------------------------------");		
+			for (Gravadora gravadora : gravadoraService.getByNomeGravadora(gravadoraService.getFirst().getNomeGravadora())) {
+				log.info(gravadora.toString());
+			}
 		log.info("");
 		log.info("-----------------------------------------------------------------------");
 	}

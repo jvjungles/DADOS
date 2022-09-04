@@ -68,7 +68,7 @@ public class CategoriaService {
 		}
 	}
 	
-	public Categoria getByDescCategoria(String categoria) throws OperationException{
+	public List<Categoria> getByDescCategoria(String categoria) throws OperationException{
 		try {
 			return repository.findByDescCategoria(categoria);
 		} catch (Exception e) {

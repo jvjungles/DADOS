@@ -43,7 +43,15 @@ public class FoneService {
 		}
 	}
 	
-	public Fone getByNumero(String numero) throws OperationException {
+	public Fone getFirst() throws OperationException{
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Fone not found!");
+		}
+	}
+	
+	public List<Fone> getByNumero(String numero) throws OperationException {
     	try {
     		return repository.findByNumero(numero);
 		} catch (Exception e) {

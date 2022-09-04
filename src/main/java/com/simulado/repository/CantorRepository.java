@@ -1,5 +1,7 @@
 package com.simulado.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +14,5 @@ public interface CantorRepository extends JpaRepository<Cantor, Long>{
 	
 	Cantor findFirstByOrderByIdDesc();
 	
-	Cantor findByNomeCantor(String cantor);
+	List<Cantor> findByNomeCantor(String cantor);
 }
