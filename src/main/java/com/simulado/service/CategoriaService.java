@@ -26,11 +26,10 @@ public class CategoriaService {
 		}		
 	}
 	
-	public void delete(Categoria categoria) throws OperationException {	
+	public void deleteAll() throws OperationException {	
 		try {			
 		
-			repository.delete(categoria);
-		
+			repository.deleteAll();		
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			
 		}		

@@ -25,10 +25,10 @@ public class PessoaService {
 		}		
 	}
 	
-	public void delete(Pessoa pessoa) throws OperationException {	
+	public void deleteAll() throws OperationException {	
 		try {			
 		
-			repository.delete(pessoa);
+			repository.deleteAll();
 		
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			

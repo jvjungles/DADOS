@@ -26,10 +26,10 @@ public class MusicaService {
 		}		
 	}
 	
-	public void delete(Musica musica) throws OperationException {	
+	public void deleteAll() throws OperationException {	
 		try {			
 		
-			repository.delete(musica);
+			repository.deleteAll();
 		
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			

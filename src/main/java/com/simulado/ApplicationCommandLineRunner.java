@@ -74,11 +74,14 @@ public class ApplicationCommandLineRunner {
 			selectsGravadora();
 			selectsGravacao();
 			
-			//DELETEs
+			//DELETEs			
+			deletes();
+			
+			
 		
 			
 		};
-	}
+	}	
 	
 	private void saves() throws OperationException {
 		
@@ -309,5 +312,32 @@ public class ApplicationCommandLineRunner {
 			}
 		log.info("");
 		log.info("-----------------------------------------------------------------------");
-	}	
+	}
+	
+	private void deletes() throws OperationException {
+		
+		log.info("");
+		log.info("-----------------------------------------------------------------------");		
+		log.info("-----------------------------------------------------------------------");
+		log.info("deletando dados");
+		log.info("-----------------------------------------------------------------------");			
+		log.info("-----------------------------------------------------------------------");
+		
+		foneService.deleteAll();
+		log.info("fones deletados");
+		gravacaoService.deleteAll();
+		log.info("gravacoes deletadas");
+		pessoaService.deleteAll();		
+		log.info("pessoas deletadas");
+		musicaService.deleteAll();
+		log.info("musicas deletadas");
+		gravadoraService.deleteAll();	
+		log.info("gravadoras deletadas");
+		cantorService.deleteAll();	
+		log.info("cantores deletados");
+		categoriaService.deleteAll();
+		log.info("categorias deletadas");
+		
+		log.info("-----------------------------------------------------------------------");
+	}
 }

@@ -26,10 +26,10 @@ public class GravadoraService {
 		}		
 	}
 	
-	public void delete(Gravadora gravadora) throws OperationException {	
+	public void deleteAll() throws OperationException {	
 		try {			
 		
-			repository.delete(gravadora);
+			repository.deleteAll();
 		
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			

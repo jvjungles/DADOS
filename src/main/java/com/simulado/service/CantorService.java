@@ -25,10 +25,10 @@ public class CantorService {
 		}		
 	}	
 	
-	public void delete(Cantor cantor) throws OperationException {	
+	public void deleteAll() throws OperationException {	
 		try {			
 		
-			repository.delete(cantor);
+			repository.deleteAll();
 		
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			

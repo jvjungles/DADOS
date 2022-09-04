@@ -25,10 +25,10 @@ public class FoneService {
 		}		
 	}
 	
-	public void delete(Fone fone) throws OperationException {	
+	public void deleteAll() throws OperationException {	
 		try {			
 		
-			repository.delete(fone);
+			repository.deleteAll();
 		
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			
