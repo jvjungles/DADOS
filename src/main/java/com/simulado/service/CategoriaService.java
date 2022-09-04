@@ -67,4 +67,12 @@ public class CategoriaService {
 			throw new OperationException("Categoria not found!");
 		}
 	}
+	
+	public Categoria getByDescCategoria(String categoria) throws OperationException{
+		try {
+			return repository.findByDescCategoria(categoria);
+		} catch (Exception e) {
+			throw new OperationException("Categoria not found!");
+		}
+	}
 }

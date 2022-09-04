@@ -68,6 +68,7 @@ public class ApplicationCommandLineRunner {
 			// SELECTs
 			selectsPessoa();
 			selectsFone();
+			selectsCategoria();
 			
 			
 			
@@ -191,6 +192,27 @@ public class ApplicationCommandLineRunner {
 		log.info("-------------------------------");			
 			log.info(foneService.getByNumero("41 9999-9999").toString());
 		log.info("");			
+		log.info("-----------------------------------------------------------------------");
+	}
+	
+	//retornando dados - Categoria
+	private void selectsCategoria() throws OperationException {
+		
+		log.info("-----------------------------------------------------------------------");
+		log.info("retornando dados - Categoria");
+		log.info("-----------------------------------------------------------------------");			
+		log.info("-----------------------------------------------------------------------");
+		log.info("");
+		log.info("Categorias encontradas com findAll():");
+		log.info("-------------------------------");
+			for (Categoria categorias : categoriaService.getAll()) {
+				log.info(categorias.toString());
+			}
+		log.info("");	
+		log.info("Categoria encontrado com getByDescCategoria()");
+		log.info("-------------------------------");			
+			log.info(categoriaService.getByDescCategoria(categoriaService.getFirst().getDescCategoria()).toString());
+		log.info("");
 		log.info("-----------------------------------------------------------------------");
 	}
 

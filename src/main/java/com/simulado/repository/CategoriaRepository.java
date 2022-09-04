@@ -12,5 +12,5 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 	
 	Categoria findFirstByOrderByIdDesc();
 	
-	Categoria findCategoriaByDescCategoria(String categoria);
+	Categoria findByDescCategoria(String categoria);
 }
