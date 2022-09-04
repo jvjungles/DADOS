@@ -52,14 +52,6 @@ public class CategoriaService {
 		}
 	}
 	
-	public boolean exists(Integer id) throws OperationException {		
-		try {
-			return repository.existsById(id.longValue());
-		} catch (Exception e) {
-			throw new OperationException("Categoria not found!");
-		}
-	}
-	
 	public Categoria getFirst() throws OperationException{
 		try {
 			return repository.findFirstBy();

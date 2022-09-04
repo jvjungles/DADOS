@@ -95,32 +95,45 @@ public class ApplicationCommandLineRunner {
 	
 	private void saves() throws OperationException {
 		
+		log.info("");
+		log.info("-----------------------------------------------------------------------");		
+		log.info("-----------------------------------------------------------------------");
+		log.info("salvando dados");
+		log.info("-----------------------------------------------------------------------");			
+		log.info("-----------------------------------------------------------------------");
+		
 		// salvando algumas pessoas
 		pessoaService.save(new Pessoa("nome pessoa 01"));
 		pessoaService.save(new Pessoa("nome pessoa 02"));
 		pessoaService.save(new Pessoa("nome pessoa 03"));
+		log.info("pessoas inseridas");
 		
 		// salvando alguns fones
 		foneService.save(new Fone("41 9999-9999", "C", pessoaService.getFirst()));
 		foneService.save(new Fone("43 8888-8888", "R", pessoaService.getLast()));
+		log.info("fones inseridos");
 		
 		// salvando algumas categorias
 		categoriaService.save(new Categoria("categoria 01"));
 		categoriaService.save(new Categoria("categoria 02"));			
+		log.info("categorias inseridas");
 		
 		// salvando algumas musicas
 		musicaService.save(new Musica("titulo 01", 10, categoriaService.getFirst()));
 		musicaService.save(new Musica("titulo 02", 12, categoriaService.getLast()));
+		log.info("musicas inseridas");
 		
 		// salvando alguns cantores
 		cantorService.save(new Cantor("nome cantor 01", "USA"));
 		cantorService.save(new Cantor("nome cantor 02", "BRASIL"));
 		cantorService.save(new Cantor("nome cantor 03", "JAPAO"));
+		log.info("cantores inseridos");
 		
 		// salvando algumas gravadoras
 		gravadoraService.save(new Gravadora("nome gravadora 01", "USA"));
 		gravadoraService.save(new Gravadora("nome gravadora 02", "BRASIL"));
 		gravadoraService.save(new Gravadora("nome gravadora 03", "JAPAO"));
+		log.info("gravadoras inseridas");
 		
 		// salvando algumas gravacoes
 		gravacaoService.save(new Gravacao(new Date(), 
@@ -131,12 +144,15 @@ public class ApplicationCommandLineRunner {
 										  musicaService.getLast(), 
 										  cantorService.getLast(), 
 										  gravadoraService.getLast()));
-	}	
-
-	private void selectsPessoa() throws OperationException {
+		log.info("gravacoes inseridas");
+		log.info("");
 		log.info("-----------------------------------------------------------------------");
 		
-		//retornando dados - Pessoa
+	}	
+
+	//retornando dados - Pessoa
+	private void selectsPessoa() throws OperationException {
+		
 		log.info("-----------------------------------------------------------------------");
 		log.info("retornando dados - Pessoa");
 		log.info("-----------------------------------------------------------------------");			
@@ -157,8 +173,9 @@ public class ApplicationCommandLineRunner {
 		log.info("-----------------------------------------------------------------------");
 	}
 	
+	//retornando dados - Fone
 	private void selectsFone() throws OperationException {
-		//retornando dados - Fone
+		
 		log.info("-----------------------------------------------------------------------");
 		log.info("retornando dados - Fone");
 		log.info("-----------------------------------------------------------------------");			
@@ -170,7 +187,7 @@ public class ApplicationCommandLineRunner {
 				log.info(fones.toString());
 			}
 		log.info("");			
-		log.info("Fone encontrado com getByNumero():");
+		log.info("Fone encontrado com getByNumero() - 41 9999-9999:");
 		log.info("-------------------------------");			
 			log.info(foneService.getByNumero("41 9999-9999").toString());
 		log.info("");			
