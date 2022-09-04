@@ -52,17 +52,9 @@ public class GravadoraService {
 		}
 	}
 	
-	public boolean exists(Integer id) throws OperationException {		
-		try {
-			return repository.existsById(id.longValue());
-		} catch (Exception e) {
-			throw new OperationException("Gravadora not found!");
-		}
-	}
-	
-	public Gravadora findByName(String name) throws OperationException {    	
+	public Gravadora getByNomeGravadora(String name) throws OperationException {    	
     	try {
-    		return repository.findGravadoraByNomeGravadora(name);
+    		return repository.findByNomeGravadora(name);
 		} catch (Exception e) {
 			throw new OperationException(e.getMessage());
 		}

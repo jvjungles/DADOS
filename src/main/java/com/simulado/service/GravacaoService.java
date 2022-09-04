@@ -59,4 +59,20 @@ public class GravacaoService {
 			throw new OperationException("Gravacao not found!");
 		}
 	}
+	
+	public List<Gravacao> getGravacaoByCantorNq(Long cantorId) throws OperationException{
+		try {
+			return (List<Gravacao>) repository.findGravacaoByCantorNq(cantorId);
+		} catch (Exception e) {
+			throw new OperationException("Gravacao not found!");
+		}
+	}
+	
+	public List<Gravacao> getGravacaoByGravadora(Long gravadora) throws OperationException{
+		try {
+			return (List<Gravacao>) repository.findGravacaoByGravadora(gravadora);
+		} catch (Exception e) {
+			throw new OperationException("Gravacao not found!");
+		}
+	}
 }

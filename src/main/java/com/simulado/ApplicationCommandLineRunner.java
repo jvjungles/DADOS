@@ -70,20 +70,11 @@ public class ApplicationCommandLineRunner {
 			selectsFone();
 			selectsCategoria();
 			selectsMusica();
+			selectsCantor();
+			selectsGravadora();
+			selectsGravacao();
 			
-			
-			
-			
-			
-						
-//			// retornando todos sa gravacoes
-//			log.info("Gravacoes encontrados com findAll():");
-//			log.info("-------------------------------");
-//			for (Gravacao gravacoes : gravacaoService.getAll()) {
-//				log.info(gravacoes.toString());
-//			}
-//			log.info("");
-//			
+			//DELETEs
 		
 			
 		};
@@ -204,7 +195,7 @@ public class ApplicationCommandLineRunner {
 				log.info(categorias.toString());
 			}
 		log.info("");	
-		log.info("Categoria encontrado com getByDescCategoria()");
+		log.info("Categoria encontrada com getByDescCategoria()");
 		log.info("-------------------------------");			
 			log.info(categoriaService.getByDescCategoria(categoriaService.getFirst().getDescCategoria()).toString());
 		log.info("");
@@ -227,7 +218,7 @@ public class ApplicationCommandLineRunner {
 				log.info(musicas.toString());
 			}
 		log.info("");
-		log.info("Musicas encontrados com like titulo:");
+		log.info("Musicas encontradas com like titulo:");
 		log.info("-------------------------------");
 		for (Musica musicas : musicaService.getByTituloLike(musicaService.getFirst().getTitulo())) {
 			log.info(musicas.toString());
@@ -235,6 +226,80 @@ public class ApplicationCommandLineRunner {
 		log.info("");
 		log.info("-----------------------------------------------------------------------");
 	}
-
 	
+	//retornando dados - Cantor
+	private void selectsCantor() throws OperationException {
+		
+		log.info("-----------------------------------------------------------------------");
+		log.info("retornando dados - Cantor");
+		log.info("-----------------------------------------------------------------------");			
+		log.info("-----------------------------------------------------------------------");
+		
+		log.info("");
+		log.info("Cantores encontrados com findAll():");
+		log.info("-------------------------------");
+			for (Cantor cantores : cantorService.getAll()) {
+				log.info(cantores.toString());
+			}
+		log.info("");
+		log.info("Cantor encontrado com nome cantor:");
+		log.info("-------------------------------");
+			log.info(cantorService.getByNomeCantor(cantorService.getFirst().getNomeCantor()).toString());
+		log.info("");
+		log.info("-----------------------------------------------------------------------");
+	}
+	
+	//retornando dados - Gravadora
+	private void selectsGravadora() throws OperationException {
+		
+		log.info("-----------------------------------------------------------------------");
+		log.info("retornando dados - Gravadora");
+		log.info("-----------------------------------------------------------------------");			
+		log.info("-----------------------------------------------------------------------");
+		
+		log.info("");
+		log.info("Gravadoras encontradas com findAll():");
+		log.info("-------------------------------");
+			for (Gravadora gravadora : gravadoraService.getAll()) {
+				log.info(gravadora.toString());
+			}
+		log.info("");
+		log.info("Gravadora encontrada com nome gravadora:");
+		log.info("-------------------------------");
+			log.info(gravadoraService.getByNomeGravadora(gravadoraService.getFirst().getNomeGravadora()).toString());
+		log.info("");
+		log.info("-----------------------------------------------------------------------");
+	}
+	
+	//retornando dados - Gravacao
+	private void selectsGravacao() throws OperationException {
+		
+		log.info("-----------------------------------------------------------------------");
+		log.info("retornando dados - Gravacao");
+		log.info("-----------------------------------------------------------------------");			
+		log.info("-----------------------------------------------------------------------");
+		
+		log.info("");
+		log.info("Gravacoes encontradas com findAll():");
+		log.info("-------------------------------");
+			for (Gravacao gravacoes : gravacaoService.getAll()) {
+				log.info(gravacoes.toString());
+			}
+		log.info("");		
+		log.info("");
+		log.info("Gravacoes encontradas com findGravacaoByCantorNq():");
+		log.info("-------------------------------");
+			for (Gravacao gravacoes : gravacaoService.getGravacaoByCantorNq(cantorService.getFirst().getId())) {
+				log.info(gravacoes.toString());
+			}
+		log.info("");		
+		log.info("");
+		log.info("Gravacoes encontradas com findGravacaoByGravadora():");
+		log.info("-------------------------------");
+			for (Gravacao gravacoes : gravacaoService.getGravacaoByGravadora(gravadoraService.getLast().getId())) {
+				log.info(gravacoes.toString());
+			}
+		log.info("");
+		log.info("-----------------------------------------------------------------------");
+	}	
 }

@@ -12,5 +12,5 @@ public interface GravadoraRepository extends JpaRepository<Gravadora, Long>{
 	
 	Gravadora findFirstByOrderByIdDesc();
 	
-	Gravadora findGravadoraByNomeGravadora(String gravadora);
+	Gravadora findByNomeGravadora(String gravadora);
 }

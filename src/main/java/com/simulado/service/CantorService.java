@@ -43,7 +43,7 @@ public class CantorService {
 		}
 	}	
 	
-	public Cantor findByName(String name) throws OperationException {
+	public Cantor getByNomeCantor(String name) throws OperationException {
     	try {
     		return repository.findByNomeCantor(name);
 		} catch (Exception e) {
