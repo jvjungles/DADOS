@@ -1,7 +1,6 @@
 package com.simulado.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,14 +35,6 @@ public class FoneService {
 		}		
 	}
 	
-	public Optional<Fone> getById(Integer id) throws OperationException {
-		try {
-			return repository.findById(id.longValue());
-		} catch (Exception e) {
-			throw new OperationException("Fone not found!");
-		}
-	}
-
 	public List<Fone> getAll() throws OperationException{
 		try {
 			return (List<Fone>) repository.findAll();
@@ -52,11 +43,11 @@ public class FoneService {
 		}
 	}
 	
-	public boolean exists(Integer id) throws OperationException {		
-		try {
-			return repository.existsById(id.longValue());
+	public Fone getByNumero(String numero) throws OperationException {
+    	try {
+    		return repository.findByNumero(numero);
 		} catch (Exception e) {
-			throw new OperationException("Fone not found!");
+			throw new OperationException(e.getMessage());
 		}
-	}	
+	}
 }

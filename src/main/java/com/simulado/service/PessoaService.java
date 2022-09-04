@@ -1,7 +1,6 @@
 package com.simulado.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,14 +35,6 @@ public class PessoaService {
 		}		
 	}
 	
-	public Optional<Pessoa> getById(Integer id) throws OperationException {
-		try {
-			return repository.findById(id.longValue());
-		} catch (Exception e) {
-			throw new OperationException("Pessoa not found!");
-		}
-	}
-
 	public List<Pessoa> getAll() throws OperationException{
 		try {
 			return (List<Pessoa>) repository.findAll();
@@ -52,13 +43,13 @@ public class PessoaService {
 		}
 	}
 	
-	public boolean exists(Integer id) throws OperationException {		
-		try {
-			return repository.existsById(id.longValue());
+	public List<Pessoa> getAllByQuery() throws OperationException {
+    	try {
+    		return repository.findAllByQuery();
 		} catch (Exception e) {
-			throw new OperationException("Pessoa not found!");
+			throw new OperationException(e.getMessage());
 		}
-	}	
+	}
 	
 	public Pessoa getFirst() throws OperationException{
 		try {

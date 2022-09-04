@@ -8,5 +8,5 @@ import com.simulado.entity.Fone;
 @Repository
 public interface FoneRepository extends JpaRepository<Fone, Long>{
 
-	Fone findFirstBy();
+	Fone findByNumero(String numero);
 }

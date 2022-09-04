@@ -1,7 +1,6 @@
 package com.simulado.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,29 +35,13 @@ public class CantorService {
 		}		
 	}
 	
-	public Optional<Cantor> getById(Integer id) throws OperationException {
-		try {
-			return repository.findById(id.longValue());
-		} catch (Exception e) {
-			throw new OperationException("Cantor not found!");
-		}
-	}
-
 	public List<Cantor> getAll() throws OperationException{
 		try {
 			return (List<Cantor>) repository.findAll();
 		} catch (Exception e) {
 			throw new OperationException("Cantor not found!");
 		}
-	}
-	
-	public boolean exists(Integer id) throws OperationException {		
-		try {
-			return repository.existsById(id.longValue());
-		} catch (Exception e) {
-			throw new OperationException("Cantor not found!");
-		}
-	}
+	}	
 	
 	public Cantor findByName(String name) throws OperationException {
     	try {

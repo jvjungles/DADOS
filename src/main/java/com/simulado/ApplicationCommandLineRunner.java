@@ -45,6 +45,8 @@ public class ApplicationCommandLineRunner {
 			) {
 		return (args) -> {
 			
+			//SAVEs
+			
 			// salvando algumas pessoas
 			pessoaService.save(new Pessoa("nome pessoa 01"));
 			pessoaService.save(new Pessoa("nome pessoa 02"));
@@ -82,29 +84,76 @@ public class ApplicationCommandLineRunner {
 											  cantorService.getLast(), 
 											  gravadoraService.getLast()));
 			
-			// retornando todos sa gravacoes
+			// SELECTs
+			log.info("-----------------------------------------------------------------------");
+			
+			//retornando dados - Pessoa
+			log.info("-----------------------------------------------------------------------");
+			log.info("retornando dados - Pessoa");
+			log.info("-----------------------------------------------------------------------");
+			
+			log.info("-----------------------------------------------------------------------");
+			
+			log.info("Pessoas encontradas com findAll():");
+			log.info("-------------------------------");
+			for (Pessoa pessoa : pessoaService.getAll()) {
+				log.info(pessoa.toString());
+			}
+			log.info("");
+			
+			log.info("Pessoa encontrada com getAllByQuery():");
+			log.info("-------------------------------");			
+			for (Pessoa pessoa : pessoaService.getAllByQuery()) {
+				log.info(pessoa.toString());
+			}			
+			log.info("");
+			
+			log.info("-----------------------------------------------------------------------");			
+			
+			
+			//retornando dados - Fone
+			log.info("-----------------------------------------------------------------------");
+			log.info("retornando dados - Fone");
+			log.info("-----------------------------------------------------------------------");
+			
+			log.info("-----------------------------------------------------------------------");
+			
 			log.info("Fones encontrados com findAll():");
 			log.info("-------------------------------");
 			for (Fone fones : foneService.getAll()) {
 				log.info(fones.toString());
 			}
 			log.info("");
+			
+			log.info("Fone encontrado com getByNumero():");
+			log.info("-------------------------------");			
+			
+			log.info(foneService.getByNumero("41 9999-9999").toString());
 						
-			// retornando todos sa gravacoes
-			log.info("Gravacoes encontrados com findAll():");
-			log.info("-------------------------------");
-			for (Gravacao gravacoes : gravacaoService.getAll()) {
-				log.info(gravacoes.toString());
-			}
 			log.info("");
 			
-			// retornando musicas like nome
-			log.info("Musicas encontrados com like nome:");
-			log.info("-------------------------------");
-			for (Musica musicas : musicaService.findByNomeLike("titulo")) {
-				log.info(musicas.toString());
-			}
-			log.info("");		
+			log.info("-----------------------------------------------------------------------");
+			
+			
+			
+			
+			
+						
+//			// retornando todos sa gravacoes
+//			log.info("Gravacoes encontrados com findAll():");
+//			log.info("-------------------------------");
+//			for (Gravacao gravacoes : gravacaoService.getAll()) {
+//				log.info(gravacoes.toString());
+//			}
+//			log.info("");
+//			
+//			// retornando musicas like nome
+//			log.info("Musicas encontrados com like nome:");
+//			log.info("-------------------------------");
+//			for (Musica musicas : musicaService.findByNomeLike("titulo")) {
+//				log.info(musicas.toString());
+//			}
+//			log.info("");		
 			
 		};
 	}
