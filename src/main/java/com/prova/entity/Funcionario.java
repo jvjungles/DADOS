@@ -10,8 +10,19 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "funcionario")
-public class Funcionario extends AbstractPersistable<Long>{	
-	   
+public class Funcionario extends AbstractPersistable<Long>{
+
+	public Funcionario() {
+		super();
+	}
+
+	public Funcionario(String nome, String sexo, String telefone, Cargo cargo) {
+		super();
+		this.nome = nome;
+		this.sexo = sexo;
+		this.telefone = telefone;
+		this.cargo = cargo;
+	}
 
 	@Column(name = "nome")
 	private String nome;
@@ -66,5 +77,10 @@ public class Funcionario extends AbstractPersistable<Long>{
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Funcionario [nome=" + nome + ", sexo=" + sexo + ", telefone=" + telefone + ", cargo=" + cargo + "]";
+	}
 }

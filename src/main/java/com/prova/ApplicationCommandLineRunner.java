@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.prova.entity.Cargo;
+import com.prova.entity.Funcionario;
 import com.prova.exception.OperationException;
 import com.prova.service.CargoService;
 import com.prova.service.FuncionarioService;
@@ -38,7 +40,7 @@ public class ApplicationCommandLineRunner {
 			
 			// SELECTs
 			selectsCargo();
-			selectsFuncionarios();			
+			selectsFuncionario();			
 			
 			//DELETEs			
 			deletes(); 
@@ -56,9 +58,15 @@ public class ApplicationCommandLineRunner {
 		log.info("-----------------------------------------------------------------------");			
 		log.info("-----------------------------------------------------------------------");
 		
-		// salvando alguns Cargos		
+		// salvando alguns Cargos
+		cargoService.save(new Cargo("Cargo 01"));
+		cargoService.save(new Cargo("Cargo 02"));
+		cargoService.save(new Cargo("Cargo 03"));
 		
 		// salvando alguns Funcionarios
+		funcionarioService.save(new Funcionario("Funcionario 01", "M", "41 9999-9999", cargoService.getFirst()));
+		funcionarioService.save(new Funcionario("Funcionario 02", "F", "41 8888-8888", cargoService.getFirst()));
+		funcionarioService.save(new Funcionario("Funcionario 03", "M", "41 7777-7777", cargoService.getLast()));
 		
 		
 		log.info("dados salvo com sucesso");
@@ -75,27 +83,41 @@ public class ApplicationCommandLineRunner {
 		log.info("-----------------------------------------------------------------------");
 		log.info("retornando dados - Cargo");
 		log.info("-----------------------------------------------------------------------");			
-		log.info("-----------------------------------------------------------------------");
-				
-		
-			
+		log.info("-----------------------------------------------------------------------");				
+		log.info("");
+		log.info("Listar Cargos com a respectiva lista de Funcionarios");
+		log.info("-------------------------------");
+			for (Cargo cargos : cargoService.getAll()) {
+				log.info(cargos.toString());
+			}
+		log.info("");
 		log.info("");
 		log.info("-----------------------------------------------------------------------");
 	}
 	
 	
 	//retornando dados - Musica
-	private void selectsFuncionarios() throws OperationException {
+	private void selectsFuncionario() throws OperationException {
 		
 		log.info("-----------------------------------------------------------------------");
-		log.info("retornando dados - Funcionarios");
+		log.info("retornando dados - Funcionario");
 		log.info("-----------------------------------------------------------------------");			
 		log.info("-----------------------------------------------------------------------");
-		
-		
-		
-		
-		log.info("");
+		log.info("");		
+		log.info("Listar Funcionários com os seus respectivos Cargos");
+		log.info("-------------------------------");
+			for (Funcionario funcionarios : funcionarioService.getAll()) {
+				log.info(funcionarios.toString());
+			}
+		log.info("");		
+		log.info("Listar o Nome de Funcionarios em Ordem Alfabetica");
+		log.info("-------------------------------");			
+			funcionarioService.getFuncionariosOrderByNome().stream().forEach(System.out::println);		
+		log.info("");		
+		log.info("Listar a Quantidade de Funcionarios");
+		log.info("-------------------------------");			
+			System.out.println("Quantidade de Funcionarios: " + funcionarioService.countFuncionarios());		
+		log.info("");		
 		log.info("-----------------------------------------------------------------------");
 	}	
 	
@@ -107,8 +129,10 @@ public class ApplicationCommandLineRunner {
 		log.info("-----------------------------------------------------------------------");			
 		log.info("-----------------------------------------------------------------------");
 		
-		log.info("funcionarios deletados");
+		funcionarioService.delete(funcionarioService.getLast().getId());		
+		log.info("funcionario deletado");
 		
+		cargoService.delete(cargoService.getLast().getId());
 		log.info("cargos deletados");
 		
 		log.info("-----------------------------------------------------------------------");

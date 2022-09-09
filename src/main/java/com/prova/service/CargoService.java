@@ -1,5 +1,8 @@
 package com.prova.service;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,41 @@ public class CargoService {
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			
 		}		
+	}
+	
+	public void delete(Long id) throws OperationException {    	
+    	try {
+			repository.delete(
+					repository.findById(id).get());
+		} catch (NoSuchElementException e) {
+			throw new OperationException("Cargo not found!");
+		} catch (NullPointerException e) {
+			throw new OperationException("Cargo not found!");
+		}
+	}
+	
+	public List<Cargo> getAll() throws OperationException{
+		try {
+			return (List<Cargo>) repository.findAll();
+		} catch (Exception e) {
+			throw new OperationException("Cargos not found!");
+		}
+	}
+	
+	public Cargo getFirst() throws OperationException{
+		try {
+			return repository.findFirstBy();
+		} catch (Exception e) {
+			throw new OperationException("Categoria not found!");
+		}
+	}
+	
+	public Cargo getLast() throws OperationException{
+		try {
+			return repository.findFirstByOrderByIdDesc();
+		} catch (Exception e) {
+			throw new OperationException("Categoria not found!");
+		}
 	}
 	
 }

@@ -13,6 +13,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "cargo")
 public class Cargo extends AbstractPersistable<Long>{	
 	
+	public Cargo() {
+		super();
+	}
+
+	public Cargo(String cargo) {
+		super();
+		this.cargo = cargo;
+	}
+
 	@Column(name="cargo", nullable = false)	
 	private String cargo;
 	
@@ -38,5 +47,10 @@ public class Cargo extends AbstractPersistable<Long>{
 
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Cargo [cargo=" + cargo + "]";
+	}
 }
