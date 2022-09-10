@@ -17,10 +17,8 @@ public class FuncionarioService {
 	private FuncionarioRepository repository;
 	
 	public void save(Funcionario funcionario) throws OperationException {	
-		try {			
-		
+		try {
 			repository.save(funcionario);
-		
 		} catch (Exception e) {			
 			throw new OperationException(e.getMessage());			
 		}		
@@ -31,8 +29,6 @@ public class FuncionarioService {
 			repository.delete(
 					repository.findById(id).get());
 		} catch (NoSuchElementException e) {
-			throw new OperationException("Funcionario not found!");
-		} catch (NullPointerException e) {
 			throw new OperationException("Funcionario not found!");
 		}
 	}
@@ -65,7 +61,7 @@ public class FuncionarioService {
 		try {
 			return repository.findFirstBy();
 		} catch (Exception e) {
-			throw new OperationException("Categoria not found!");
+			throw new OperationException("Funcionario not found!");
 		}
 	}
 	
@@ -73,7 +69,7 @@ public class FuncionarioService {
 		try {
 			return repository.findFirstByOrderByIdDesc();
 		} catch (Exception e) {
-			throw new OperationException("Categoria not found!");
+			throw new OperationException("Funcionario not found!");
 		}
 	}
 }

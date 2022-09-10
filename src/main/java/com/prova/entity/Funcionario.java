@@ -46,26 +46,21 @@ public class Funcionario extends AbstractPersistable<Long>{
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getSexo() {
 		return sexo;
 	}
 
-
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
-
 	public String getTelefone() {
 		return telefone;
 	}
-
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
