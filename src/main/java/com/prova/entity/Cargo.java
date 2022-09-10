@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,7 +26,7 @@ public class Cargo extends AbstractPersistable<Long>{
 	@Column(name="cargo", nullable = false)	
 	private String cargo;
 	
-	@OneToMany(mappedBy = "cargo")
+	@OneToMany(mappedBy = "cargo", fetch = FetchType.EAGER)
     private List<Funcionario> funcionarios;
 	
 	@Override
@@ -52,5 +53,5 @@ public class Cargo extends AbstractPersistable<Long>{
 	@Override
 	public String toString() {
 		return "Cargo [cargo=" + cargo + "]";
-	}
+	}	
 }

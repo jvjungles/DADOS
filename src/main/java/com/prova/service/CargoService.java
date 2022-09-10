@@ -39,7 +39,7 @@ public class CargoService {
 	
 	public List<Cargo> getAll() throws OperationException{
 		try {
-			return (List<Cargo>) repository.findAll();
+			return repository.findAll();
 		} catch (Exception e) {
 			throw new OperationException("Cargos not found!");
 		}
