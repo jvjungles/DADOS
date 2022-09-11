@@ -161,30 +161,50 @@ public class ApplicationCommandLineRunner {
 		System.out.println("-----------------------------------------------------------------------");			
 		System.out.println("-----------------------------------------------------------------------");
 		
-		try {
-			
-			System.out.println("\ndeletando funcionario: " + funcionarioService.getLast().getNome());
-			
-			funcionarioService.delete(funcionarioService.getLast().getId());
-				
+		try {			
+			System.out.println("\ndeletando funcionario: " + funcionarioService.getLast().getNome());			
+			funcionarioService.delete(funcionarioService.getLast().getId());				
 			System.out.println("funcionario deletado");
-			
-			System.out.println("\ndeletando cargo: " + cargoService.getLast().getCargo());
-			
-			cargoService.delete(cargoService.getLast().getId());
-				
-			System.out.println("cargo deletado");
-			
-			System.out.println("\ndeletando cargo exception: " + cargoService.getFirst().getCargo());
-			System.out.println("");
-			
-			cargoService.delete(cargoService.getFirst().getId());
-			
 		} catch (Exception e) {
 			System.out.println("");
 			System.out.println("Message exception: " + e.getMessage());
 		}
 		
+		try {			
+			System.out.println("\ndeletando cargo: " + cargoService.getLast().getCargo());			
+			cargoService.delete(cargoService.getLast().getId());				
+			System.out.println("cargo deletado");
+		} catch (Exception e) {
+			System.out.println("");
+			System.out.println("Message exception: " + e.getMessage());
+		}
+		
+		try {			
+			System.out.println("\ndeletando cargo exception: " + cargoService.getFirst().getCargo());
+			System.out.println("");			
+			cargoService.delete(cargoService.getFirst().getId());			
+		} catch (Exception e) {
+			System.out.println("");
+			System.out.println("Message exception: " + e.getMessage());
+		}
+		
+		try {			
+			System.out.println("\ndeletando funcionario: 1L");			
+			funcionarioService.delete(1L);				
+			System.out.println("funcionario deletado");
+		} catch (Exception e) {
+			System.out.println("Message: " + e.getMessage());
+		}
+		
+		try {			
+			System.out.println("\ndeletando cargo exception: 1L");
+			cargoService.delete(1L);
+			System.out.println("cargo deletado");
+		} catch (Exception e) {
+			System.out.println("Message: " + e.getMessage());
+		}
+		
 		System.out.println("\n-----------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------");
 	}
 }

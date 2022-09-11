@@ -1,3 +1,6 @@
+//----------------------------------------------------------------------------------------------------------//
+// classe Funcionario.java
+
 package com.prova.entity;
 
 import javax.persistence.Column;
@@ -79,3 +82,4 @@ public class Funcionario extends AbstractPersistable<Long>{
 		return "Funcionario [nome=" + nome + ", sexo=" + sexo + ", telefone=" + telefone + ", cargo=" + cargo + "]";
 	}
 }
+//----------------------------------------------------------------------------------------------------------//
